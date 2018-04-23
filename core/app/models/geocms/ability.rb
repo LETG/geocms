@@ -8,7 +8,7 @@ module Geocms
 
     def initialize(user, current_tenant)
       @user = user || Geocms::User.new # guest user (not logged in)
-      puts "######################################################"
+      # puts "######################################################"
       
       default
       @user.roles.each { |role| send(role.name.to_s) }
@@ -64,7 +64,7 @@ module Geocms
         can :create, Context, folder: { user: user }
         can :update, Context, folder: { user: user }
       end
-      puts "######################################################"
+      # puts "######################################################"
 =end
     end
     def default
