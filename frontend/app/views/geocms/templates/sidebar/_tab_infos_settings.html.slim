@@ -3,8 +3,9 @@ form.inside-tab-pane role="form"
     label for="context_name" =t("contexts.attributes.name")
     input#context_name.form-control name="name" type="text" ng-model="cart.context.name" ng-readonly="!cart.context.editable"
   .form-group
+    /*summernote ng-model="cart.context.description"*/
     label for="context_description" =t("contexts.attributes.description")
-    textarea#context_description.form-control name="description" type="text"  ng-model="cart.context.description" ng-readonly="!cart.context.editable"
+    textarea#context_description.form-control name="description" lang="fr-FR" config="editionOptions" summernote="" type="text" ng-model="cart.context.description" ng-readonly="!cart.context.editable"
   .form-group
     label for="context_folder" =t("contexts.attributes.folder")
 

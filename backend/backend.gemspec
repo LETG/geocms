@@ -30,7 +30,8 @@ Gem::Specification.new do |s|
   s.add_dependency "coffee-rails"
   s.add_dependency 'slim-rails', '3.1.1'
   s.add_dependency "slim", '3.0.7' 
-  s.add_dependency "bootstrap-sass", '>= 3.2'
+  s.add_dependency "font-awesome-sass", "4.7"
+  s.add_dependency "bootstrap-sass", '3.3.7'
   s.add_dependency "simple_form", '>= 3.1.0.rc2'
   s.add_dependency "responders"
   s.add_dependency "ckeditor"

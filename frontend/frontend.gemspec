@@ -32,9 +32,12 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails-assets-jquery', "> 2.0.0"
   s.add_dependency 'rails-assets-lodash', "2.4.1"
   s.add_dependency 'rails-assets-angularjs', "~> 1.2"
+  s.add_dependency 'rails-assets-bootstrap', "3.3.7"
+
   s.add_dependency 'rails-assets-restangular', "1.4.0"
   s.add_dependency 'rails-assets-angular-ui-router', "0.2.10"
   s.add_dependency 'rails-assets-angular-animate', "1.2.19"
+  s.add_dependency 'rails-assets-angular-sanitize', '1.2.19'
   s.add_dependency 'rails-assets-angular-bootstrap', '~> 0.12.0'
   # s.add_dependency 'rails-assets-angular-ui-slider', '0.0.2'
   s.add_dependency 'rails-assets-masonry', '3.1.5'
@@ -44,6 +47,7 @@ Gem::Specification.new do |s|
   # Waiting for proj4leaflet to be compatible
   # s.add_dependency 'rails-assets-proj4leaflet', "0.7.0"
   s.add_dependency 'rails-assets-moment', "2.7.0"
-
-
+  s.add_dependency 'rails-assets-angular-summernote'
+  s.add_dependency 'rails-assets-font-awsome', "4.7"
+  s.add_dependency 'rails-assets-summernote'
 end

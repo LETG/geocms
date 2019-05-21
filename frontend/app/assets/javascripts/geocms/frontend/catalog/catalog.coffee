@@ -3,6 +3,7 @@ catalog = angular.module "geocms.catalog", [
   'restangular'
   'geocms.map'
   'geocms.catalogserv'
+  'summernote'
 ]
 
 catalog.config [ 
