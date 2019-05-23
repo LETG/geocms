@@ -1,4 +1,6 @@
 (function(){
+  'use strict'
+
   angular.module('compile', [], function($compileProvider) {
     // configure new 'compile' directive by passing a directive
     // factory function. The factory function injects the '$compile'
@@ -25,4 +27,4 @@
       };
     })
   });
-})()
+})();

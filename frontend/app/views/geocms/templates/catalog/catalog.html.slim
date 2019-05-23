@@ -2,7 +2,10 @@
   #catalog.popup.active
     .container
       .catalog-close-button-container
-        button.btn.btn-primary.btn-xs.btn-close.close ng-click="catalog.close()" &times;
+        .input-group
+          //button.btn.btn-primary.btn-xs.btn-close.close ng-click="catalog.close()" &times;
+          button.btn.btn-primary.btn-close.close  type="button" ng-click="catalog.close()"
+            | valider
       .page-header
         h1 = t "modules.layers.catalog"
       .row
@@ -12,6 +15,8 @@
             span class="input-group-btn" ng-click="catalog.search()"
               button class="btn btn-primary" type="button"
                 span.glyphicon.glyphicon-search
+
+
       .small-space
       ul.breadcrumb
         li 
@@ -27,7 +32,3 @@
         .media ng-repeat="layer in catalog.layers" ng-class="{added: catalog.isOnCart(layer.layer_id, cart)}" ng-click="catalog.addToCart(layer.layer_id, cart)"
           div ng-include="config.prefix_uri+'/templates/catalog/layer.html'"
       .small-space
-      .row 
-        .col-xs-4.col-xs-offset-8
-          button class="btn btn-primary btn-block" type="button" ng-click="catalog.close()"
-            | valider

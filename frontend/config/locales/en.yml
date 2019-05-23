@@ -43,7 +43,7 @@ en:
         placeholder: Put your CQL filter
         apply: Apply
       opacity:
-        tooltip: Opacity
+        tooltip: Opacité
         header: Opacity control
       timeline:
         tooltip: Temporalité

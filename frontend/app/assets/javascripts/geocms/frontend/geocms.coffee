@@ -32,9 +32,12 @@ geocms.config [
     $urlRouterProvider,
     RestangularProvider ) ->
 
-    $locationProvider.html5Mode(true)
+    #$locationProvider.html5Mode(true)
     # RestangularProvider.setDefaultHttpFields({cache: true});
-
+    $locationProvider.html5Mode({
+      enabled: true,
+      requireBase: false
+    });
     $urlRouterProvider.when(config.prefix_uri+'', config.prefix_uri+'/maps');
     $urlRouterProvider.when(config.prefix_uri+'/', config.prefix_uri+'/maps');
 

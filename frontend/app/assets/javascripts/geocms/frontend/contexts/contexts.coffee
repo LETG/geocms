@@ -195,9 +195,9 @@ contexts.controller "ContextsController", [
   "mapService"
   "cartService"
   "mapOptionService"
+  "$timeout"
 
-
-  ($scope, $root, $state, mapService, Cart, optionService) ->
+  ($scope, $root, $state, mapService, Cart, optionService, $timeout) ->
 
     $root.cart = new Cart()
    
@@ -248,4 +248,33 @@ contexts.controller "ContextsController", [
         ['style', ['bold', 'italic', 'underline']]
       ]
     }
+      
+    $scope.status = {}
+
+    $scope.toggled = (open) ->
+      $log.log 'Dropdown is now: ', open
+      return
+
+    $scope.toggleDropdown = ($event) ->
+      console.log 'TEST toggleDropdown'
+      $event.preventDefault()
+      $event.stopPropagation()
+      $scope.status.isopen = !$scope.status.isopen
+      return
+
+    $scope.data = isDelete: {}
+    
+    removeLayer = ($event, layer) ->
+      console.log('removeLayer')
+      $event.preventDefault();
+      $event.stopPropagation();
+      $scope.status[layer.id].isopen = false
+     
+      $scope.cart.remove layer
+   
+      return
+
+    $scope.removeLayer = removeLayer
+
+    console.log($scope.status,  $scope.cart.layers )
 ]
