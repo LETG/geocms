@@ -7,6 +7,7 @@
   = f.input :max_zoom
   = f.input :tiled, wrapper: :inline_checkbox
   = f.input :queryable, wrapper: :inline_checkbox
+  = f.input :download_url
   = f.input :template, :as => :ckeditor
   - unless @layer.new_record?
     legend Move to

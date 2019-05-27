@@ -44,10 +44,10 @@
             a ng-href="{{layer.metadata_url}}" target="geonetwork" ng-if="layer.metadata_url"
              i.fa.fa-info-circle
              |  #{t("layers.controls.downloads.metadata_url")}
-          li class="divider" ng-if="!layer.data_source_not_internal"
-          li role="menuitem" ng-if="!layer.data_source_not_internal"
+          li class="divider" ng-if="!layer.data_source_not_internal || layer.download_url  "
+          li role="menuitem" ng-if="!layer.data_source_not_internal || layer.download_url "
             // Donwload url            
-            a ng-href="{{layer.data_source_wms}}?REQUEST=getFeature&service=wfs&outputFormat=shape-zip&typename={{layer.name}}"  
+            a ng-href="{{layer.download_url ? layer.download_url : layer.data_source_wms}}?REQUEST=getFeature&service=wfs&outputFormat=shape-zip&typename={{layer.name}}"  
               i.carticon-download uib-uib-tooltip='#{t("layers.controls.downloads.tooltip")}'
               |  #{t("layers.controls.downloads.tooltip")}
           li class="divider"
