@@ -49,11 +49,11 @@ en:
         tooltip: Temporalité
         header: Contrôle de la temporalité
       downloads:
-        tooltip: Download data
+        tooltip: Télécharger les données
         header: "Metadata and downloads"
         metadata: Consulter les métadonnées
         download: Télécharger les données
-        metadata_url: En savoir plus
+        metadata_url: Consulter les métadonnées
 
       destroy:
         tooltip: Supprimer
