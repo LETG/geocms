@@ -1,7 +1,7 @@
 (function(){
   'use strict'
 
-  angular.module('compile', [], function($compileProvider) {
+  angular.module('compile', [], ['$compileProvider', function($compileProvider) {
     // configure new 'compile' directive by passing a directive
     // factory function. The factory function injects the '$compile'
     $compileProvider.directive('compile', function($compile) {
@@ -26,5 +26,5 @@
         );
       };
     })
-  });
+  }]);
 })();
