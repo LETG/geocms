@@ -52,7 +52,12 @@ module Geocms
           if bbox && bbox.any?
             BoundingBox.create_bounding_boxes(@layer, bbox)
           end
-          @layer.do_thumbnail
+
+          begin
+            @layer.do_thumbnail
+          rescue
+            print "\nERROR LAYER CONTROLLER.RB ; LINE 89 ; @layer.do_thumbnail\n"
+          end 
         end
 
         respond_with(@layer) do |format|

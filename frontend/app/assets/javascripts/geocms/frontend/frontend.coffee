@@ -18,7 +18,7 @@
 #= require_tree ./vendor
 
 #= require_tree ./directives
-
+#= require ./directives/compileHtml.js
 #= require ./services/baseLayerService
 #= require ./services/projectionService
 #= require ./services/cartService

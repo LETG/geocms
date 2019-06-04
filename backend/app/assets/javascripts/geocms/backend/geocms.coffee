@@ -71,12 +71,14 @@ app.controller "ImportCtrl",
         if $scope.selectedCategories?
           layers = $scope.extractLayerInformations()
           layers = Restangular.restangularizeElement(null, layers, "layers")
+
           layers.customPOST({layers: layers}, "import").then (response) ->
             $scope.success = "L'import a réussi."
 
       $scope.extractLayerInformations = () ->
         layers = _.map filterFilter($scope.layers, {$selected: true}), (layer) ->
           infos = {
+            type_import : $scope.type_import
             name: layer.table.name
             title: layer.table.title
             description: layer.table.abstract
@@ -102,5 +104,12 @@ app.controller "ImportCtrl",
 
           infos
 
+      console.log("TEst 105");
+      $scope.type_imports = [
+        { name: 'Raster' }
+        { name: 'Vector' }
+      ]
+
+      $scope.type_import = 'Vector'
       return
   ]

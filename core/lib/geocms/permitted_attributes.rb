@@ -30,7 +30,7 @@ module Geocms
     ]
 
     @@contexts_layers_attributes = [
-      :id, :position, :opacity, :layer_id, :context_id, :visibility, :download_url
+      :id, :position, :opacity, :layer_id, :context_id, :visibility, :download_url, :type_import
     ]
 
     @@context_attributes = [
@@ -55,7 +55,7 @@ module Geocms
     @@layer_attributes = [
       :description, :name, :title, :wms_url, :data_source_id, :category,
       :crs, :minx, :miny, :maxx, :maxy, :dimension, :template,
-      :remote_thumbnail_url, :metadata_url, :metadata_identifier,:queryable, :download_url,
+      :remote_thumbnail_url, :metadata_url, :metadata_identifier,:queryable, :download_url, :type_import,
       :tiled, :max_zoom, :category_ids => []
     ]
 
