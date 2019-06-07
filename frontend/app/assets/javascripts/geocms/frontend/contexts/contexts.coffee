@@ -268,7 +268,7 @@ contexts.controller "ContextsController", [
       console.log('removeLayer')
       $event.preventDefault();
       $event.stopPropagation();
-      $scope.status[layer.id].isopen = false
+      $scope.status[layer.layer_id].isopen = false
      
       $scope.cart.remove layer
    
