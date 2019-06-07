@@ -6,3 +6,8 @@
 @import "frontend/plugins/Leaflet.Fullscreen";
 @import "font-awesome-sprockets";
 @import "font-awesome";
+
+.modal-backdrop {
+  z-index: 0;
+  position: none;
+}

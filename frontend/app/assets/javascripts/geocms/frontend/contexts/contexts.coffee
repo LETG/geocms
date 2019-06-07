@@ -246,6 +246,8 @@ contexts.controller "ContextsController", [
       toolbar: [
         ['edit',['undo','redo']],
         ['style', ['bold', 'italic', 'underline']]
+        ['alignment', ['ul', 'ol']],
+        ['insert', ['link']],
       ]
     }
       
