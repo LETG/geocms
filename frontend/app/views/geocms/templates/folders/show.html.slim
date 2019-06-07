@@ -12,5 +12,4 @@
           .placeholder ng-attr-style="{{context.preview_url ? 'background: url(\''+context.preview_url+'\') no-repeat;' : '' }}"
           h4
             |{{context.name}}
-          p
-            |{{context.description}}
+          p compile="context.description"
