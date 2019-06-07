@@ -41,7 +41,7 @@
           li class="divider"
           li role="menuitem"  
             // Metadata url 
-            a ng-href="{{layer.metadata_url}}" target="geonetwork" ng-if="layer.metadata_url"
+            a ng-href="{{layer.metadata_url}}" target="_blank" ng-if="layer.metadata_url"
              i.fa.fa-info-circle
              |  #{t("layers.controls.downloads.metadata_url")}
           li class="divider" ng-if="!layer.data_source_not_internal || layer.download_url  "
@@ -63,7 +63,7 @@
     .cart-column.cart-column-description
       |{{layer.description}}
       br
-      a ng-href="{{layer.metadata_url}}" target="geonetwork" ng-if="layer.metadata_url" =t "layers.controls.downloads.metadata_url"
+      a ng-href="{{layer.metadata_url}}" target="_blank" ng-if="layer.metadata_url" =t "layers.controls.downloads.metadata_url"
     .cart-column.cart-column-center.cart-column-details
     div ng-switch="" on="controls"
       .controls
