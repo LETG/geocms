@@ -21,9 +21,9 @@ div ng-controller="ImportCtrl" ng-init="source_id=#{@data_source.id}"
     
     script id="ng-table/headers/checkbox.html" type="text/ng-template" 
       input type="checkbox" ng-model="checkboxes.checkAll" name="filter-checkbox"
-  .row ng-hide="tableParams.settings().$loading"
+  .row ng-hide="tableParams.settings().$loading || !data.isInternal" 
     .form-group.col-xs-3
-      label for="typeImport"  Type
+      label for="typeImport"  Type 
       select name="typeImport" ng-model="type_import" ng-options=("typeImport.name as typeImport.name for typeImport in type_imports")   class="form-control"
   .row ng-hide="tableParams.settings().$loading"
     .col-xs-6

@@ -21,13 +21,7 @@ table.table.table-striped.table-backend
           = link_to [:backend, category], :confirm => 'Are you sure?', :method => :delete , :class => "btn btn-danger icn-only btn-xs" do
             i.glyphicon.glyphicon-trash.glyphicon.glyphicon-white
     - @layers.page(params[:page]).each do |layer|
-      - if !@synchro
-        == render "geocms/backend/layers/layer", layer: layer
-      - if @synchro 
-        tr
-          td = layer.title
-          td
-          td
+      == render "geocms/backend/layers/layer", layer: layer
     = paginate @layers
 
 = link_to t("modules.layers.new"), [:new, :backend, @category, :layer], :class => "btn btn-primary"

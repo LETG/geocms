@@ -13,7 +13,10 @@ app.controller "ImportCtrl",
     "$filter",
     ($scope, $location, ngTableParams, Restangular, filterFilter, $filter) ->
       Restangular.setBaseUrl(config.prefix_uri+"/api/v1")
-      
+      $scope.data = $scope.data || {}
+
+      $scope.data.isInternal = false;
+
       $scope.checkboxes = {
         checkAll: false
       }
@@ -45,8 +48,11 @@ app.controller "ImportCtrl",
             params.total(orderedDatas.length)
             $defer.resolve $scope.layers = getDatasPerPage(orderedDatas)
           else 
+         
             Restangular.one("data_sources", $scope.source_id).customGET("capabilities").then(
               (response) ->
+                $scope.data.isInternal = response.is_internal
+                console.log($scope.data);
                 params.total response.total
                 $defer.resolve $scope.layers = getDatasPerPage(data.layers)
               , (error) ->
@@ -104,7 +110,7 @@ app.controller "ImportCtrl",
 
           infos
 
-      console.log("TEst 105");
+      console.log($scope);
       $scope.type_imports = [
         { name: 'Raster' }
         { name: 'Vector' }

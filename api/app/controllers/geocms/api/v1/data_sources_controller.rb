@@ -11,7 +11,7 @@ module Geocms
        # render json: {state: "failed", message: data_source.wms}, status: :unprocessable_entity
        render json: {state: "failed", message: "L'import n'a pas pu aboutir, vérifiez que la source de données fonctionne correctement."}, status: :unprocessable_entity
       else
-        render json: {layers: context.layers.map(&:olayer), total: context.layers.size}
+        render json: {layers: context.layers.map(&:olayer), total: context.layers.size, is_internal: !data_source.not_internal }
       end
     end
 
