@@ -42,7 +42,7 @@ module Geocms
       ActiveRecord::Base.transaction do
         layers.each do |l| 
           layer = self.create!(l)
-           if layer.type_import == 'Raster' 
+           if layer.type_import == 'Automatic' 
             begin
               d = layer.data_source
               # requette describeCoverage to get BBOX, CRS and offset vector

@@ -7,7 +7,7 @@
   = f.input :max_zoom
   = f.input :tiled, wrapper: :inline_checkbox
   = f.input :queryable, wrapper: :inline_checkbox,  disabled: @synchro
-  = f.input :type_import, collection: [['Vector', 'Vector'], ['Raster', 'Raster']], label_method: :second, value_method: :first 
+  = f.input :type_import, collection: [['Vector', 'Vector'], ['Automatic', 'Automatic']], label_method: :second, value_method: :first 
   = f.input :download_url
   = f.input :template, :as => :ckeditor
   - unless @layer.new_record?

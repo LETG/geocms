@@ -112,10 +112,10 @@ app.controller "ImportCtrl",
 
       console.log($scope);
       $scope.type_imports = [
-        { name: 'Raster' }
+        { name: 'Automatic' }
         { name: 'Vector' }
       ]
 
-      $scope.type_import = 'Vector'
+      $scope.type_import = 'Automatic'
       return
   ]

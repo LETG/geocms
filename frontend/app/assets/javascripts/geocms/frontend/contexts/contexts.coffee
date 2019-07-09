@@ -180,7 +180,7 @@ contexts.config [
             controller: ["mapService", "context", "folders", "$rootScope", "$stateParams", "$scope", "$compile", (mapService, context, folders, $root, $stateParams, $scope) ->
               mapService.createMap("map", context.center_lat, context.center_lng, context.zoom, $stateParams["plugins"])
               mapService.addBaseLayer()
-   
+              $root.cart.context = context
               $root.cart.addSeveral()
               $scope.mapService = mapService
             ]
