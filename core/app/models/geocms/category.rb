@@ -28,7 +28,13 @@ module Geocms
     end
 
     def cache_ancestry
-      self.names_depth_cache = path.map(&:slug).join('/')
+      if path.empty? && self.ancestry.nil?
+        self.names_depth_cache = self.slug 
+      elsif !path.empty? && !self.ancestry.nil? && self.names_depth_cache.nil?
+        self.names_depth_cache = path.map(&:slug).insert(-1,self.slug).join('/')
+      else
+        self.names_depth_cache = path.map(&:slug).join('/')
+      end
     end
 
     def self.arrange_as_array(options={}, hash=nil)

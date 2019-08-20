@@ -35,7 +35,7 @@ module Geocms
       def edit
         @layer = Layer.find(params[:id])
         @categories = Category.for_select
-        
+
         datasource = @layer.data_source
         @synchro = false
         if !(datasource.nil? )
