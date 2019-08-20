@@ -10,3 +10,6 @@
     width: 545px;
   }
 }
+select[multiple], select[size] {
+    resize: vertical;
+}
