@@ -29,18 +29,31 @@ def getLayerInfo(node,search,source_id,category_id,source)
           title = layer.search("> Title").first;
           metadataUrl = layer.search("> MetadataURL > OnlineResource").first
 
-          dimension = layer.search("> Extent").first
+          if source.wms_version == "1.1.1"
+            dimension = layer.search("> Extent").first
+          elsif source.wms_version == "1.3.0"
+            dimension = layer.search("> Dimension").first
+          end
 
           timeArray = !dimension.nil? && !dimension["name"].nil? && dimension["name"] === "time" ?  dimension.content.split(",") : nil
 
           bbox = nil
 
           layer.search("> BoundingBox").each do |bboxFromXml|
-            if bboxFromXml["SRS"] === 'CRS:84' 
-              bbox = bboxFromXml;
-            end
-            if bboxFromXml["SRS"] === 'EPSG:4326' 
-              bbox = bboxFromXml;
+            if source.wms_version == "1.1.1"
+              #if bboxFromXml["SRS"] === 'CRS:84' 
+              #  bbox = bboxFromXml;
+              #end
+              if bboxFromXml["SRS"] === 'EPSG:4326' 
+                bbox = bboxFromXml;
+              end
+            elsif source.wms_version == "1.3.0"
+              #if bboxFromXml["CRS"] === 'CRS:84'
+              #  bbox = bboxFromXml;
+              #end
+              if bboxFromXml["CRS"] === 'EPSG:4326'
+                bbox = bboxFromXml;
+              end
             end
           end
 
@@ -58,11 +71,19 @@ def getLayerInfo(node,search,source_id,category_id,source)
 
           # get bounding box 
           if !bbox.nil? 
-            crs = !bbox["SRS"].nil? ?  bbox["SRS"] : nil
-            bboxArray.insert(0,( bbox["minx"].nil? ? nil : bbox["minx"].to_f  ))
-            bboxArray.insert(1,( bbox["miny"].nil? ? nil : bbox["miny"].to_f  ))
-            bboxArray.insert(2,( bbox["maxx"].nil? ? nil : bbox["maxx"].to_f  ))
-            bboxArray.insert(3,( bbox["maxy"].nil? ? nil : bbox["maxy"].to_f  ))
+            if source.wms_version == "1.1.1"
+              crs = !bbox["SRS"].nil? ?  bbox["SRS"] : nil
+              bboxArray.insert(0,( bbox["minx"].nil? ? nil : bbox["minx"].to_f  ))
+              bboxArray.insert(1,( bbox["miny"].nil? ? nil : bbox["miny"].to_f  ))
+              bboxArray.insert(2,( bbox["maxx"].nil? ? nil : bbox["maxx"].to_f  ))
+              bboxArray.insert(3,( bbox["maxy"].nil? ? nil : bbox["maxy"].to_f  ))
+            elsif source.wms_version == "1.3.0"
+              crs = !bbox["CRS"].nil? ?  bbox["CRS"] : nil
+              bboxArray.insert(0,( bbox["miny"].nil? ? nil : bbox["miny"].to_f  ))
+              bboxArray.insert(1,( bbox["minx"].nil? ? nil : bbox["minx"].to_f  ))
+              bboxArray.insert(2,( bbox["maxy"].nil? ? nil : bbox["maxy"].to_f  ))
+              bboxArray.insert(3,( bbox["maxx"].nil? ? nil : bbox["maxx"].to_f  ))
+            end
           end
         
           # searche layer if exist  
@@ -148,7 +169,7 @@ def getLayerInfo(node,search,source_id,category_id,source)
          #   puts "--------------------------------------"
          #   puts "#{img}"
             img = img .gsub('styles=&', '');
-            img = img .gsub('1.3.0', '1.1.0');
+            img = img .gsub('1.3.0', '1.1.1');
          #   puts "#{img}"
             layerFromDb.remote_thumbnail_url = img;
             
@@ -184,7 +205,7 @@ def getLayerInfo(node,search,source_id,category_id,source)
             #   puts "--------------------------------------"
             #   puts "#{img}"
             img = img .gsub('styles=&', '');
-            img = img .gsub('1.3.0', '1.1.0');
+            img = img .gsub('1.3.0', '1.1.1');
             newLayer.remote_thumbnail_url = img;
            
             #create layer
@@ -239,7 +260,7 @@ namespace :geocms do
     desc "Donwnload a wms file for test devloppement"
     task :download_wms => :environment do
       puts "File donwnload"
-      content = Net::HTTP.get(URI("https://portail.indigeo.fr/geoserver/CBNB/wms"+"?SERVICE=WMS&VERSION=1.1.0&REQUEST=GetCapabilities"))
+      content = Net::HTTP.get(URI("https://portail.indigeo.fr/geoserver/CBNB/wms"+"?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetCapabilities"))
       puts "write xml file"
       File.open("content.xml","w+") do |f|
         f << content.force_encoding('utf-8');
@@ -379,7 +400,7 @@ namespace :geocms do
 
       # send email to admins_data users
       puts "search admin user : " 
-      Geocms::User.joins(:roles).where(geocms_roles: { name: 'admin_data' }).all.each do |user|;
+      Geocms::User.joins(:roles).where(geocms_roles: { name: 'admin_instance' }).all.each do |user|;
         puts "Send mail to : #{ user.username } "
         begin
           UserMailer.sendUpdateLog(filename,date_email,user).deliver_now

@@ -35,7 +35,8 @@ module Geocms
 
     def bboxCrs
       bbox = bounding_boxes.leafletable.first
-      return bbox.crs
+      #return bbox.crs
+      bbox.nil? ? 'EPSG:4326' : bbox.crs
     end
     
     def self.bulk_import(layers)
