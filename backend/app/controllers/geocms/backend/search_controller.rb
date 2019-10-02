@@ -8,7 +8,8 @@ module Geocms
       end
 
       def search
-        @layers = Geocms::Layer.search(params[:query]).page(params[:page])
+        @layers = Geocms::Layer.joins(:categories).where("geocms_categories.account_id= ?",current_tenant.id).search(params[:query]).page(params[:page])
+        respond_with @layers.to_a.uniq
       end
 
     end

@@ -2,9 +2,14 @@
 #= require lodash
 #= require angular
 #= require restangular
+#= require bootstrap
 #= require angular-ui-router
 #= require angular-animate
 #= require angular-bootstrap
+#= require angular-sanitize
+#= require summernote
+#= require angular-summernote
+
 #= require masonry/dist/masonry.pkgd
 #= require angular-masonry
 #= require leaflet
@@ -13,7 +18,7 @@
 #= require_tree ./vendor
 
 #= require_tree ./directives
-
+#= require ./directives/compileHtml.js
 #= require ./services/baseLayerService
 #= require ./services/projectionService
 #= require ./services/cartService

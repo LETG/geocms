@@ -52,7 +52,7 @@ fr:
         tooltip: Télécharger les données
         header: "Métadonnées et téléchargement"
         metadata: Consulter les métadonnées
-        metadata_url: En savoir plus
+        metadata_url: Consulter les métadonnées
         download: Télécharger les données
       destroy:
         tooltip: Supprimer

@@ -125,9 +125,6 @@ mapModule.service "mapService",
         if @currentLayer.timelineIndex? 
           time_str = '&time='+@currentLayer.dimensions[@currentLayer.timelineIndex]
 
-        console.log "time_str : ", time_str
-
-
         config.prefix_uri+
         '/api/v1/data_sources/get_feature_infos'+
         '?wms_url='+@currentLayer.data_source_wms+

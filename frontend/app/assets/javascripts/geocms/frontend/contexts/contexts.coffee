@@ -3,6 +3,9 @@ contexts = angular.module "geocms.contexts", [
   'restangular'
   'geocms.map'
   'geocms.cart'
+  'summernote'
+  'ngSanitize'
+  'compile'
 ]
 
 contexts.config [
@@ -110,7 +113,6 @@ contexts.config [
               $root.cart.context = context
               $root.cart.addSeveral()
               $location.hash('project')
-              console.log($root.cart.context);
 
               Restangular.one('users').customGET("index").then( 
                 (user) ->
@@ -175,7 +177,7 @@ contexts.config [
             controller: "ContextsController"
           "map@contexts":
             templateUrl: config.prefix_uri+"/templates/contexts/map.html"
-            controller: ["mapService", "context", "folders", "$rootScope", "$stateParams", "$scope", (mapService, context, folders, $root, $stateParams, $scope) ->
+            controller: ["mapService", "context", "folders", "$rootScope", "$stateParams", "$scope", "$compile", (mapService, context, folders, $root, $stateParams, $scope) ->
               mapService.createMap("map", context.center_lat, context.center_lng, context.zoom, $stateParams["plugins"])
               mapService.addBaseLayer()
               $root.cart.context = context
@@ -193,8 +195,9 @@ contexts.controller "ContextsController", [
   "mapService"
   "cartService"
   "mapOptionService"
+  "$timeout"
 
-  ($scope, $root, $state, mapService, Cart, optionService) ->
+  ($scope, $root, $state, mapService, Cart, optionService, $timeout) ->
 
     $root.cart = new Cart()
    
@@ -203,6 +206,8 @@ contexts.controller "ContextsController", [
     watchers = '[cart.context.name, cart.context.description, cart.context.folder_id, cart.context.center_lng, cart.context.center_lat, cart.context.zoom]'
     $root.$watchCollection watchers, (newValues, oldValues) ->
       $root.cart.state = "unsaved" unless angular.equals(newValues, oldValues)
+
+    
     , true
 
     $scope.openCatalog = (with_search) ->
@@ -235,4 +240,43 @@ contexts.controller "ContextsController", [
     $scope.mapOptions = optionService
     $scope.mapService = mapService
     $scope.showOption = false
+
+    # Option to wysiwyg summernote
+    $scope.editionOptions = {
+      toolbar: [
+        ['edit',['undo','redo']],
+        ['style', ['bold', 'italic', 'underline']]
+        ['alignment', ['ul', 'ol']],
+        ['insert', ['link']],
+      ]
+    }
+      
+    $scope.status = {}
+
+    $scope.toggled = (open) ->
+      $log.log 'Dropdown is now: ', open
+      return
+
+    $scope.toggleDropdown = ($event) ->
+      console.log 'TEST toggleDropdown'
+      $event.preventDefault()
+      $event.stopPropagation()
+      $scope.status.isopen = !$scope.status.isopen
+      return
+
+    $scope.data = isDelete: {}
+    
+    removeLayer = ($event, layer) ->
+      console.log('removeLayer')
+      $event.preventDefault();
+      $event.stopPropagation();
+      $scope.status[layer.layer_id].isopen = false
+     
+      $scope.cart.remove layer
+   
+      return
+
+    $scope.removeLayer = removeLayer
+
+    console.log($scope.status,  $scope.cart.layers )
 ]

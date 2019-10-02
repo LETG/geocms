@@ -1,16 +1,19 @@
 = simple_form_for([:backend, @layer], defaults: { input_html: { "ng-non-bindable" => true }}) do |f|
-  = f.input :title, input_html: { autofocus: "autofocus" }
-  = f.input :name
-  = f.association :data_source
-  = f.input :metadata_url
-  = f.input :description
+  = f.input :title, input_html: { autofocus: "autofocus" }, disabled: @synchro
+  = f.input :name, disabled: @synchro
+  = f.association :data_source, disabled: @synchro
+  = f.input :metadata_url, disabled: @synchro
+  = f.input :description, disabled: @synchro
   = f.input :max_zoom
   = f.input :tiled, wrapper: :inline_checkbox
-  = f.input :queryable, wrapper: :inline_checkbox
+  = f.input :queryable, wrapper: :inline_checkbox,  disabled: @synchro
+  = f.input :type_import, collection: [['Vector', 'Vector'], ['Automatic', 'Automatic']], label_method: :second, value_method: :first 
+  = f.input :download_url
   = f.input :template, :as => :ckeditor
   - unless @layer.new_record?
     legend Move to
-    = f.association :categories, :collection => @categories
-    #layer data-id=@layer.id
+    = f.association :categories, collection: @categories, input_html: { size: "10" }, disabled: @synchro
+  #layer data-id=@layer.id
   .btn.btn-default-group
     = f.submit :class => "btn btn-primary"
+

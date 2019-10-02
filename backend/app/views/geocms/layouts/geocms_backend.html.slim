@@ -49,6 +49,6 @@ html ng-app="geocms"
 
     javascript:
       var config = #{raw (current_tenant.prefs.to_json)};
-      var CKEDITOR_BASEPATH = '/assets/ckeditor/';
+      var CKEDITOR_BASEPATH = config.prefix_uri+'/assets/ckeditor/';
     = javascript_include_tag "geocms/backend"
     == yield :javascripts

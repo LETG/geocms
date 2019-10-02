@@ -10,8 +10,7 @@ div ng-if="cart.context.uuid"
   .page-header.project-name
     h3
       |{{cart.context.name}}
-  p.project-description
-    |{{cart.context.description}}
+  div.project-description compile="cart.context.description"
   form.form-horizontal.inside-tab-pane role="form" ng-if="state != 'contexts.show'"
 
     .form-group

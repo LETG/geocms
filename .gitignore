@@ -56,3 +56,4 @@ test_app
 **/coverage
 */.sass-cache
 .localeapp
+vendor

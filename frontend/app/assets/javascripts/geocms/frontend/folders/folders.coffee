@@ -1,6 +1,7 @@
 folders = angular.module 'geocms.folders', [
   'ui.router'
   'restangular'
+  'compile'
 ]
 
 folders.config [

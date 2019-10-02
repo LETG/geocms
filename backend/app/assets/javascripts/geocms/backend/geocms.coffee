@@ -13,7 +13,10 @@ app.controller "ImportCtrl",
     "$filter",
     ($scope, $location, ngTableParams, Restangular, filterFilter, $filter) ->
       Restangular.setBaseUrl(config.prefix_uri+"/api/v1")
-      
+      $scope.data = $scope.data || {}
+
+      $scope.data.isInternal = false;
+
       $scope.checkboxes = {
         checkAll: false
       }
@@ -45,8 +48,11 @@ app.controller "ImportCtrl",
             params.total(orderedDatas.length)
             $defer.resolve $scope.layers = getDatasPerPage(orderedDatas)
           else 
+         
             Restangular.one("data_sources", $scope.source_id).customGET("capabilities").then(
               (response) ->
+                $scope.data.isInternal = response.is_internal
+                console.log($scope.data);
                 params.total response.total
                 $defer.resolve $scope.layers = getDatasPerPage(data.layers)
               , (error) ->
@@ -71,12 +77,14 @@ app.controller "ImportCtrl",
         if $scope.selectedCategories?
           layers = $scope.extractLayerInformations()
           layers = Restangular.restangularizeElement(null, layers, "layers")
+
           layers.customPOST({layers: layers}, "import").then (response) ->
             $scope.success = "L'import a réussi."
 
       $scope.extractLayerInformations = () ->
         layers = _.map filterFilter($scope.layers, {$selected: true}), (layer) ->
           infos = {
+            type_import : $scope.type_import
             name: layer.table.name
             title: layer.table.title
             description: layer.table.abstract
@@ -102,5 +110,12 @@ app.controller "ImportCtrl",
 
           infos
 
+      console.log($scope);
+      $scope.type_imports = [
+        { name: 'Automatic' }
+        { name: 'Vector' }
+      ]
+
+      $scope.type_import = 'Automatic'
       return
   ]

@@ -2,7 +2,10 @@
   #catalog.popup.active
     .container
       .catalog-close-button-container
-        button.btn.btn-primary.btn-xs.btn-close.close ng-click="catalog.close()" &times;
+        .input-group
+          button.btn.btn-primary.btn-xs.btn-close.close ng-click="catalog.close()" &times;
+          //button.btn.btn-primary.btn-close.close  type="button" ng-click="catalog.close()"
+            | valider
       .page-header
         h1 = t "modules.layers.catalog"
       .row
@@ -12,6 +15,8 @@
             span class="input-group-btn" ng-click="catalog.search()"
               button class="btn btn-primary" type="button"
                 span.glyphicon.glyphicon-search
+
+
       .small-space
       ul.breadcrumb
         li 

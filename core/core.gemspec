@@ -22,7 +22,8 @@ Gem::Specification.new do |s|
   s.add_dependency "rails", ">= 4.0"
   # s.add_dependency "sprockets", "~> 2.11.0"
   s.add_dependency "compass-rails"
-  s.add_dependency "bootstrap-sass", ">= 3.2.0"
+  s.add_dependency "font-awesome-sass", "4.7"
+  s.add_dependency "bootstrap-sass", "3.3.7"
   s.add_dependency 'draper'
   s.add_dependency "acts_as_tenant", '~> 0.3.6'
   s.add_dependency "friendly_id"
@@ -32,7 +33,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'carrierwave', '~> 0.10.0'
   s.add_dependency "cancancan"
   s.add_dependency "rolify"
-  s.add_dependency "rgeo", '~> 0.6.0'
+  s.add_dependency "rgeo", '0.6.0'  
   s.add_dependency "curb"
   s.add_dependency "pg_search"
   s.add_dependency "sorcery"
