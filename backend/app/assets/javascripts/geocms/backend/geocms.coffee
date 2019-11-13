@@ -106,7 +106,7 @@ app.controller "ImportCtrl",
             dimensions = { dimensions_attributes: _.map(layer.table.dimensions.time.table.values, (dim) -> value: dim) }
             infos = angular.extend dimensions, infos
           unless angular.equals([],layer.table.metadata_urls)
-            infos.metadata_url = layer.table.metadata_urls[0].table.href
+            infos.metadata_url = layer.table.metadata_urls[layer.table.metadata_urls.length-1].table.href
 
           infos
 
