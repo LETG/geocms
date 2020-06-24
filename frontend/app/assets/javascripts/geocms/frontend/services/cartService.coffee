@@ -144,11 +144,11 @@ cartModule.service "cartService",
       
       @context.save().then ((response)->
         $state.transitionTo("contexts.edit", {uuid: response.uuid}).then ->
-          toaster.pop('success', "La sauvegarde a réussi", response.data)
+          toaster.pop('success', config.t.contexts.edit.success, response.data)
           $root.cart.state = "saved"
       ), (response)->
         $root.settingsActive = true
-        toaster.pop('error', "La sauvegarde a échoué", response.data.message)
+        toaster.pop('error', config.t.contexts.edit.failure, response.data.message)
 
 
     Cart::centerOn = (layer) ->

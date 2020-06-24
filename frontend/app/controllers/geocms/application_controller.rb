@@ -8,12 +8,19 @@ module Geocms
     layout 'geocms/layouts/geocms_application'
 
     before_action :decorate_tenant
+    before_action :set_locale
 
     private
       def decorate_tenant
 	if !current_tenant.nil?        
           @current_tenant = current_tenant.decorate
         end
+      end
+
+      def set_locale
+        session[:locale] = params[:locale] if params[:locale]
+        session[:locale] ||= :fr
+        I18n.locale = session[:locale]
       end
     #   def not_authenticated
     #     redirect_to login_url, :alert => "First log in to view this page."

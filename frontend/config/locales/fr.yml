@@ -19,6 +19,7 @@ fr:
       save: Sauvegarder
       saved: Sauvegardé
       new: Nouveau projet
+      edit: Éditer
     attributes:
       name: Nom
       description: Description
@@ -26,13 +27,19 @@ fr:
       center_lng: Longitude
       center_lat: Latitude
       zoom_level: Zoom
+    edit:
+      success: "La sauvegarde a réussi"
+      failure: "La sauvegarde a échoué"
 
   layers:
     header: Couches
     open_catalog: Ajouter une couche
     back_to_list: Retour à la liste
     data_source: "Source :"
+    invalid: "Type de couche invalide ou non supporté"
     controls:
+      tools:
+        tooltip: Outils
       center:
         tooltip: Centrer
       query:
@@ -48,6 +55,7 @@ fr:
       timeline:
         tooltip: Temporalité
         header: Contrôle de la temporalité
+        play_pause: Lecture/Pause
       downloads:
         tooltip: Télécharger les données
         header: "Métadonnées et téléchargement"
@@ -82,4 +90,15 @@ fr:
 
   modules:
     layers:
-      catalog: Catalogue de données réferencées
+      catalog: Catalogue de données référencées
+      submit: "Valider"
+
+  leaflet:
+    control:
+      geo_search:
+        search_label: "Aller à..."
+        not_found_message: "Désolé, l'adresse n'a pas été trouvée"
+
+  map:
+    layer_properties_fetch_error: Impossible d'obtenir les propriétés de cette couche
+    no_point_data: Pas de données sur ce point

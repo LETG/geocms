@@ -13,7 +13,7 @@ layerModule.service "layerService", ["$http", "$q", ($http, $q) ->
       when "geojson"
         promise = @_getGeoJSON(data, deffered)
       else
-        promise = deffered.reject("Invalid/Unsupported layer type")
+        promise = deffered.reject(config.t.layers.invalid)
 
     return promise
 

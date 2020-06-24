@@ -20,6 +20,6 @@
       span ng-bind="cart.state == 'saved' ? '#{t("contexts.actions.saved")}' : '#{t("contexts.actions.save")}'"
     a#save-button ui-sref='contexts.edit({uuid: cart.context.uuid})' ng-if="state == 'contexts.show' && cart.context.editable"
       span.carticon-pencil
-      span Editer
+      span= t("contexts.actions.edit")
 
   == render "geocms/templates/sidebar/footer"

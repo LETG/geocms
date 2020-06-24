@@ -145,7 +145,7 @@ mapModule.service "mapService",
         wrapper = "<div class='geocms-popup-header'><h1>"+@currentLayer.title+"</h1></div>"
         wrapper += "<div class='geocms-popup-body'>"
         if data == "null" or data.status == "failed"
-          body = "<p>Impossible d'obtenir les propriétés de cette couche.</p>"
+          body = "<p>"+config.t.map.layer_properties_fetch_error+"</p>"
         else if data.features.length > 0
           if mapService.currentLayer.template? and mapService.currentLayer.template != ""
             html = mapService.currentLayer.template
@@ -157,7 +157,7 @@ mapModule.service "mapService",
           template = _.template(html)
           body = template(data.features[0].properties)
         else
-          body = "<p>Pas de données sur ce point.</p>"
+          body = "<p>"+config.t.map.no_point_data+"</p>"
         wrapper + body + '</div>'
       mapService
 ]

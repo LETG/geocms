@@ -54,8 +54,8 @@ pluginModule.service "pluginService",
           new L.Control.GeoSearch({
               provider: new L.GeoSearch.Provider.Google(),
               position: 'topright',
-              searchLabel: 'Aller à ...',
-              notFoundMessage: "Désolé, l'adresse n'a pas été trouvé."
+              searchLabel: config.t.leaflet.control.geo_search.search_label,
+              notFoundMessage: config.t.leaflet.control.geo_search.not_found_message
           }).addTo(map);
 
         if pluginsParams == null || pluginsParams == undefined || pluginsParams.indexOf("minimap") > -1

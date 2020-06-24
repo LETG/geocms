@@ -6,3 +6,15 @@
   a ng-href="{{config.geovisu_url}}?wmc={{config.host}}/{{config.prefix_uri}}/api/v1/contexts/{{cart.context.id}}/wmc&lang=fr" target="geovisu"
     i.carticon-export
     = t('contexts.wmc')
+
+#language-button.button-plugins-right.button-plugins-right--language ui-sref="contexts.root"
+  - if I18n.locale == :fr
+    span
+      = link_to "FR", root_path(locale: :fr), "ng-click": "$event.stopPropagation();"
+    span
+      = link_to "EN", root_path(locale: :en), "ng-click": "$event.stopPropagation();"
+  - else
+    span
+      = link_to "EN", root_path(locale: :en), "ng-click": "$event.stopPropagation();"
+    span
+      = link_to "FR", root_path(locale: :fr), "ng-click": "$event.stopPropagation();"

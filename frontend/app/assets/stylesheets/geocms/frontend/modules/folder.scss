@@ -18,6 +18,13 @@
     vertical-align: middle;
   }
 }
+.button-plugins-right--language {
+  right: -47px;
+}
+.button-plugins-right--language a {
+  display: inline-block;
+  padding: 0 10px;
+}
 
 #folders-button {
   top: 15px;
@@ -31,4 +38,8 @@
 
 .non-public-folder {
   color: #e2dbdb;
+}
+
+#language-button {
+  top: 150px;
 }

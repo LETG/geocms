@@ -20,4 +20,27 @@ html(lang="en" ng-app="geocms")
 
     javascript:
       var config = #{raw (current_tenant.prefs.to_json)}
+      config.locale = '#{I18n.locale}'
+      config.t = {
+        leaflet: {
+          control: {
+            geo_search: {
+              search_label: '#{t("leaflet.control.geo_search.search_label")}',
+            },
+          },
+        },
+        contexts: {
+          edit: {
+            success: '#{t("contexts.edit.success")}',
+            failure: '#{t("contexts.edit.failure")}',
+          }
+        },
+        layers: {
+          invalid: '#{t("layers.invalid")}',
+        },
+        map: {
+          layer_properties_fetch_error: '#{t("map.layer_properties_fetch_error")}',
+          no_point_data: '#{t("map.no_point_data")}',
+        },
+      }
     = javascript_include_tag "geocms/application"

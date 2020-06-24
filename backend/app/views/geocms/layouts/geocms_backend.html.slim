@@ -36,6 +36,10 @@ html ng-app="geocms"
                 button class="btn btn-default" type="submit"
                   span.glyphicon.glyphicon-search
           ul.nav.navbar-nav.navbar-right
+            li class="#{'active' if I18n.locale == :fr}"
+              = link_to "FR", backend_root_path(locale: :fr)
+            li class="#{'active' if I18n.locale == :en}"
+              = link_to "EN", backend_root_path(locale: :en)
             li= link_to t("menu.logout"), logout_path
 
 
