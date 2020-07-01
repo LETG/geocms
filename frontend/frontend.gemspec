@@ -25,7 +25,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'geocms_core', version
   s.add_dependency 'geocms_api', version
 
-  s.add_dependency "sass-rails", '>= 4.0'
+  s.add_dependency "sass-rails"
   s.add_dependency "coffee-rails"
   s.add_dependency "slim-rails"
 

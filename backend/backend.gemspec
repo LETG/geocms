@@ -26,13 +26,13 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails-assets-restangular', "1.4.0"
   s.add_dependency 'rails-assets-ng-table', "0.3.3"
 
-  s.add_dependency "sass-rails", '>= 4.0'
+  s.add_dependency "sass-rails"
   s.add_dependency "coffee-rails"
-  s.add_dependency 'slim-rails', '3.1.1'
-  s.add_dependency "slim", '3.0.7' 
+  s.add_dependency 'slim-rails'
+  s.add_dependency "slim"
   s.add_dependency "font-awesome-sass", "4.7"
   s.add_dependency "bootstrap-sass", '3.3.7'
-  s.add_dependency "simple_form", '>= 3.1.0.rc2'
+  s.add_dependency "simple_form", '~> 4.1.0'
   s.add_dependency "responders"
   s.add_dependency "ckeditor"
   s.add_dependency 'rabl', '~> 0.7.9'

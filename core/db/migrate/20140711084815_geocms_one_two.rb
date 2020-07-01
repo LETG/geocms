@@ -1,4 +1,4 @@
-class GeocmsOneTwo < ActiveRecord::Migration
+class GeocmsOneTwo < ActiveRecord::Migration[4.2]
   def change
     create_table "geocms_accounts", force: true do |t|
       t.string   "name"

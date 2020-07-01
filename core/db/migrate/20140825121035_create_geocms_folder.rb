@@ -1,4 +1,4 @@
-class CreateGeocmsFolder < ActiveRecord::Migration
+class CreateGeocmsFolder < ActiveRecord::Migration[4.2]
   def change
     create_table :geocms_folders do |t|
       t.string      :name

@@ -1,4 +1,4 @@
-class AddGeocmsCategoryToGeocmsDataSources < ActiveRecord::Migration
+class AddGeocmsCategoryToGeocmsDataSources < ActiveRecord::Migration[4.2]
   def change
     add_reference :geocms_data_sources, :geocms_category, index: true, foreign_key: true
   end
