@@ -1,7 +1,10 @@
 module Geocms
   module Backend
     class ApplicationController < ActionController::Base
-      before_filter :set_locale
+
+      include Sorcery::Controller
+
+      before_action :set_locale
       # self.responder = ApplicationResponder
       respond_to :html, :json
 
@@ -11,8 +14,8 @@ module Geocms
       protect_from_forgery
 
       set_current_tenant_by_subdomain(Geocms::Account, :subdomain)
-      before_filter :require_login
-      before_filter :is_in_domain
+      before_action :require_login
+      before_action :is_in_domain
 
       def controle_access(exception)
         message = exception.nil? ? "Unauthorized" : exception.message

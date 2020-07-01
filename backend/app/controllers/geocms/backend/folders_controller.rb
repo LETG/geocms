@@ -7,7 +7,7 @@ module Geocms
         controle_access(exception)
       end
 
-      before_filter :set_folder, only: [:edit, :show, :update, :destroy]
+      before_action :set_folder, only: [:edit, :show, :update, :destroy]
 
       def index
         @folders = Folder.ordered
