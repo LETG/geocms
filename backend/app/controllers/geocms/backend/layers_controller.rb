@@ -1,7 +1,7 @@
 module Geocms
   module Backend
     class LayersController < Geocms::Backend::ApplicationController
-      #before_filter :require_category, :only => [:destroy]
+      #before_action :require_category, :only => [:destroy]
       load_and_authorize_resource class: "Geocms::Layer"
 
       rescue_from CanCan::AccessDenied do |exception|

@@ -2,7 +2,7 @@ module Geocms
   class SessionsController < ApplicationController
     layout 'geocms/layouts/geocms_login'
 
-    skip_before_action :require_login
+    skip_before_action :require_login, :raise => false
 
     def new
       redirect_back_or_to root_url if logged_in?

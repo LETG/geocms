@@ -10,7 +10,7 @@ module ActsAsTenant
       self.tenant_column = column.to_sym
 
       self.class_eval do
-        before_filter { |c| c.send(:find_tenant_by_subdomain) }
+        before_action { |c| c.send(:find_tenant_by_subdomain) }
 
         helper_method :current_tenant
 

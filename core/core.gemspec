@@ -28,7 +28,7 @@ Gem::Specification.new do |s|
   s.add_dependency "acts_as_tenant", '~> 0.3.6'
   s.add_dependency "friendly_id"
   s.add_dependency "ancestry"
-  s.add_dependency "acts_as_list", "~> 0.4.0"
+  s.add_dependency "acts_as_list", "~> 1.0.0"
   s.add_dependency 'mini_magick'
   s.add_dependency 'carrierwave', '~> 0.10.0'
   s.add_dependency "cancancan"
