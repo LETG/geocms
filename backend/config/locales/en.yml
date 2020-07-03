@@ -1,7 +1,5 @@
 en:
   access_denied: Access denied
-  user: User
-  account: Account
   account_created: "New instance sucessfully created"
 
   confirm_delete: Delete?
@@ -10,6 +8,7 @@ en:
   admin_data: Data administrator
   admin: Administrator
   queryable: Queryable
+  toggle_navigation: Toggle navigation
 
   messages:
     loading: "Loading, please wait..."
@@ -46,9 +45,11 @@ en:
     layers:
       categories: Categories
       new: Create new layer
+      move: Move to
       title:
         index: Layers
         new: Add new layer
+        edit: Edit layer
     users:
       name: Users
       title:
@@ -66,6 +67,7 @@ en:
     preferences:
       title:
         edit: Edit preferences
+        index: Preferences
       maps_conseil: "Supported projections: EPSG:3857, EPSG:4326, EPSG:2154"
       maps: Map
 
@@ -95,6 +97,8 @@ en:
         folder: Folder
         username: Username
         password: Password
+        edit: Edit
+        back: Back
       data_source:
         not_internal: External source
         synchro: Synchronisation
@@ -107,7 +111,29 @@ en:
         first_name: First name
         last_name: Last name
         email: Email
-        
+        role: Role
+      preferences:
+        longitude: Longitude
+        latitude: Latitude
+        zoom: Zoom
+        crs: CRS
+        host: Host address
+        prefix_uri: URI prefix
+        geovisu_url: Geovisu URL
+        screenshot_url: screenshot tool URL
+      layer:
+        name: Name
+        title: Title
+        description: Description
+        data_source: Data source
+        metadata_url: Metadata URL
+        max_zoom: Max zoom
+        tiled: Tiled
+        queryable: Queryable
+        type_import: Import type
+        download_url: Download URL
+        template: Template
+        categories: Categories
       account:
         subdomain: Subdomain
   views:

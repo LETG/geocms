@@ -18,7 +18,7 @@ table.table.table-striped.table-backend
           = link_to edit_backend_category_path(category) , :class => "btn btn-primary btn-xs icn-only", :rel => "tooltip", "data-original-title" => t("actions.default.edit") do
             i.glyphicon.glyphicon-pencil.glyphicon.glyphicon-white
         td
-          = link_to [:backend, category], :confirm => 'Are you sure?', :method => :delete , :class => "btn btn-danger icn-only btn-xs" do
+          = link_to [:backend, category], :confirm => t("messages.confirm"), :method => :delete , :class => "btn btn-danger icn-only btn-xs" do
             i.glyphicon.glyphicon-trash.glyphicon.glyphicon-white
     - @layers.page(params[:page]).each do |layer|
       == render "geocms/backend/layers/layer", layer: layer

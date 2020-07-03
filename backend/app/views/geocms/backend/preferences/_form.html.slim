@@ -7,7 +7,7 @@
       .form-inputs
         - Geocms::Account.prefs.keys.each do |p|
           .form-group
-            = label_tag p, p.to_s.humanize, class: "control-label"
+            = label_tag p, t("simple_form.labels.preferences.#{p}"), class: "control-label"
             = text_field_tag "preferences[#{p}]", ActsAsTenant.current_tenant.read_preference(p).value, class: "form-control"
       .form-group.hint
         = t("modules.preferences.maps_conseil")

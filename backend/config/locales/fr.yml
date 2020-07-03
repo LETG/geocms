@@ -1,7 +1,5 @@
 fr:
   access_denied: Accès refusé
-  user: Utilisateur
-  account: Compte
   account_created: "Nouvelle instance créé avec succès"
 
   confirm_delete: Supprimer ?
@@ -10,10 +8,11 @@ fr:
   admin_data: Administrateur des données
   admin: Administrateur 
   queryable: Consultable
+  toggle_navigation: Basculer la navigation
 
   messages:
     loading: "Chargement en cours, merci de patienter..."
-    confirm: Êtes vous sûr ?
+    confirm: Êtes-vous sûr ?
   modules:
     data_sources:
       title:
@@ -46,9 +45,11 @@ fr:
     layers:
       categories: Catégories
       new: Créer une nouvelle couche
+      move: Déplacer dans
       title:
         index: Couches
         new: Ajouter une nouvelle couche
+        edit: Modifier la couche
     users:
       name: Utilisateurs
       title:
@@ -66,6 +67,7 @@ fr:
     preferences:
       title:
         edit: Édition des préférences
+        index: Préférences
       maps_conseil: "Projections supportées : EPSG:3857, EPSG:4326, EPSG:2154"
       maps: Carte
 
@@ -75,7 +77,7 @@ fr:
     categories: Catégories
     data_sources: Sources
     users: Utilisateurs
-    preferences: Préferences
+    preferences: Préférences
     logout: Déconnexion
     accounts: Instances
     advanced: Configuration
@@ -104,12 +106,33 @@ fr:
         preview: Aperçu
       folder:
         visibility: Public
-      
+      layer:
+        name: Nom
+        title: Titre
+        description: Description
+        data_source: Source de données
+        metadata_url: URL des métadonnées
+        max_zoom: Zoom max
+        tiled: Tiled
+        queryable: Interrogeable
+        type_import: Type d'import
+        download_url: URL de téléchargement
+        template: Template
+        categories: Catégories
       user:
         first_name: Prénom
         last_name: Nom
         email: Email
-       
+        role: Rôle
+      preferences:
+        longitude: Longitude
+        latitude: Latitude
+        zoom: Zoom
+        crs: CRS
+        host: Adresse hôte
+        prefix_uri: Préfixe d'URI
+        geovisu_url: URL Géovisu
+        screenshot_url: URL de l'outil "screenshot"
       account:
         subdomain: Sous Domaine
   views:

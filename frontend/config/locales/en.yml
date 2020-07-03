@@ -102,3 +102,7 @@ en:
   map:
     layer_properties_fetch_error: Error while fetching layer properties
     no_point_data: No data for this point
+
+  user:
+    login: Login
+    logout: Logout
