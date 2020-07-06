@@ -34,7 +34,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails-assets-angularjs', "1.3.20"
   s.add_dependency 'rails-assets-bootstrap', "3.3.7"
 
-  s.add_dependency 'rails-assets-restangular'
+  s.add_dependency 'rails-assets-restangular', "1.4.0"
   s.add_dependency 'rails-assets-angular-ui-router', "0.2.10"
   s.add_dependency 'rails-assets-angular-animate'
   s.add_dependency 'rails-assets-angular-sanitize'

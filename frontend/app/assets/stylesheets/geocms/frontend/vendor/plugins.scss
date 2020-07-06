@@ -51,7 +51,7 @@
     padding: 0 10px 0 30px;
     color: #32323a;
     border-radius: 0;
-    @include transition(all .3s ease);
+    // @include transition(all .3s ease);
     &:focus, &:hover {
       outline: none;
       width: 150px;

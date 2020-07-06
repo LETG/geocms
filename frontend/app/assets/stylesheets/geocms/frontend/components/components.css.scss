@@ -21,7 +21,7 @@
   li {
     &:first-child, &:last-child {
       a, span {
-        @include border-radius(0);
+        // @include border-radius(0);
       }
     }
     &.current {
@@ -40,8 +40,8 @@
   width: 9px;
   height: 11px;
   float: left;
-  @include box-sizing(border-box);
-  @include box-shadow(1px 1px rgba(194, 194, 194, 0.60));
+  // @include box-sizing(border-box);
+  // @include box-shadow(1px 1px rgba(194, 194, 194, 0.60));
   border: 1px solid #E3E3E3;
   margin-left: 2px;
   background-color: rgba(44, 44, 44, 0.80);

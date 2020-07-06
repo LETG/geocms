@@ -7,7 +7,7 @@
   bottom: 0px;
   width: auto;
   height: auto;
-  @include box-sizing(border-box);
+  // @include box-sizing(border-box);
   transition: left 300ms;
   -webkit-transition: left 300ms;
   -moz-transition: left 300ms;
@@ -86,7 +86,7 @@
 // POPUP
 
 .leaflet-popup-content-wrapper {
-  @include border-radius(0);
+  // @include border-radius(0);
 }
 
 leaflet-popup-content {
