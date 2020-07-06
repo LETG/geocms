@@ -25,7 +25,7 @@
       .row
         .col-xs-6
           - if can? :update, Geocms::Account
-            = f.input :logo, hint: t("logo_hint")
+            = f.input :logo
         .col-xs-6
           = image_tag f.object.logo if f.object.logo?
       - if can? :update, Geocms::Account

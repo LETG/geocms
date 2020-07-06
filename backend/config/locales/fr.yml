@@ -113,11 +113,11 @@ fr:
         data_source: Source de données
         metadata_url: URL des métadonnées
         max_zoom: Zoom max
-        tiled: Tiled
+        tiled: Service tuilé
         queryable: Interrogeable
         type_import: Type d'import
         download_url: URL de téléchargement
-        template: Template
+        template: Modèle pour l'info-bulle
         categories: Catégories
       user:
         first_name: Prénom
