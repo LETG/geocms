@@ -27,10 +27,6 @@
             |{{category.name}}
           span ng-if="$index === (catalog.categoryTree.length -1)" 
             |{{category.name}}
-      .row
-        .col-xs-4.col-xs-offset-8
-          button class="btn btn-primary btn-block" type="button" ng-click="catalog.close()"
-            = t("modules.layers.submit")
       .small-space
       .row-fluid#catalog-categories
         .media ng-repeat="category in catalog.categories" ng-include="config.prefix_uri+'/templates/catalog/category.html'")
