@@ -1,6 +1,6 @@
 .form-control {
-  @include border-radius(0);
-  @include box-shadow(none);
+  // @include border-radius(0);
+  // @include box-shadow(none);
 }
 
 .form-signin {
@@ -14,7 +14,7 @@
   height: 348px;
   background-color: $login-form-background-color;
   color: $login-form-body-color;
-  @include border-radius(5px);
+  // @include border-radius(5px);
   &.with-errors {
     height: 425px;
   }
