@@ -6,6 +6,7 @@ fr:
   password_confirmation: Confirmation du mot de passe
   admin_instance: Administrateur de l'instance
   admin_data: Administrateur des données
+  user: Utilisateur
   admin: Administrateur 
   queryable: Consultable
   toggle_navigation: Basculer la navigation

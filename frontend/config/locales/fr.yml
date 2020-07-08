@@ -103,6 +103,6 @@ fr:
     layer_properties_fetch_error: Impossible d'obtenir les propriétés de cette couche
     no_point_data: Pas de données sur ce point
 
-  user:
+  auth:
     login: Connexion
     logout: Déconnexion

@@ -40,11 +40,11 @@ contexts.config [
                 Restangular.one('users').customGET("index").then( 
                   (user) ->
                     $root.connexion = {
-                      message: config.t.login
+                      message: config.t.auth.login
                     }
                     if user? && user.data? && user.data.user_id? && user.data.user_id != -1
                       $root.cart.user = user.data;  
-                      $root.connexion.message = config.t.logout;
+                      $root.connexion.message = config.t.auth.logout;
                     else
                       $root.cart.user = null;
 
@@ -117,11 +117,11 @@ contexts.config [
               Restangular.one('users').customGET("index").then( 
                 (user) ->
                   $root.connexion = {
-                    message: config.t.user.login
+                    message: config.t.auth.login
                   }
                   if user? && user.data? && user.data.user_id? && user.data.user_id != -1
                     $root.cart.user = user.data;  
-                    $root.connexion.message = config.t.user.logout;
+                    $root.connexion.message = config.t.auth.logout;
                   else
                     $root.cart.user = null;
                 
