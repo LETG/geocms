@@ -1,7 +1,7 @@
 .button-plugins-right {
   height: 40px;
   background: white;
-  right: -52px;
+  right: -59px;
   position: absolute;
   padding: 7px 7px;
   border-left: 3px solid rgb(41, 182, 246);
@@ -19,15 +19,17 @@
   }
 }
 .button-plugins-right--language {
-  right: -47px;
+  right: -59px;
 }
 .button-plugins-right--language a {
   display: inline-block;
-  padding: 0 10px;
+  width: 35px;
+  padding-left: 5px;
 }
 
 #folders-button {
   top: 15px;
+  width: 102px;
 }
 
 .folder-display {
@@ -42,4 +44,9 @@
 
 #language-button {
   top: 150px;
+}
+#language-button span {
+  display: inline-block;
+  width: 42.5px;
+  height: 26px;
 }
