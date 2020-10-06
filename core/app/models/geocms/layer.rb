@@ -4,7 +4,7 @@ module Geocms
     include ::PgSearch
 
     belongs_to :data_source
-    has_many :contexts_layers,  -> { uniq.order(:position) },  dependent: :destroy
+    has_many :contexts_layers,  -> { distinct.order(:position) },  dependent: :destroy
     has_many :contexts,         through: :contexts_layers
     has_many :dimensions#,       order: 'dimensions.value ASC'
     has_many :bounding_boxes,   dependent: :destroy
