@@ -10,7 +10,7 @@ module Geocms
 
     def show
       @context = Geocms::Context.where(uuid: params[:id]).first
-      respond_with @context
+      respond_with @context, serializer: Geocms::ContextSerializer
     end
 
     def default
