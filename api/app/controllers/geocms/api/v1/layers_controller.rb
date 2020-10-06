@@ -11,19 +11,19 @@ module Geocms
           end
           @layers = @layers.page(params[:page]).per(params[:per_page])
           expires_in 15.minutes, :public => true
-          respond_with @layers
+          respond_with @layers, each_serializer: Geocms::LayerSerializer
         end
 
         def show
           @layer = Geocms::Layer.find(params[:id])
           expires_in 15.minutes, :public => true
-          respond_with @layer
+          respond_with @layer, serializer: Geocms::LayerSerializer
         end
 
         def search
           @layers = Geocms::Layer.joins(:categories).where("geocms_categories.account_id= ?",current_tenant.id).search(params[:q])
 
-          respond_with @layers.to_a.uniq
+          respond_with @layers.to_a.uniq, each_serializer: Geocms::LayerSerializer
         end
 
         def bbox
