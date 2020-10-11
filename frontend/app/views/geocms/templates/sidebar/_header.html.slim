@@ -7,5 +7,5 @@
       h1.context-title = current_tenant.name
     .col-xs-2
       a href="#" ng-click="connexion()" title="{{$root.connexion.message}}"
-        = image_tag "http://www.gravatar.com/avatar/#{current_user.try(:email_md5)}?d=mm", class: "user-image pull-right"
+        = image_tag "https://www.gravatar.com/avatar/#{current_user.try(:email_md5)}?d=mm", class: "user-image pull-right"
       | {{$root.cart.user.user_name}} 

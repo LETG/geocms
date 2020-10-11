@@ -60,7 +60,7 @@ pluginModule.service "pluginService",
 
         if pluginsParams == null || pluginsParams == undefined || pluginsParams.indexOf("minimap") > -1
           #Minimap
-          osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+          osmUrl = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager_no_buildings/{z}/{x}/{y}.png'
           osmAttrib = 'Map data &copy; OpenStreetMap contributors'
           osm2 = new L.TileLayer(osmUrl, {minZoom: 0, maxZoom: 13, attribution: osmAttrib})
           miniMap = new L.Control.MiniMap(osm2, { toggleDisplay: true }).addTo(map);

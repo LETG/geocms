@@ -16,7 +16,7 @@ module Geocms
     after_create :set_folder
 
     def self.network_json
-      User.all.map { |u| {value: u.username, name: u.full_name, tokens: [u.first_name, u.last_name, u.username], profileImageUrl: "http://www.gravatar.com/avatar/#{u.email_md5}?s=20&d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png"} }
+      User.all.map { |u| {value: u.username, name: u.full_name, tokens: [u.first_name, u.last_name, u.username], profileImageUrl: "https://www.gravatar.com/avatar/#{u.email_md5}?s=20&d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png"} }
     end
 
     def full_name
