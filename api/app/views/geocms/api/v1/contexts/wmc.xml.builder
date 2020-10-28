@@ -69,6 +69,10 @@ xml.ViewContext(:id => @context.uuid, :version => "1.1.0", "xmlns" => "http://ww
             p_max = Geocms::ProjectionConverter.new(@crs, [bbox[2], bbox[3]]).project
           end
 
+          if (p_min.blank? && p_max.blank? ) 
+            next
+          end
+
           xml.tag!("ol:maxExtent", :maxx => p_max[0], :maxy => p_max[1], :minx => p_min[0], :miny => p_min[1], "xmlns:ol" => "http://openlayers.org/context")
           xml.tag!("ol:numZoomLevels", 17, "xmlns:ol" => "http://openlayers.org/context")
           xml.tag!("ol:tileSize", :height => "256", :width => "256", "xmlns:ol" => "http://openlayers.org/context")
