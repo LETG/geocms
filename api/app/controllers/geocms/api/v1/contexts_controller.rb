@@ -5,7 +5,7 @@ module Geocms
 
     def index
       @contexts = Geocms::Context.all
-      respond_with @contexts
+      respond_with @contexts, each_serializer: Geocms::ContextSerializer
     end
 
     def show
@@ -15,7 +15,7 @@ module Geocms
 
     def default
       @context = Geocms::Context.where(by_default: true).first
-      respond_with @context
+      respond_with @context, serializer: Geocms::ContextSerializer 
     end
 
     def update
@@ -23,7 +23,7 @@ module Geocms
       if can? :update, @context
         if @context.update_attributes(context_params)
           Geocms::ContextPreviewWorker.perform_async(@context.id, current_tenant.id)
-          render json: @context
+          render json: @context, serializer: Geocms::ContextSerializer 
         else
           render json: @context.errors.to_hash
         end
@@ -37,7 +37,7 @@ module Geocms
         @context = Geocms::Context.new(context_params)
         if @context.save
           Geocms::ContextPreviewWorker.perform_async(@context.id, current_tenant.id)
-          render json: @context
+          render json: @context, serializer: Geocms::ContextSerializer 
         else
           render json: {message: @context.errors.full_messages.join(" ")}, status: 400
         end
