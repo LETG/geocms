@@ -54,12 +54,13 @@ module Geocms
       end
 
       def edit
+
         @user = User.find(params[:id])
 
         @disable_admin=false
 
         # admin_instance can't modify a admin or give admin role
-        if current_user.has_role? :admin_instance && !(@user.has_role? :admin)
+        if (current_user.has_role? :admin_instance) && !(@user.has_role? :admin)
           @disable_admin=true
           if @user.has_role? :admin
              redirect_to action: "index"
@@ -70,7 +71,6 @@ module Geocms
 
       def update
         @user = User.find(params[:id])
-        puts current_user.has_role? :admin_instance
         if ( current_user.has_role? :admin_instance ) && !(@user.has_role? :admin)
           @user.update_attributes(user_params)
         elsif current_user.has_role? :admin
@@ -83,7 +83,7 @@ module Geocms
       def destroy
         @user = User.find(params[:id])
 
-        if current_user.has_role? :admin_instance && !(@user.has_role? :admin)
+        if (current_user.has_role? :admin_instance) && !(@user.has_role? :admin)
           current_tenant.users.delete(@user)
           @user.destroy
         elsif current_user.has_role? :admin
