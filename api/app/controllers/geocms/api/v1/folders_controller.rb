@@ -12,7 +12,7 @@ module Geocms
 
     def show
       @folder = Geocms::Folder.find(params[:id])
-      respond_with @folder
+      respond_with @folder, serializer: FolderShortSerializer
     end
 
     def writable
