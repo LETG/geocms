@@ -12,7 +12,7 @@ module Geocms
       #.where("geocms_categories.id = ?",params[:id]) 
      # @category = Category.includes(layers: [:data_source]).find params[:id]
       @category = Category.where("geocms_categories.id = ? ",params[:id])
-      respond_with @category.first
+      respond_with @category.first, serializer: CategoryShortSerializer
     end
 
     def ordered
