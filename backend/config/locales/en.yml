@@ -8,6 +8,7 @@ en:
   admin_data: Data administrator
   user: User
   admin: Administrator
+  user: User
   queryable: Queryable
   toggle_navigation: Toggle navigation
 

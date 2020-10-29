@@ -8,6 +8,7 @@ fr:
   admin_data: Administrateur des données
   user: Utilisateur
   admin: Administrateur 
+  user: Utilisateur
   queryable: Consultable
   toggle_navigation: Basculer la navigation
 
