@@ -7,6 +7,7 @@ fr:
   admin_instance: Administrateur de l'instance
   admin_data: Administrateur des données
   admin: Administrateur 
+  user: Utilisateur
   queryable: Consultable
   toggle_navigation: Basculer la navigation
 

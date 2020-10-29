@@ -117,11 +117,11 @@ contexts.config [
               Restangular.one('users').customGET("index").then( 
                 (user) ->
                   $root.connexion = {
-                    message: config.t.user.login
+                    message: config.t.user_authentication.login
                   }
                   if user? && user.data? && user.data.user_id? && user.data.user_id != -1
                     $root.cart.user = user.data;  
-                    $root.connexion.message = config.t.user.logout;
+                    $root.connexion.message = config.t.user_authentication.logout;
                   else
                     $root.cart.user = null;
                 
