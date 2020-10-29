@@ -3,7 +3,7 @@ module Geocms
     delegate_all
 
     def logo_image_tag
-      url = (object && object.logo?) ? object.logo : "geocms/dotgeocms.png"
+      url = (object && object.logo?) ? object.logo.url : "geocms/dotgeocms.png"
       h.image_tag url
     end
 

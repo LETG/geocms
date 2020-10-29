@@ -27,7 +27,7 @@
           - if can? :update, Geocms::Account
             = f.input :logo
         .col-xs-6
-          = image_tag f.object.logo if f.object.logo?
+          = image_tag f.object.logo.url if f.object.logo?
       - if can? :update, Geocms::Account
         .control-group
             = f.submit t("actions.default.update"), class: "btn btn-primary"

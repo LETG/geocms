@@ -1,7 +1,7 @@
 module Geocms
   module Backend::ApplicationHelper
     def logo_for_tenant(tenant = current_tenant)
-      url = (tenant && tenant.logo?) ? tenant.logo : "geocms/dotgeocms.png"
+      url = (tenant && tenant.logo?) ? tenant.logo.url : "geocms/dotgeocms.png"
       image_tag url
     end
 
