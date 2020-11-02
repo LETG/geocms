@@ -40,10 +40,9 @@ module Geocms
       end
 
       def update
-        print(params['geocms_category_id'])
         @data_source = DataSource.find(params[:id])
         @data_source.update_attributes(data_source_params)
-        respond_with(:import, :backend, @data_source,data_source_params)
+        respond_with(:import, :backend, @data_source)
         if !@data_source.synchro 
           @data_source.update_attribute('geocms_category_id', nil );
         end
