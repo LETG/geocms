@@ -2,6 +2,7 @@ module Geocms
   module Api
     module V1
       class LayersController < Geocms::Api::V1::BaseController
+        skip_before_action :verify_authenticity_token, only: [:import]
 
         def index
           if params[:ids]
