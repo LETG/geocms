@@ -16,8 +16,7 @@ module Geocms
     end
 
     def get_feature_infos
-
-      client = Geocms::OGC::Client.new(feature_infos_params.symbolize_keys)
+      client = Geocms::OGC::Client.new(feature_infos_params.to_h.symbolize_keys)
       render json: client.get_feature_info
     end
 
