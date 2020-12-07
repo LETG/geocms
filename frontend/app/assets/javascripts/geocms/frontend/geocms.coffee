@@ -52,6 +52,7 @@ geocms.run [
   "$rootScope"
   (Restangular, mapService, $root) ->
     Restangular.setBaseUrl(config.prefix_uri+"/api/v1")
+    Restangular.setDefaultHeaders({'X-CSRF-Token': $('meta[name="csrf-token"]'). attr('content')});
     $root.config = config
     # TODO: find a better way
     # This is a little hacky
