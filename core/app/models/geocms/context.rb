@@ -7,7 +7,7 @@ module Geocms
     has_many :contexts_layers, -> { order(position: :desc) }, :dependent => :destroy
     has_many :layers, :through => :contexts_layers
 
-    belongs_to :folder, class_name: "Geocms::Folder"
+    belongs_to :folder, class_name: "Geocms::Folder", :optional => true
 
     mount_uploader :preview, Geocms::ContextPictureUploader
 

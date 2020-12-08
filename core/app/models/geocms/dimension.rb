@@ -1,6 +1,6 @@
 module Geocms
   class Dimension < ActiveRecord::Base
-    belongs_to :layer
+    belongs_to :layer, :optional => true
 
     default_scope -> { order("value ASC") }
 

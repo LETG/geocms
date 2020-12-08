@@ -3,7 +3,7 @@ module Geocms
     extend FriendlyId
     include ::PgSearch
 
-    belongs_to :data_source
+    belongs_to :data_source, :optional => true
     has_many :contexts_layers,  -> { distinct.order(:position) },  dependent: :destroy
     has_many :contexts,         through: :contexts_layers
     has_many :dimensions#,       order: 'dimensions.value ASC'

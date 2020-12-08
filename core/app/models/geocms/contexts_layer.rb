@@ -1,8 +1,8 @@
 module Geocms
   class ContextsLayer < ActiveRecord::Base
 
-    belongs_to :context
-    belongs_to :layer
+    belongs_to :context, optional: true
+    belongs_to :layer, optional: true
 
     delegate :title, :description, :name, :tiled, :template, :thumbnail_url,
              :data_source_wms, :data_source_wms_version, :data_source_not_internal, :download_url, :type_import,

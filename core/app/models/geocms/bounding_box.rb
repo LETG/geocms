@@ -1,7 +1,7 @@
 module Geocms
   class BoundingBox < ActiveRecord::Base
 
-    belongs_to :layer
+    belongs_to :layer, :optional => true
 
     scope :current, -> (tenant) { where(crs: tenant.crs.value) }
     scope :leafletable, -> { where(["crs in (?)", ['CRS:84', 'EPSG:4326']]) }
