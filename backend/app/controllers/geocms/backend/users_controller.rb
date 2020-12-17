@@ -10,8 +10,7 @@ module Geocms
       def index
         @users = current_tenant.users
         @users += Geocms::User.joins(:roles).where("geocms_roles.name='admin'").all
-        
-        puts "#{@users}"
+        @users = @users.uniq
 
         @isAdmin = current_user.has_role? :admin 
         @isAdmin_instance = current_user.has_role? :admin_instance 
@@ -36,62 +35,76 @@ module Geocms
       def new
         @user = User.new
         @user.add_role :user
+
+        if (current_user.has_role? :admin) 
+          @disable_admin=false
+        else
+          @disable_admin=true
+        end
+
+        @available_roles=Geocms::Role::available_roles(@disable_admin)
+
         respond_with(:backend, @user)
       end
 
       def create
         @user = User.new(user_params)
-        
-        # default role is :user
-        if @user.roles.to_a.empty?
-          @user.add_role :user
-        end
 
-        @user.save
-        current_tenant.users << @user
-       
-        respond_with(:backend, :users)
+        if (!(current_user.has_role? :admin) && (@user.has_role? :admin))
+          redirect_to backend_users_url
+        else 
+           @user.update_attributes(user_params)
+        
+          # default role is :user
+          if @user.roles.to_a.empty?
+            @user.add_role :user
+          end
+
+          @user.save
+          current_tenant.users << @user
+         
+          respond_with(:backend, :users)
+        end
       end
 
       def edit
-
         @user = User.find(params[:id])
 
-        @disable_admin=false
-
-        # admin_instance can't modify a admin or give admin role
-        if (current_user.has_role? :admin_instance) && !(@user.has_role? :admin)
-          @disable_admin=true
-          if @user.has_role? :admin
-             redirect_to action: "index"
-          end
+        if (!(current_user.has_role? :admin) && (@user.has_role? :admin))
+          redirect_to backend_users_url
         end
 
+        if (current_user.has_role? :admin) 
+          @disable_admin=false
+        else
+          @disable_admin=true
+        end
+
+        @available_roles=Geocms::Role::available_roles(@disable_admin)
       end
 
       def update
         @user = User.find(params[:id])
-        if ( current_user.has_role? :admin_instance ) && !(@user.has_role? :admin)
+
+        if (!(current_user.has_role? :admin) && (@user.has_role? :admin))
+          redirect_to backend_users_url
+        else
           @user.update_attributes(user_params)
-        elsif current_user.has_role? :admin
-          @user.update_attributes(user_params)
+          respond_with(:backend, :users)
         end
-      
-        respond_with(:edit, :backend, @user)
       end
 
       def destroy
         @user = User.find(params[:id])
 
-        if (current_user.has_role? :admin_instance) && !(@user.has_role? :admin)
+        if (!(current_user.has_role? :admin) && (@user.has_role? :admin))
+          redirect_to backend_users_url
+        else 
           current_tenant.users.delete(@user)
           @user.destroy
-        elsif current_user.has_role? :admin
-          current_tenant.users.delete(@user)
-          @user.destroy
+    
+          respond_with(:backend, :users)
         end
-  
-        respond_with(:backend, :users)
       end
 
       private

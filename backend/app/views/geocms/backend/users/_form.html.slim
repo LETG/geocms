@@ -10,7 +10,7 @@
     = t("simple_form.labels.user.role")
   
   div 
-    = f.collection_check_boxes :role_ids, Role.all, :id, :name, disabled: @disable_role do |b|
+    = f.collection_check_boxes :role_ids, @available_roles, :id, :name, disabled: @disable_role do |b|
       .role_checkboxes
         = b.label do
           = b.check_box
