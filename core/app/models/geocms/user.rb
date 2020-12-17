@@ -7,7 +7,7 @@ module Geocms
 
     has_many :memberships
     has_many :accounts, through: :memberships
-
+    has_many :user_roles
     has_many :folders, class_name: "Geocms::Folder"
 
     #acts_as_tenant(:account)

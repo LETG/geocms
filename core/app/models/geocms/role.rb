@@ -4,5 +4,15 @@ module Geocms
     belongs_to :resource, :polymorphic => true, :optional => true
 
     scopify
+
+    ADMIN = "admin"
+
+    def self.available_roles(disable_admin)
+      if (disable_admin)
+        Role.where.not(name: ADMIN)
+      else
+        Role.all
+      end
+    end
   end
 end
