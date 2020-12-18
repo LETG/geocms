@@ -31,3 +31,14 @@ body.login {
 .container-infos {
   height: 90px;
 }
+
+.positioner {
+  position: absolute; 
+  right: 0;
+}
+
+.fixed {
+  position: fixed; 
+  top: 153px;
+  margin-left: 10px;
+}
