@@ -173,7 +173,7 @@ contexts.config [
         parent: 'contexts.show'
         views:
           "sidebar@contexts":
-            templateUrl: ""
+            templateUrl: config.prefix_uri+"/templates/contexts/sidebar_share_mode.html"
             controller: "ContextsController"
           "map@contexts":
             templateUrl: config.prefix_uri+"/templates/contexts/map.html"
