@@ -63,6 +63,44 @@
   }
 }
 
+.expand-menu {
+  cursor: pointer;
+  bottom: -35px;
+  position: absolute;
+  left: 0px;
+  height: 30px;
+  width: 30px;
+}
+
+.collapse_icon .collapsed{
+  transform:             rotate( 0deg );            
+    -moz-transform:    rotate( 0deg );            
+    -ms-transform:     rotate( 0deg );            
+    -o-transform:      rotate( 0deg );            
+    -webkit-transform: rotate( 0deg );            
+  transition:             transform 550ms ease;
+    -moz-transition:    -moz-transform 550ms ease;
+    -ms-transition:     -ms-transform 550ms ease;
+    -o-transition:      -o-transform 550ms ease;
+    -webkit-transition: -webkit-transform 550ms ease;
+}
+
+.collapse_icon :not(.collapsed){
+  transform:             rotate( -180deg );            
+    -moz-transform:    rotate( -180deg );            
+    -ms-transform:     rotate( -180deg );            
+    -o-transform:      rotate( -180deg );            
+    -webkit-transform: rotate( -180deg );            
+  transition:             transform 550ms ease;
+    -moz-transition:    -moz-transform 550ms ease;
+    -ms-transition:     -ms-transform 550ms ease;
+    -o-transition:      -o-transform 550ms ease;
+    -webkit-transition: -webkit-transform 550ms ease;
+}
+
 .btn-fixed_right {
   width: 100px;
 }
+
+
+
