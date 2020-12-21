@@ -1,25 +1,29 @@
 .hud ng-hide="catalogOpened()"
-  == render "geocms/templates/sidebar/header"
+  div.collapse_icon
+    img src=asset_path("geocms/expand-button.png") class="expand-menu" type="button" data-toggle="collapse" data-target="#collapseSideBar" aria-expanded="true" aria-controls="collapseSideBar"
 
-  navtabset.nav-filled justified="true" hashAware="true"
-    .input-group 
-      input type="text" class="form-control" placeholder=t("actions.default.search_layers") ng-model="cart.search" ng-enter="openCatalog()"
-      span class="input-group-btn" ng-click="openCatalog();"
-        a class="btn btn-primary" type="button" 
-          i.carticon-plus.icon-white
-          |&nbsp;
-          span.glyphicon.glyphicon-search
-    navtab heading=t("informations.header") uncheckable="" href="'#project'"
-      == render "geocms/templates/sidebar/tab_infos"
-    navtab heading=t("layers.header") uncheckable="" href="'#layers'"
-      == render "geocms/templates/sidebar/tab_cart"
-    navtab heading=t("legend.header") uncheckable="" href="'#legend'"
-      == render "geocms/templates/sidebar/tab_legend"
-    a#save-button ng-click="cart.state == 'saved' || cart.save()" ng-class="{saved: cart.state == 'saved'}" ng-if="state != 'contexts.show'"
-      span.carticon-floppy
-      span ng-bind="cart.state == 'saved' ? '#{t("contexts.actions.saved")}' : '#{t("contexts.actions.save")}'"
-    a#save-button ui-sref='contexts.edit({uuid: cart.context.uuid})' ng-if="state == 'contexts.show' && cart.context.editable"
-      span.carticon-pencil
-      span= t("contexts.actions.edit")
+  div.collapse_container class="collapse in" id="collapseSideBar"
+    == render "geocms/templates/sidebar/header"
+
+    navtabset.nav-filled justified="true" hashAware="true" 
+      .input-group 
+        input type="text" class="form-control" placeholder=t("actions.default.search_layers") ng-model="cart.search" ng-enter="openCatalog()"
+        span class="input-group-btn" ng-click="openCatalog();"
+          a class="btn btn-primary" type="button" 
+            i.carticon-plus.icon-white
+            |&nbsp;
+            span.glyphicon.glyphicon-search
+      navtab heading=t("informations.header") uncheckable="" href="'#project'"
+        == render "geocms/templates/sidebar/tab_infos"
+      navtab heading=t("layers.header") uncheckable="" href="'#layers'"
+        == render "geocms/templates/sidebar/tab_cart"
+      navtab heading=t("legend.header") uncheckable="" href="'#legend'"
+        == render "geocms/templates/sidebar/tab_legend"
+      a#save-button ng-click="cart.state == 'saved' || cart.save()" ng-class="{saved: cart.state == 'saved'}" ng-if="state != 'contexts.show'"
+        span.carticon-floppy
+        span ng-bind="cart.state == 'saved' ? '#{t("contexts.actions.saved")}' : '#{t("contexts.actions.save")}'"
+      a#save-button ui-sref='contexts.edit({uuid: cart.context.uuid})' ng-if="state == 'contexts.show' && cart.context.editable"
+        span.carticon-pencil
+        span= t("contexts.actions.edit")
 
   == render "geocms/templates/sidebar/footer"
