@@ -89,7 +89,7 @@ contexts.config [
                 Restangular.one('users').customGET("index").then( 
                   (user) ->
                       if !user.data.create_context
-                        window.location.href = '/geocms/login'
+                        window.location.href = config.prefix_uri + config.loginUrl
                       
                 )
               
@@ -228,7 +228,7 @@ contexts.controller "ContextsController", [
       if( $root.cart.user? )
         window.location.href = '/geocms/logout'
       else
-        window.location.href = '/geocms/login'
+        window.location.href = config.prefix_uri + config.loginUrl
 
 
     $scope.setCurrenLayer = (layer) ->

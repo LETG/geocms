@@ -20,6 +20,8 @@ html(lang="en" ng-app="geocms")
 
     javascript:
       var config = #{raw (current_tenant.prefs.to_json)}
+      config.loginUrl = '#{login_path}'
+      config.logoutUrl = '#{logout_path}'
       config.locale = '#{I18n.locale}'
       config.t = {
         leaflet: {
