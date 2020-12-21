@@ -60,6 +60,9 @@ catalogModule.service "catalogService",
         that.categories = []
 
     Catalog::close = ->
+      open_layers = () ->
+        $('.nav-tabs a[href="#layers"]').click();
+      setTimeout(open_layers)
       $state.go "^"
 
     Catalog
