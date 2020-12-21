@@ -77,9 +77,11 @@ app.controller "ImportCtrl",
         if $scope.selectedCategories?
           layers = $scope.extractLayerInformations()
           layers = Restangular.restangularizeElement(null, layers, "layers")
-
+          layers_names = layers.map (layer) -> layer.name
+          layers_names = layers_names.join(", ")
+          date = new Date().toLocaleTimeString('fr-FR'); 
           layers.customPOST({layers: layers}, "import").then (response) ->
-            $scope.success = "L'import a réussi."
+            $scope.success = "L'import des couches (#{layers_names}) initié à #{date} a réussi."
 
       $scope.extractLayerInformations = () ->
         layers = _.map filterFilter($scope.layers, {$selected: true}), (layer) ->

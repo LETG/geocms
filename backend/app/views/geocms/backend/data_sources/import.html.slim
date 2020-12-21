@@ -25,6 +25,10 @@ div ng-controller="ImportCtrl" ng-init="source_id=#{@data_source.id}"
     .form-group.col-xs-3
       label for="typeImport"  Type 
       select name="typeImport" ng-model="type_import" ng-options=("typeImport.name as typeImport.name for typeImport in type_imports")   class="form-control"
+  .alert.alert-danger role="alert" ng-if="error"
+    |{{error}}
+  .alert.alert-success role="alert" ng-if="success"
+    |{{success}}
   .row ng-hide="tableParams.settings().$loading"
     .col-xs-6
       select.form-control ng-model="selectedCategories" ng-options="('-- '.repeat(category.depth)+category.name) for category in categories track by category.id" multiple="multiple" size="10" ng-multiple="true"
