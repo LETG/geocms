@@ -1,0 +1,8 @@
+.hud ng-hide="catalogOpened()"
+  navtabset.nav-filled justified="true" hashAware="true"
+    navtab heading=t("informations.header") uncheckable="" href="'#project'"
+      == render "geocms/templates/sidebar/tab_infos_share_mode"
+    navtab heading=t("layers.header") uncheckable="" href="'#layers'"
+      == render "geocms/templates/sidebar/tab_cart"
+    navtab heading=t("legend.header") uncheckable="" href="'#legend'"
+      == render "geocms/templates/sidebar/tab_legend"
