@@ -3,6 +3,8 @@
   h1
     = t("modules.layers.title.index")
 
+= link_to t("modules.layers.title.new"), [:new, :backend, @category, :layer], class: "btn btn-primary"
+
 .clearfix
 = paginate @layers
 

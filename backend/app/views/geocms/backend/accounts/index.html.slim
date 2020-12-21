@@ -5,6 +5,9 @@
   h1 
     = t("modules.accounts.title.index")
 
+- if can? :create, Geocms::Account              
+  = link_to t("actions.default.add"), [:new, :backend, :account], class: "btn btn-primary"
+
 table.table.table-striped
   thead
     tr
