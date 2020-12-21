@@ -3,6 +3,8 @@
   h1
     = "#{ActsAsTenant.current_tenant.name} - #{t('modules.categories.title.index')}"
 
+= link_to t('modules.categories.new'), geocms.new_backend_category_path, :class => "btn btn-primary"
+
 table.table.table-striped.categories-index.table-backend
   thead
     tr
