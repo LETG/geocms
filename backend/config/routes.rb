@@ -41,6 +41,8 @@ Geocms::Core::Engine.add_routes do
       resources :roles
     end
 
+    resources :memberships
+
     resources :accounts
 
     resources :folders do

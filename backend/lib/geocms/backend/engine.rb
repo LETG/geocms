@@ -8,7 +8,8 @@ module Geocms
           geocms/backend/backend.css
           geocms/backend.js
           ckeditor/lang/fr.js
-          geocms/expand-button.png
+		  geocms/expand-button.png
+          typeahead/typeahead.js
         )
       end
     end
