@@ -8,6 +8,7 @@ module Geocms
           geocms/backend/backend.css
           geocms/backend.js
           ckeditor/lang/fr.js
+          typeahead/typeahead.js
         )
       end
     end

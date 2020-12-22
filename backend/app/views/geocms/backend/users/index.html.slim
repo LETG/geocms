@@ -20,10 +20,27 @@ table.table.table-striped.table-users
       == render "user", user: u
 br
 - if can? :create, Geocms::User
-  .input-group
-    = text_field_tag :user, nil, :placeholder => "#{t('modules.users.choose_collaborator')}", :class => "input-add-colaborator, form-control"
-    span.input-group-btn
-      button.btn.btn-default
-        = t("actions.default.add")
+  = simple_form_for [:backend, @membership] do |f|
+    .input-group
+      = text_field_tag :user_email, nil, :placeholder => "#{t('modules.users.choose_collaborator')}", :id => "typeahead_user", :class => "input-add-colaborator, form-control typeahead", :data => {:provide => 'typeahead' }, html: { autocomplete: "off" }
+      span.input-group-btn
+        button.btn.btn-default
+          = t("actions.default.add")
   br
   = link_to t("modules.users.new"), [:new, :backend, :user], class: "btn btn-default"
+
+= content_for :javascripts do
+  = javascript_include_tag "typeahead/typeahead"
+  javascript:
+    var data = #{@others_users}
+    var $input = $(".typeahead");
+    $input.typeahead({
+      source: data,
+      autoSelect: true,
+      displayText: function(item) {
+        return item.email
+      },
+      afterSelect: function(item) {
+        this.$element[0].value = item.email
+      }
+    });

@@ -11,10 +11,12 @@ module Geocms
         @users = current_tenant.users
         @users += Geocms::User.joins(:roles).where("geocms_roles.name='admin'").all
         
-        puts "#{@users}"
+        @others_users = User.where.not(id: @users.pluck(:id)).select("id","email").to_json.html_safe
 
         @isAdmin = current_user.has_role? :admin 
         @isAdmin_instance = current_user.has_role? :admin_instance 
+
+        @membership = Membership.new
 
         respond_with(:backend, @users)
 
