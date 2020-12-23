@@ -26,7 +26,29 @@
           span ng-if="$index === (catalog.categoryTree.length -1)" 
             |{{category.name}}
       .small-space
-      .row-fluid#catalog-categories
+      .row-fluid#catalog-categories 
+
         .media ng-repeat="category in catalog.categories" ng-include="config.prefix_uri+'/templates/catalog/category.html'")
-        .media ng-repeat="layer in catalog.layers" ng-class="{added: catalog.isOnCart(layer.layer_id, cart)}" ng-click="catalog.addToCart(layer.layer_id, cart)"
-          div ng-include="config.prefix_uri+'/templates/catalog/layer.html'"
+        .small-space
+        .layers-pagination ng-controller="LayersPagination" ng-if="catalog.layers.length"
+          .media ng-repeat="layer in catalog.layers | startFrom:currentPage*pageSize | limitTo:pageSize" ng-class="{added: catalog.isOnCart(layer.layer_id, cart)}" ng-click="catalog.addToCart(layer.layer_id, cart)"
+            div ng-include="config.prefix_uri+'/templates/catalog/layer.html'"
+
+          .small-space
+
+          button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1"
+            = t("layers.previous")
+          span 
+            b
+              | &nbsp;
+              |{{currentPage+1}}/{{numberOfPages()}}
+              | &nbsp;
+          button ng-disabled="currentPage >= catalog.layers.length/pageSize - 1" ng-click="currentPage=currentPage+1"
+            = t("layers.next")
+
+      .small-space
+      .row 
+        .col-xs-4.col-xs-offset-8
+          button class="btn btn-primary btn-block" type="button" ng-click="catalog.close()"
+            = t("modules.layers.submit")
+            = t("modules.layers.submit")

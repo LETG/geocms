@@ -32,6 +32,8 @@ en:
       failure: "Save failed"
 
   layers:
+    previous: Previous
+    next: Next
     header: Layers
     open_catalog: Add layer
     back_to_list: Back to list
