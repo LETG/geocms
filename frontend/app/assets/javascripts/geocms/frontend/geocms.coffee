@@ -68,3 +68,29 @@ geocms.run [
       obj[_.singularize(what)] = element
       element = obj
 ]
+
+geocms.controller 'CategoriesPagination', ($scope) -> 
+  $scope.currentPage = 0
+  $scope.pageSize = 20
+  $scope.numberOfPages = ->
+    res = Math.ceil $scope.catalog.categories.length / $scope.pageSize
+    if res < 1
+      return 1
+    else
+      return res 
+
+geocms.controller 'LayersPagination', ($scope) -> 
+  $scope.currentPage = 0
+  $scope.pageSize = 20
+  $scope.numberOfPages = ->
+    res = Math.ceil $scope.catalog.layers.length / $scope.pageSize
+    if res < 1
+      return 1
+    else
+      return res 
+
+geocms.filter 'startFrom', ->
+  (input, start) ->
+    start = +start
+    #parse to int
+    input.slice start
