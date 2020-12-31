@@ -7,9 +7,14 @@
   width: $hudsize;
   height: auto;
   background: $hud-background-color;
-  .tab-content {
-    overflow-y: auto;
+  .resizeable {
+    max-height: 450px;
+    resize:vertical;
+    overflow:auto; 
   }
+  .resizeable[style*="height"] {
+    max-height: unset; 
+  } 
   .nav-filled {
     position: relative;
   }
@@ -24,17 +29,17 @@
 
 #layers {
   .hud-panel {
-    max-height: 300px;
+    // max-height: 300px;
   }
 }
 
 #infos {
-  max-height: 380px;
+  // max-height: 380px;
 }
 
 #legend {
   padding: 10px;
-  max-height: 450px;
+  // max-height: 450px;
   .hud-panel {
     max-height: 350px;
   }

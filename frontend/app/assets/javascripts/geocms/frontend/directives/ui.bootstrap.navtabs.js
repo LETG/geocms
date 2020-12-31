@@ -293,7 +293,7 @@ angular.module("template/tabs/navtabset.html", []).run(["$templateCache", functi
   $templateCache.put("template/tabs/navtabset.html",
     "<div>\n" +
     "  <ul class=\"nav nav-{{type || 'tabs'}}\" ng-class=\"{'nav-stacked': vertical, 'nav-justified': justified}\" ng-transclude></ul>\n" +
-    "  <div class=\"tab-content\">\n" +
+    "  <div class=\"tab-content resizeable\">\n" +
     "    <div class=\"tab-pane\" \n" +
     "         ng-repeat=\"tab in tabs\" \n" +
     "         ng-class=\"{active: tab.active}\"\n" +
