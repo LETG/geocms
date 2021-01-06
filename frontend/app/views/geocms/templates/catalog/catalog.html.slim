@@ -1,11 +1,6 @@
 - cache ["v1", "catalog"] do
   #catalog.popup.active
     .container
-      .catalog-close-button-container
-        .positioner
-          .fixed
-            button class="btn btn-primary btn-fixed_right" type="button" ng-click="catalog.close()"
-              = t("modules.layers.submit")
       .page-header
         h1 = t "modules.layers.catalog"
       .row
@@ -25,9 +20,14 @@
             |{{category.name}}
           span ng-if="$index === (catalog.categoryTree.length -1)" 
             |{{category.name}}
+      .catalog-close-button-container
+        .positioner
+          .fixed
+            button class="btn btn-primary btn-fixed_right" type="button" ng-click="catalog.close()"
+              = t("modules.layers.submit")
+            button.btn.btn-primary.btn-xs.btn-close.close ng-click="catalog.close()" &times;
       .small-space
       .row-fluid#catalog-categories 
-
         .media ng-repeat="category in catalog.categories" ng-include="config.prefix_uri+'/templates/catalog/category.html'")
         .small-space
         .layers-pagination ng-controller="LayersPagination" ng-if="catalog.layers.length"
@@ -45,10 +45,3 @@
               | &nbsp;
           button ng-disabled="currentPage >= catalog.layers.length/pageSize - 1" ng-click="currentPage=currentPage+1"
             = t("layers.next")
-
-      .small-space
-      .row 
-        .col-xs-4.col-xs-offset-8
-          button class="btn btn-primary btn-block" type="button" ng-click="catalog.close()"
-            = t("modules.layers.submit")
-            = t("modules.layers.submit")

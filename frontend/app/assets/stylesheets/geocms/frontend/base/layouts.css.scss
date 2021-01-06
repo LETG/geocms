@@ -42,3 +42,15 @@ body.login {
   top: 153px;
   margin-left: 10px;
 }
+
+@media all and (max-width: 1450px) {
+  .positioner {
+    position: relative;
+  }
+
+  .fixed {
+    position: inherit;
+    top: 0;
+    margin-left: 0;
+  }
+}

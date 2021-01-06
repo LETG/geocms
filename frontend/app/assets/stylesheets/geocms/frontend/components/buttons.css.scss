@@ -101,6 +101,10 @@
 .btn-fixed_right {
   width: 100px;
 }
-
+@media all and (max-width: 1450px) {
+  .btn-fixed_right {
+    width: 97%;
+  }
+}
 
 
