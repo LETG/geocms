@@ -61,7 +61,8 @@ catalogModule.service "catalogService",
 
     Catalog::close = ->
       open_layers = () ->
-        $('.nav-tabs a[href="#layers"]').click();
+        if !document.getElementById('layers_tab').classList.contains 'active'
+          $('.nav-tabs a[href="#layers"]').click();
       setTimeout(open_layers)
       $state.go "^"
 
