@@ -231,7 +231,7 @@ contexts.controller "ContextsController", [
     }
     $scope.connexion = () -> 
       if( $root.cart.user? )
-        window.location.href = '/geocms/logout'
+        window.location.href = config.prefix_uri + config.logoutUrl
       else
         window.location.href = config.prefix_uri + config.loginUrl
 
