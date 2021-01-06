@@ -105,7 +105,6 @@ module Geocms
           redirect_to backend_users_url
         else 
           current_tenant.users.delete(@user)
-          @user.destroy
     
           respond_with(:backend, :users)
         end
