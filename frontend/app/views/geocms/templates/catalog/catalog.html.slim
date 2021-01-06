@@ -25,7 +25,7 @@
           .fixed
             button class="btn btn-primary btn-fixed_right" type="button" ng-click="catalog.close()"
               = t("modules.layers.submit")
-            button.btn.btn-primary.btn-xs.btn-close.close ng-click="catalog.close()" &times;
+            button class="btn btn-primary btn-xs btn-close close" ng-click="catalog.close()" &times;
       .small-space
       .row-fluid#catalog-categories 
         .media ng-repeat="category in catalog.categories" ng-include="config.prefix_uri+'/templates/catalog/category.html'")
