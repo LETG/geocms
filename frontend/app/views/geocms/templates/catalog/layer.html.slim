@@ -6,7 +6,7 @@
     
   .media-body
     h4.media-heading.layer-heading
-      i.glyphicon.glyphicon-time aria-hidden="true" ng-if="layer.dimensions.length > 0" 
+      i.glyphicon.glyphicon-time aria-hidden="true" ng-if="layer.has_dimensions" 
       |&nbsp;
       |{{layer.title}}
     p.source ng-if="layer.data_source_name"

@@ -5,6 +5,7 @@ module Geocms
 
     has_many :categorizations
     has_many :layers, through: :categorizations
+    has_many :dimensions, through: :layers
 
     acts_as_tenant(:account)
 
