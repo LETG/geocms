@@ -32,8 +32,6 @@ table.table.table-striped.table-backend
           td
             = link_to [:backend, data_source], :confirm => "#{t('messages.confirm')}", :method => :delete, :class => "btn btn-xs btn-danger icn-only" do
               i.glyphicon.glyphicon-trash.glyphicon.glyphicon-white
-br
-= link_to t('modules.data_sources.new') , new_backend_data_source_path, :class => "btn btn-primary"
 
 .modal.wait-modal.hide.fade.in
   .modal-body

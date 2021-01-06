@@ -28,8 +28,6 @@ br
       span.input-group-btn
         button.btn.btn-default
           = t("actions.default.add")
-  br
-  = link_to t("modules.users.new"), [:new, :backend, :user], class: "btn btn-default"
 
 = content_for :javascripts do
   = javascript_include_tag "typeahead/typeahead"

@@ -18,6 +18,3 @@ table.table.table-striped.categories-index.table-backend
   tbody
     - @layers.each do |layer|
         = render partial: "layer_list", locals: {layer: layer}
-br
-
-= link_to t("modules.layers.title.new"), [:new, :backend, @category, :layer], class: "btn btn-primary"
