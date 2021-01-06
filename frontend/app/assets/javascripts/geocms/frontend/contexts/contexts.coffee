@@ -93,7 +93,8 @@ contexts.config [
                       
                 )
               
-              $location.hash('project')
+              if !$(location).attr('hash') 
+                $location.hash('project')      
             ]
           "plugins@contexts.new":
             templateUrl: config.prefix_uri+"/templates/contexts/plugins.html"
@@ -112,7 +113,8 @@ contexts.config [
               mapService.addBaseLayer()
               $root.cart.context = context
               $root.cart.addSeveral()
-              $location.hash('project')
+              if !$(location).attr('hash') 
+                $location.hash('project')      
 
               Restangular.one('users').customGET("index").then( 
                 (user) ->
@@ -159,7 +161,8 @@ contexts.config [
 
               $root.cart.folders = folders
               $scope.mapService = mapService
-              $location.hash('project')
+              if !$(location).attr('hash') 
+                $location.hash('project')              
             ]
           "plugins@contexts.edit":
             templateUrl: config.prefix_uri+"/templates/contexts/plugins.html"
