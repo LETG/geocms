@@ -1,0 +1,13 @@
+div ng-if="!cart.context.uuid"
+  .save-project-features
+    p= t "informations.features.header"
+    ul.list-unstyled
+      li= t "informations.features.f1"
+      li= t "informations.features.f2"
+      li= t "informations.features.f3"
+      li= t "informations.features.f4"
+div ng-if="cart.context.uuid"
+  .page-header.project-name
+    h3
+      |{{cart.context.name}}
+  div.project-description compile="cart.context.description"
