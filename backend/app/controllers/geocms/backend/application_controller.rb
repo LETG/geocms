@@ -20,7 +20,7 @@ module Geocms
       def controle_access(exception)
         message = exception.nil? ? "Unauthorized" : exception.message
         if current_user.has_role? :admin_data
-          redirect_to :back, :alert => message
+          redirect_back fallback_location: root_path,  :alert => message
         elsif current_user.has_any_role? :admin, :admin_instance
           redirect_to edit_backend_preferences_url, :alert => ""
         else 
