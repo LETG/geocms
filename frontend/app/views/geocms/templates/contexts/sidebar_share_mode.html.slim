@@ -1,6 +1,6 @@
 .hud ng-hide="catalogOpened()"
   div.collapse_icon
-    img src=asset_path("geocms/expand-button.png") class="expand-menu" type="button" data-toggle="collapse" data-target="#collapseSideBar" aria-expanded="true" aria-controls="collapseSideBar"
+    img src=asset_path("geocms/expand-button.png") class="expand-menu" type="button" data-toggle="collapse" data-target="#collapseSideBar" aria-expanded="true" aria-controls="collapseSideBar" id="expand_button"
   div.collapse_container class="collapse in" id="collapseSideBar"
     navtabset.nav-filled justified="true" hashAware="true"
       navtab heading=t("informations.header") uncheckable="" href="'#project'"
@@ -9,3 +9,8 @@
         == render "geocms/templates/sidebar/tab_cart"
       navtab heading=t("legend.header") uncheckable="" href="'#legend'"
         == render "geocms/templates/sidebar/tab_legend"
+javascript:
+  if(!$(location).attr('hash')) {
+    var element = document.getElementById("expand_button");
+    element.click();
+  }

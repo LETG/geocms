@@ -180,12 +180,14 @@ contexts.config [
             controller: "ContextsController"
           "map@contexts":
             templateUrl: config.prefix_uri+"/templates/contexts/map.html"
-            controller: ["mapService", "context", "folders", "$rootScope", "$stateParams", "$scope", "$compile", (mapService, context, folders, $root, $stateParams, $scope) ->
+            controller: ["mapService", "context", "folders", "$rootScope", "$stateParams", "$scope", "$location", "$compile", (mapService, context, folders, $root, $stateParams, $scope, $location) ->
               mapService.createMap("map", context.center_lat, context.center_lng, context.zoom, $stateParams["plugins"])
               mapService.addBaseLayer()
               $root.cart.context = context
               $root.cart.addSeveral()
               $scope.mapService = mapService
+              if !$(location).attr('hash') 
+                $location.hash('project')     
             ]
           "plugins@contexts.show":
             templateUrl: ""

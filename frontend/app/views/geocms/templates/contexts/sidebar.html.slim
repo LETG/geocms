@@ -1,6 +1,6 @@
 .hud ng-hide="catalogOpened()"
   div.collapse_icon
-    img src=asset_path("geocms/expand-button.png") class="expand-menu" type="button" data-toggle="collapse" data-target="#collapseSideBar" aria-expanded="true" aria-controls="collapseSideBar"
+    img src=asset_path("geocms/expand-button.png") class="expand-menu" type="button" data-toggle="collapse" data-target="#collapseSideBar" aria-expanded="true" aria-controls="collapseSideBar"  id="expand_button"
 
   div.collapse_container class="collapse in" id="collapseSideBar"
     == render "geocms/templates/sidebar/header"
@@ -27,3 +27,8 @@
         span= t("contexts.actions.edit")
 
   == render "geocms/templates/sidebar/footer"
+javascript:
+  if(!$(location).attr('hash')) {
+    var element = document.getElementById("expand_button");
+    element.click();
+  }
