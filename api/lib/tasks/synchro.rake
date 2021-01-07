@@ -188,7 +188,8 @@ def getLayerInfo(node,search,source_id,category_id,source)
               updated_at: date,
               created_at: date,
               data_source_id: source_id,
-              queryable: isQueryable.nil? ? false : isQueryable
+              queryable: isQueryable.nil? ? false : isQueryable,
+              type_import: Geocms::Layer::IMPORT_AUTOMATIQUE 
             )
 
              # add / delete layer for synchro categorie

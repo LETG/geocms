@@ -3,6 +3,9 @@ module Geocms
     extend FriendlyId
     include ::PgSearch
 
+    IMPORT_AUTOMATIQUE = "Automatic"
+    IMPORT_VECTOR = "Vector"
+
     belongs_to :data_source, :optional => true
     has_many :contexts_layers,  -> { distinct.order(:position) },  dependent: :destroy
     has_many :contexts,         through: :contexts_layers
