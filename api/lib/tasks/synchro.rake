@@ -192,6 +192,7 @@ def getLayerInfo(node,search,source_id,category_id,source)
               type_import: Geocms::Layer::IMPORT_AUTOMATIQUE 
             )
 
+            Geocms::Layer.update_layer(newLayer)
              # add / delete layer for synchro categorie
             categorie = Geocms::Category.find(category_id)
           
