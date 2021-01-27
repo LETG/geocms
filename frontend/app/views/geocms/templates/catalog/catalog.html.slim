@@ -31,26 +31,27 @@
         .media ng-repeat="category in catalog.categories" ng-include="config.prefix_uri+'/templates/catalog/category.html'")
         .small-space
         .layers-pagination ng-controller="LayersPagination" ng-if="catalog.layers.length"
-          button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1"
-            = t("layers.previous")
-          span 
-            b
-              | &nbsp;
-              |{{currentPage+1}}/{{numberOfPages()}}
-              | &nbsp;
-          button ng-disabled="currentPage >= catalog.layers.length/pageSize - 1" ng-click="currentPage=currentPage+1"
-            = t("layers.next")
+          .navigation_buttons
+            button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1"
+              = t("layers.previous")
+            span 
+              b
+                | &nbsp;
+                |{{currentPage+1}}/{{numberOfPages()}}
+                | &nbsp;
+            button ng-disabled="currentPage >= catalog.layers.length/pageSize - 1" ng-click="currentPage=currentPage+1"
+              = t("layers.next")
           .media ng-repeat="layer in catalog.layers | startFrom:currentPage*pageSize | limitTo:pageSize" ng-class="{added: catalog.isOnCart(layer.layer_id, cart)}" ng-click="catalog.addToCart(layer.layer_id, cart)"
             div ng-include="config.prefix_uri+'/templates/catalog/layer.html'"
 
           .small-space
-
-          button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1"
-            = t("layers.previous")
-          span 
-            b
-              | &nbsp;
-              |{{currentPage+1}}/{{numberOfPages()}}
-              | &nbsp;
-          button ng-disabled="currentPage >= catalog.layers.length/pageSize - 1" ng-click="currentPage=currentPage+1"
-            = t("layers.next")
+          .navigation_buttons
+            button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1"
+              = t("layers.previous")
+            span 
+              b
+                | &nbsp;
+                |{{currentPage+1}}/{{numberOfPages()}}
+                | &nbsp;
+            button ng-disabled="currentPage >= catalog.layers.length/pageSize - 1" ng-click="currentPage=currentPage+1"
+              = t("layers.next")
