@@ -13,7 +13,7 @@ module Geocms
     end
 
     def embed_code
-      "<iframe width='100%' height='500px' frameBorder='0' src='#{direct_link}'></iframe>"
+      "<iframe width='100%' height='500px' frameBorder='0' src='#{direct_link}' allowfullscreen></iframe>"
     end
 
   end
