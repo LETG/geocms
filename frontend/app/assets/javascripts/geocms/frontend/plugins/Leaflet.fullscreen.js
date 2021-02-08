@@ -13,6 +13,8 @@ L.Control.Fullscreen = L.Control.extend({
         this.link = L.DomUtil.create('a', 'leaflet-control-fullscreen-button leaflet-bar-part', container);
         this.link.href = '#';
 
+        // Override default container with parent of parent to show sidebar on fullscreen
+        map._container = map._container.parentNode.parentNode;
         this._map = map;
         this._map.on('fullscreenchange', this._toggleTitle, this);
         this._toggleTitle();
