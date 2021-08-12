@@ -239,6 +239,7 @@ en:
         source: Source
         login: Login
         domain: Domaine
+        private: Private
         user: User
       geocms/context:
         name: Name

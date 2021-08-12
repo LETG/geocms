@@ -13,6 +13,8 @@
           = t("modules.accounts.account")
       = f.input :name
       = f.input :subdomain
+      .private-checkbox
+        = f.input :private, input_html: { class: "private-checkbox" }
     .span6.offset2
       legend
         h4 

@@ -137,6 +137,7 @@ fr:
         screenshot_url: URL de l'outil "screenshot"
       account:
         subdomain: Sous Domaine
+        private: Instance privée
   views:
     pagination:
       first: Première page

@@ -138,6 +138,7 @@ en:
         categories: Categories
       account:
         subdomain: Subdomain
+        private: Private instance
   views:
     pagination:
       first: First page

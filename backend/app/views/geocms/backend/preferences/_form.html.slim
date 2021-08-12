@@ -22,6 +22,8 @@
         = t(:account)
     = simple_form_for [:backend, current_tenant] do |f|
       = f.input :name
+      .private-checkbox
+        = f.input :private, input_html: { class: "private-checkbox" }
       .row
         .col-xs-6
           - if can? :update, Geocms::Account

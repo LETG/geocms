@@ -18,7 +18,7 @@ module Geocms
     mattr_reader *ATTRIBUTES
 
     @@account_attributes = [
-      :name, :subdomain, :logo, :default, :users_attributes => [:username, :email, :password]
+      :name, :subdomain, :private, :logo, :default, :users_attributes => [:username, :email, :password]
     ]
 
     @@bounding_box_attributes = [

@@ -13,3 +13,13 @@
 select[multiple], select[size] {
     resize: vertical;
 }
+
+.private-checkbox label {
+  margin-left: 5px;
+}
+
+.private-checkbox input {
+  float: left;
+  width: 14px;
+  height: auto;
+}
