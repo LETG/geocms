@@ -42,7 +42,7 @@ Gem::Specification.new do |s|
   # s.add_dependency 'rails-assets-angular-ui-slider', '0.0.2'
   s.add_dependency 'rails-assets-masonry', '3.1.5'
   s.add_dependency 'rails-assets-angular-masonry'
-  s.add_dependency 'rails-assets-leaflet', "0.7.3"
+  s.add_dependency 'rails-assets-leaflet', "1.5.1"
   s.add_dependency 'rails-assets-proj4', "~> 1.3.4"
   # Waiting for proj4leaflet to be compatible
   # s.add_dependency 'rails-assets-proj4leaflet', "0.7.0"
