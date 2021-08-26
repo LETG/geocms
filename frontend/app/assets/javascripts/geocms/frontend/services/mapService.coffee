@@ -113,7 +113,7 @@ mapModule.service "mapService",
 
         $http.get(url
         ).success((data, status, headers, config) ->
-          L.popup({ maxWidth: 820, maxHeight: 620, className: "geocms-popup",autoPanPaddingTopLeft: if $state.is("contexts.show.share") then new L.Point(0,0) else new L.Point(545,200) })
+          L.popup({ maxWidth: 820, maxHeight: 620, className: "geocms-popup",autoPanPaddingTopLeft: if $state.is("contexts.show.share") then new L.Point(545,200) else new L.Point(545,200) })
                 .setLatLng(mapService.currentPosition)
                 .setContent(mapService.generateTemplate(data))
                 .openOn(mapService.container)
