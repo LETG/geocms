@@ -132,6 +132,7 @@ en:
         max_zoom: Max zoom
         tiled: Tiled
         queryable: Queryable
+        single_tiled: Single tile
         type_import: Import type
         download_url: Download URL
         template: Template

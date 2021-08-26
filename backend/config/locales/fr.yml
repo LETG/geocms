@@ -117,6 +117,7 @@ fr:
         max_zoom: Zoom max
         tiled: Service tuilé
         queryable: Interrogeable
+        single_tiled: Tuile unique
         type_import: Type d'import
         download_url: URL de téléchargement
         template: Modèle pour l'info-bulle

@@ -32,7 +32,10 @@ mapModule.service "mapService",
 
       mapService.addLayer = (layer) ->
         layer.opacity = 90 unless layer.opacity?
-        layer._tilelayer = L.tileLayer.wms layer.data_source_wms,
+
+        tile_layer_type = if layer.single_tiled then L.nonTiledLayer.wms else L.tileLayer.wms
+
+        layer._tilelayer = tile_layer_type layer.data_source_wms,
           layers: layer.name,
           format: 'image/png',
           transparent: true,

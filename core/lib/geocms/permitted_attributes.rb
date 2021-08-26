@@ -56,7 +56,7 @@ module Geocms
       :description, :name, :title, :wms_url, :data_source_id, :category,
       :crs, :minx, :miny, :maxx, :maxy, :dimension, :template,
       :remote_thumbnail_url, :metadata_url, :metadata_identifier,:queryable, :download_url, :type_import,
-      :tiled, :max_zoom, :category_ids => []
+      :tiled, :single_tiled, :max_zoom, :category_ids => []
     ]
 
     @@membership_attributes = [

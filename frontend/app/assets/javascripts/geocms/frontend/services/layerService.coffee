@@ -18,7 +18,9 @@ layerModule.service "layerService", ["$http", "$q", ($http, $q) ->
     return promise
 
   layerService._getTileLayer = (data, deffered) ->
-    tileLayer = L.tileLayer.wms data.data_source_wms,
+    tile_layer_type = if layer.single_tiled then L.nonTiledLayer.wms else L.tileLayer.wms
+
+    tileLayer = tile_layer_type data.data_source_wms,
       layers: data.name,
       format: 'image/png',
       transparent: true,
@@ -26,6 +28,7 @@ layerModule.service "layerService", ["$http", "$q", ($http, $q) ->
       styles: data.default_style || '',
       continuousWorld: true,
       tiled: data.tiled,
+      singleTiled: data.single_tiled,
       maxZoom: data.max_zoom,
       minZoom: 3,
       opacity: (data.opacity / 100)
