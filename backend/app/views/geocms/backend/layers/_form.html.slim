@@ -5,9 +5,10 @@
   = f.input :metadata_url, disabled: @synchro
   = f.input :description, disabled: @synchro
   = f.input :max_zoom
-  = f.input :tiled, wrapper: :inline_checkbox
-  = f.input :queryable, wrapper: :inline_checkbox,  disabled: @synchro
-  = f.input :single_tiled, wrapper: :inline_checkbox
+  .layer-checkbox
+    = f.input :tiled, wrapper: :inline_checkbox
+    = f.input :queryable, wrapper: :inline_checkbox,  disabled: @synchro
+    = f.input :single_tiled, wrapper: :inline_checkbox
   = f.input :type_import, collection: [['Vector', 'Vector'], ['Automatic', 'Automatic']], label_method: :second, value_method: :first 
   = f.input :download_url
   = f.input :template, :as => :ckeditor
