@@ -31,6 +31,7 @@
 #= require ./plugins/Control.MiniMap.min
 #= require ./plugins/Leaflet.Coordinates-0.1.4.min
 #= require ./plugins/Leaflet.fullscreen
+#= require ./plugins/NonTiledLayer
 
 #= require ./folders/folders
 #= require ./catalog/catalog
