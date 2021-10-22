@@ -8,7 +8,7 @@
   = f.input :by_default, wrapper: :inline_checkbox
   = f.input :preview
   - if @context.preview?
-    = image_tag @context.preview
+    = image_tag @context.preview_url
   .form-actions
     .btn.btn-default-group
       = f.submit class: "btn btn-primary"
