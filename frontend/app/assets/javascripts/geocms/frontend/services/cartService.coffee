@@ -46,7 +46,7 @@ cartModule.service "cartService",
     Cart::recalculateLayerZIndex = ->
       l = @layers.length
       _.each @layers, (layer, index) ->
-        p = l - index - 1
+        p = l - index
         layer._tilelayer.setZIndex(p)
         layer.position = p
 
@@ -80,7 +80,7 @@ cartModule.service "cartService",
 
     Cart::toggleTimeline = (layer) ->
       layer_id = layer.layer_id
-      diff = layer.dimensions.length - layer.timelineIndex - 1
+      diff = layer.dimensions.length - layer.timelineIndex
       that = this
       if @player[layer_id]? or diff == 0
         @stopTimeline(layer_id)
