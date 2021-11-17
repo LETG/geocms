@@ -231,9 +231,9 @@ contexts.controller "ContextsController", [
     }
     $scope.connexion = () -> 
       if( $root.cart.user? )
-        window.location.href = config.prefix_uri + config.logoutUrl
+        window.location.href = config.logoutUrl
       else
-        window.location.href = config.prefix_uri + config.loginUrl
+        window.location.href = config.loginUrl
 
 
     $scope.setCurrenLayer = (layer) ->
