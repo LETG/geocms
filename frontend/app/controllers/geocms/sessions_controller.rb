@@ -5,7 +5,7 @@ module Geocms
     skip_before_action :require_login, :raise => false
 
     def new
-      redirect_back_or_to root_url if logged_in?
+      redirect_back_or_to root_path if logged_in?
     end
 
     def create
@@ -13,7 +13,7 @@ module Geocms
 
       if user
         if (user.has_role? :admin) ||  current_tenant.users.find_by_username(params[:username])
-          redirect_back_or_to root_url, :success => t("session.logged_in")
+          redirect_back_or_to root_path, :success => t("session.logged_in")
         else 
           logout
           redirect_to login_path, :flash => { :error => t("session.invalid_credentials") }
@@ -25,7 +25,7 @@ module Geocms
 
     def destroy
       logout
-      redirect_to root_url, :notice => "Logged out!"
+      redirect_to root_path, :notice => "Logged out!"
     end
   end
 end

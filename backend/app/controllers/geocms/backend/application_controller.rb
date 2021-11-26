@@ -24,7 +24,7 @@ module Geocms
         elsif current_user.has_any_role? :admin, :admin_instance
           redirect_to edit_backend_preferences_url, :alert => ""
         else 
-          redirect_to root_url, :alert => message
+          redirect_to root_path, :alert => message
         end
       end
       private
@@ -45,13 +45,13 @@ module Geocms
       def is_in_domain
         if !(current_user.has_role? :admin) && !(current_tenant.users.find_by_username(current_user.username))
           logout
-          redirect_to root_url, :alert => "Unauthorized"
+          redirect_to root_path, :alert => "Unauthorized"
         end
       end
 
       
       rescue_from CanCan::AccessDenied do |exception|
-        redirect_to backend_root_url, :alert => t("access_denied")
+        redirect_to backend_root_path, :alert => t("access_denied")
       end
     end
   end
