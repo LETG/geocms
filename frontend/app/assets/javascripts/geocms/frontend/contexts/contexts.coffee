@@ -13,7 +13,7 @@ contexts.config [
   ($stateProvider) ->
     $stateProvider
       .state 'contexts',
-        url: config.prefix_uri+"/maps"
+        url: "/maps"
         views:
           "":
             templateUrl: config.prefix_uri+"/templates/contexts/root.html"
