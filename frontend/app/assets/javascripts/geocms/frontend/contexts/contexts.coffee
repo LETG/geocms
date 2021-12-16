@@ -89,7 +89,7 @@ contexts.config [
                 Restangular.one('users').customGET("index").then( 
                   (user) ->
                       if !user.data.create_context
-                        window.location.href = config.prefix_uri + config.loginUrl
+                        window.location.href = config.loginUrl
                       
                 )
               
