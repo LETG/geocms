@@ -31,7 +31,8 @@ layerModule.service "layerService", ["$http", "$q", ($http, $q) ->
       singleTiled: data.single_tiled,
       maxZoom: data.max_zoom,
       minZoom: 3,
-      opacity: (data.opacity / 100)
+      opacity: (data.opacity / 100),
+      pane: 'tilePane',
     
     deffered.resolve(tileLayer)
     deffered.promise
