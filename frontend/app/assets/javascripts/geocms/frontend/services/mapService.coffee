@@ -136,8 +136,8 @@ mapModule.service "mapService",
         '&width='+size.x+
         '&height='+size.y+
         '&bbox='+@container.getBounds().toBBoxString()+
-        '&current_x='+position.x+
-        '&current_y='+position.y+
+        '&current_x='+Math.round(position.x)+
+        '&current_y='+Math.round(position.y)+
         time_str
 
 
