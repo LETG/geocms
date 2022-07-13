@@ -35,6 +35,19 @@ Once you are done editing your map, you can save it to retrieve it later and sha
 Installation guide
 ==================
 
+To install GeoCMS you can :
+- use this amazing interactive bash [script] (Base64 encoded) made by Christophe Martin (CNRS) located in ./install/ directory, run it and relax **(preferred method)**
+
+to run the script as root
+```bash
+$ cd install
+$ sudo -s 
+$ bash install-geocms
+```
+[script]: https://github.com/LETG/geocms/tree/master/install/install-geocms
+
+- or choose to install it at your own risk by following the method below...
+
 Dependencies
 ------------
 
