@@ -35,8 +35,9 @@ Once you are done editing your map, you can save it to retrieve it later and sha
 Installation guide
 ==================
 
-To install GeoCMS you can :
-- use this amazing interactive bash [script] (Base64 encoded) made by Christophe Martin (CNRS) located in ./install/ directory, run it and relax **(preferred method)**
+## Old install script
+
+To install GeoCMS you can use this amazing interactive bash [script] (Base64 encoded) made by Christophe Martin (CNRS) located in ./install/ directory, run it and relax **(preferred method)**
 
 to run the script as root
 ```bash
@@ -46,7 +47,31 @@ $ bash install-geocms
 ```
 [script]: https://github.com/LETG/geocms/tree/master/install/install-geocms
 
-- or choose to install it at your own risk by following the method below...
+## Docker
+
+### Setup
+
+Run `make setup` to get Docker Compose override and production env files.
+
+### Development
+
+Build: `make build-dev`
+
+Run : `make up-dev`
+
+To get the Gemfile.lock from the container after a gem update: `docker cp geocms_app:/app/Gemfile.lock docker/app/Gemfile.lock`.
+
+### Production
+
+Configure `docker-compose.override.yml` with what you need in production.
+
+Build: `make build-prod`
+
+Run: `make up-prod`
+
+## Manual (obsolete)
+
+Install it at your own risk by following the method below...
 
 Dependencies
 ------------

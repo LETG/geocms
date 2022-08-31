@@ -1,0 +1,29 @@
+#!/bin/sh
+set -e
+
+export PGPASSWORD="$DATABASE_PASSWORD"
+
+# Wait for Postgres to become available.
+echo "Checking for Postgres on $DATABASE_USERNAME@$DATABASE_HOST:$DATABASE_PORT/$DATABASE_NAME ..."
+until psql -h "$DATABASE_HOST" -U "$DATABASE_USERNAME" -c '\q' 2>/dev/null; do
+  echo >&2 "Postgres is unavailable - sleeping"
+  sleep 1
+done
+echo "Postgres is available: continuing with database setup..."
+
+# Database setup
+if psql -h "$DATABASE_HOST" -U "$DATABASE_USERNAME" -lqt | cut -d \| -f 1 | grep -qw "$DATABASE_NAME"; then
+  echo "Database exists"
+else
+  echo "Database doesn't exist, setting up..."
+  bundle exec rails db:create
+  bundle exec rake railties:install:migrations
+  bundle exec rake db:migrate
+  bundle exec rake maconf:create_first_accounts
+fi
+
+# Remove leftover pid files
+rm -f tmp/pids/server.pid
+
+# Run command specified in docker-compose or Dockerfile
+exec "$@"

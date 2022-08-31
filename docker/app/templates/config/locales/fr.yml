@@ -1,0 +1,11 @@
+fr:
+  contexts:
+    wmc: Basculer vers le visualiseur avancé
+  informations:
+    features:
+      header: "Sauvegardez votre carte pour :"
+      f1: La partager
+      f2: Collaborer
+      f3: Y revenir ultérieurement
+      f4: "Basculer vers le visualiseur avancé"
+    header: Carte

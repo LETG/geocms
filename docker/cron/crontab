@@ -1,0 +1,1 @@
+0 4 * * * cd /app && bundle exec rake geocms:synchro:wms

@@ -1,0 +1,15 @@
+#!/bin/sh
+set -e
+
+# Wait for app to be up
+wait-for-it "geocms_app:3000" --timeout=0
+
+# Use local version of GeoCMS to be able to change code from the host
+bundle config local.geocms /geocms
+
+# Ensure the app's dependencies are installed
+echo "Installing dependencies..."
+bundle check || bundle install
+
+# Run command specified in docker-compose or Dockerfile
+exec "$@"
