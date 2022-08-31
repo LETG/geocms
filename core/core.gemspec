@@ -34,7 +34,7 @@ Gem::Specification.new do |s|
   s.add_dependency "cancancan"
   s.add_dependency "rolify"
   s.add_dependency "rgeo"
-  s.add_dependency "rgeo-proj4"
+  s.add_dependency "rgeo-proj4", "~> 2.0"
   s.add_dependency "curb"
   s.add_dependency "pg_search"
   s.add_dependency "sorcery"
