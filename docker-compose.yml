@@ -66,6 +66,7 @@ services:
       - "${MAILDEV_SMTP_PORT}:1025"
 
   postgres:
+    container_name: geocms-postgres
     image: postgres:12.4
     env_file: .env
     volumes:
