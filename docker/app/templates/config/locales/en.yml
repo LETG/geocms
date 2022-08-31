@@ -1,0 +1,11 @@
+en:
+  contexts:
+    wmc: Switch to advanced visualizer
+  informations:
+    features:
+      header: "Save your map to:"
+      f1: Share it
+      f2: Collaborate
+      f3: Come back to it later on
+      f4: Switch to advanced visualizer
+    header: Map
