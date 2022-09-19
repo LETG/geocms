@@ -69,25 +69,31 @@ geocms.run [
       element = obj
 ]
 
-geocms.controller 'CategoriesPagination', ($scope) -> 
-  $scope.currentPage = 0
-  $scope.pageSize = 20
-  $scope.numberOfPages = ->
-    res = Math.ceil $scope.catalog.categories.length / $scope.pageSize
-    if res < 1
-      return 1
-    else
-      return res 
-
-geocms.controller 'LayersPagination', ($scope) -> 
-  $scope.currentPage = 0
-  $scope.pageSize = 20
-  $scope.numberOfPages = ->
-    res = Math.ceil $scope.catalog.layers.length / $scope.pageSize
-    if res < 1
-      return 1
-    else
-      return res 
+geocms.controller 'CategoriesPagination', 
+  [
+    "$scope", ($scope) -> 
+      $scope.currentPage = 0
+      $scope.pageSize = 20
+      $scope.numberOfPages = ->
+        res = Math.ceil $scope.catalog.categories.length / $scope.pageSize
+        if res < 1
+          return 1
+        else
+          return res 
+  ]
+  
+geocms.controller 'LayersPagination', 
+  [
+    "$scope", ($scope) -> 
+      $scope.currentPage = 0
+      $scope.pageSize = 20
+      $scope.numberOfPages = ->
+        res = Math.ceil $scope.catalog.layers.length / $scope.pageSize
+        if res < 1
+          return 1
+        else
+          return res 
+  ]
 
 geocms.filter 'startFrom', ->
   (input, start) ->
