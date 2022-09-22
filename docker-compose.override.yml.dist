@@ -8,6 +8,7 @@ services:
       - rails_cache:/app/tmp/cache
       - bundle:/bundle
       - .:/geocms
+      - uploads:/app/public/uploads
 
   cron:
     build:
@@ -24,9 +25,11 @@ services:
       - rails_cache:/app/tmp/cache
       - bundle:/bundle
       - .:/geocms
+      - uploads:/app/public/uploads
 
 volumes:
   postgres:
   redis:
   rails_cache:
   bundle:
+  uploads:
