@@ -21,6 +21,8 @@ services:
     depends_on:
       - postgres
       - redis
+    volumes:
+      - uploads:/app/public/uploads
 
   cron:
     build:
@@ -46,6 +48,8 @@ services:
       - geoauth
     depends_on:
       - app
+    volumes:
+      - uploads:/app/public/uploads
 
   screenshot:
     build:
@@ -90,6 +94,7 @@ services:
 volumes:
   postgres:
   redis:
+  uploads:
 
 networks:
   geoauth:
