@@ -1,6 +1,4 @@
 default: &default
-production:
-  <<: *default
   host: <%= ENV["DATABASE_HOST"] %>
   port: <%= ENV["DATABASE_PORT"] %>
   database: <%= ENV["DATABASE_NAME"] %>
@@ -9,6 +7,8 @@ production:
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+production:
+  <<: *default
 
 development:
   <<: *default
