@@ -63,6 +63,8 @@ To get the Gemfile.lock from the container after a gem update: `docker cp geocms
 
 ### Production
 
+Duplicate `.env.prod.dist` to `.env.prod` and update values according to your environment.
+
 Configure `docker-compose.override.yml` with what you need in production.
 
 Build: `make build-prod`
