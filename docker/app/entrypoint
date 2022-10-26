@@ -5,7 +5,7 @@ export PGPASSWORD="$DATABASE_PASSWORD"
 
 # Wait for Postgres to become available.
 echo "Checking for Postgres on $DATABASE_USERNAME@$DATABASE_HOST:$DATABASE_PORT/$DATABASE_NAME ..."
-until psql -h "$DATABASE_HOST" -U "$DATABASE_USERNAME" -c '\q' 2>/dev/null; do
+until psql -h "$DATABASE_HOST" -U "$DATABASE_USERNAME" $DATABASE_NAME -c '\q' 2>/dev/null; do
   echo >&2 "Postgres is unavailable - sleeping"
   sleep 1
 done
