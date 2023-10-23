@@ -176,7 +176,7 @@ contexts.config [
         parent: 'contexts.show'
         views:
           "sidebar@contexts":
-            if window.location.search.substring("delay")
+            if window.location.search.includes("delay")
               templateUrl: config.prefix_uri+"/templates/contexts/sidebar_share_mode_delay.html"
               controller: "ContextsController"
             else
