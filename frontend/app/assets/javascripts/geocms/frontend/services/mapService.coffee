@@ -85,15 +85,83 @@ mapModule.service "mapService",
         scope.filteredLayers = $filter('filter')(scope.cart.layers, scope.ms.greaterThan('opacity', 0))
         scope.filteredLayers = $filter('filter')(scope.filteredLayers, scope.ms.containsPoint())
         scope.filteredLayers = $filter('filter')(scope.filteredLayers, scope.ms.queryableLayer())
-        if scope.filteredLayers.length == 1
-          scope.ms.chooseLayer(scope.filteredLayers[0])
+
+        if scope.filteredLayers.length <= 10
+          # if there is more than 10 layers
+          container = @container
+          currentPosition = @currentPosition
+
+          # another popup is used
+          html = '<div ng-include="\''+config.prefix_uri+'/templates/layers/popup_with_data.html\'"></div>'
+          linkFunction = $compile(html)
+
+          # Data is retrieved for each layer
+          # If no data, then layer is removed from the list of layers
+          # If else, data is stored inside layer object
+          Promise.all(scope.filteredLayers.map((layer) ->
+            mapService.getLayerData(layer)
+              .then (result) ->
+                data = result.data
+                if data.features.length <= 0
+                  scope.filteredLayers.splice(scope.filteredLayers.indexOf(layer), 1)
+                else
+                  scope.filteredLayers[scope.filteredLayers.indexOf(layer)].data = data
+              .catch (error) ->
+                console.error("Error: #{error}")
+          ))
+          .then ->
+            if scope.filteredLayers.length == 1
+              # If only 1 layer is present after filter, we directly show it with preloaded data
+              scope.ms.chooseLayerWithData(scope.filteredLayers[0])
+            else if scope.filteredLayers.length > 1
+              # If else, then we show the popup but on click on the layer, data is pre loaded
+              L.popup({ className: "query-layer-switcher geocms-popup", autoPanPaddingTopLeft: if $state.is("contexts.show.share") then new L.Point(0,0) else new L.Point(Math.round(container.getSize().x*0.34),200)})
+                .setLatLng(currentPosition)
+                .setContent(linkFunction(scope)[0])
+                .openOn(container)
+            container.on('popupclose', (e) -> scope.$destroy())
+            scope.$apply()
         else if scope.filteredLayers.length > 1
           L.popup({ className: "query-layer-switcher geocms-popup",autoPanPaddingTopLeft: if $state.is("contexts.show.share") then new L.Point(0,0) else new L.Point(Math.round(@container.getSize().x*0.34),200)})
                     .setLatLng(@currentPosition)
                     .setContent(linkFunction(scope)[0])
                     .openOn(@container)
-        @container.on('popupclose', (e) -> scope.$destroy())
-        scope.$apply()
+          @container.on('popupclose', (e) -> scope.$destroy())
+          scope.$apply()
+    
+
+      mapService.getLayerData = (layer) ->
+        url = config.prefix_uri+"/api/v1/layers/"+layer.layer_id+"/queryable"
+
+        that = this
+
+        new Promise (resolve, reject) ->
+          $http.get(url)
+            .success (data, status, headers, config) ->
+              if data.queryable
+                that.currentLayer = layer
+                that.getFeatureWMSData()
+                  .then (featureData) ->
+                    resolve(featureData)
+                  .catch (error) ->
+                    reject(error)
+            .error (data, status, headers, config) ->
+              console.error("error in mapService.getLayerData()")
+              reject("Error in HTTP request")
+
+      mapService.getFeatureWMSData = ->
+        url = mapService.getWMSFeatureURL()
+
+        $http.get(url
+        ).success((data, status, headers, config) ->
+          return data
+        ).error (data, status, headers, config) ->
+
+      mapService.chooseLayerWithData = (layer) ->
+        L.popup({ maxWidth: 820, maxHeight: 620, className: "geocms-popup",autoPanPaddingTopLeft: if $state.is("contexts.show.share") then new L.Point(545,200) else new L.Point(545,200) })
+                .setLatLng(mapService.currentPosition)
+                .setContent(mapService.generateTemplate(layer.data, layer))
+                .openOn(mapService.container)
 
       mapService.queryableLayer = ->
         (item) ->
@@ -132,7 +200,7 @@ mapModule.service "mapService",
         size = @container.getSize()
         position = @container.layerPointToContainerPoint(@layerPoint)
         
-        time_str=""
+        time_str=''
 
         if @currentLayer.timelineIndex? 
           time_str = '&time='+@currentLayer.dimensions[@currentLayer.timelineIndex]
@@ -151,16 +219,19 @@ mapModule.service "mapService",
 
         
 
-      mapService.generateTemplate = (data) ->
+      mapService.generateTemplate = (data, layer=null) ->
+        if layer == null
+          layer = @currentLayer
+
         _.templateSettings =
           interpolate: /\{\{(.+?)\}\}/g
-        wrapper = "<div class='geocms-popup-header'><h1>"+@currentLayer.title+"</h1></div>"
+        wrapper = "<div class='geocms-popup-header'><h1>"+layer.title+"</h1></div>"
         wrapper += "<div class='geocms-popup-body'>"
         if data == "null" or data.status == "failed"
           body = "<p>"+config.t.map.layer_properties_fetch_error+"</p>"
         else if data.features.length > 0
-          if mapService.currentLayer.template? and mapService.currentLayer.template != ""
-            html = mapService.currentLayer.template
+          if layer.template? and layer.template != ""
+            html = layer.template
           else
             html = "<ul class='list-unstyled'>"
             _.each data.features[0].properties, (val, key) ->
