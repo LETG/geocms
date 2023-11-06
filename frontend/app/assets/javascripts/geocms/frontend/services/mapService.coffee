@@ -45,8 +45,9 @@ mapModule.service "mapService",
           tiled: layer.tiled,
           maxZoom: layer.max_zoom,
           minZoom: 3,
-          opacity: (layer.opacity / 100)
-          zIndex: layer.position + 1
+          opacity: (layer.opacity / 100),
+          zIndex: layer.position + 1,
+          pane: 'tilePane',
         layer._tilelayer.addTo(@container)
         layer.onMap = true
         layer
@@ -135,8 +136,8 @@ mapModule.service "mapService",
         '&width='+size.x+
         '&height='+size.y+
         '&bbox='+@container.getBounds().toBBoxString()+
-        '&current_x='+position.x+
-        '&current_y='+position.y+
+        '&current_x='+Math.round(position.x)+
+        '&current_y='+Math.round(position.y)+
         time_str
 
 

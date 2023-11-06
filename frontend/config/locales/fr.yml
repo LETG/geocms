@@ -18,7 +18,7 @@ fr:
     actions:
       save: Sauvegarder
       saved: Sauvegardé
-      new: Nouveau projet
+      new: Nouvelle carte
       edit: Éditer
     attributes:
       name: Nom

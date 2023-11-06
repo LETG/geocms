@@ -43,7 +43,7 @@ fr:
       projects: Projets
       project: Projets
       new: Ajouter un répertoire
-      new_project: Nouveau projet
+      new_project: Nouvelle carte
     layers:
       categories: Catégories
       new: Créer une nouvelle couche
@@ -115,6 +115,7 @@ fr:
         data_source: Source de données
         metadata_url: URL des métadonnées
         max_zoom: Zoom max
+        default_style: Style par défaut
         tiled: Service tuilé
         queryable: Interrogeable
         single_tiled: Tuile unique
