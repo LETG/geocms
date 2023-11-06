@@ -130,6 +130,7 @@ en:
         data_source: Data source
         metadata_url: Metadata URL
         max_zoom: Max zoom
+        default_style: Default style
         tiled: Tiled
         queryable: Queryable
         single_tiled: Single tile

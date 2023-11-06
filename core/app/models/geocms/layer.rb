@@ -102,7 +102,7 @@ module Geocms
               end
 
               # save request
-              request = d.wms + "?REQUEST=getCoverage&service=WCS&coverage=#{layer.name}&version=1.0.0&CRS=#{crsStr}&bbox=#{bboxStr}&resx=#{resx}&resy=#{resy}&format=geotiff"
+              request = d.wms + "?REQUEST=getCoverage&service=WCS&coverageId=#{layer.name}&version=2.0.1&CRS=#{crsStr}&bbox=#{bboxStr}&resx=#{resx}&resy=#{resy}&format=geotiff"
               layer.download_url	= request
               layer.save!
             rescue

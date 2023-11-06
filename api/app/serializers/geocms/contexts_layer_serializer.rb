@@ -1,7 +1,7 @@
 module Geocms
   class ContextsLayerSerializer < ActiveModel::Serializer
 
-    attributes :id, :opacity, :layer_id, :title, :description, :name, :tiled, :template, 
+    attributes :id, :opacity, :layer_id, :title, :description, :name, :tiled, :template, :default_style,
                :data_source_wms, :data_source_wms_version, :data_source_not_internal,
                :data_source_ogc, :data_source_name, :bbox, :position, :dimensions, :metadata_url, :max_zoom,
                :thumbnail_url, :queryable, :single_tiled, :download_url, :type_import
