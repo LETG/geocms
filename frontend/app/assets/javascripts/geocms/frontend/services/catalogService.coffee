@@ -4,7 +4,8 @@ catalogModule.service "catalogService",
 [
   "Restangular",
   "$state",
-  (Restangular, $state) ->
+  "$rootScope",
+  (Restangular, $state, $rootScope) ->
     
     Catalog = ->
       @currentCategory = null
@@ -36,6 +37,10 @@ catalogModule.service "catalogService",
       for layer in layersToSelect
         if !@isOnCart(layer.layer_id, cart)
           cart.add(layer.layer_id)
+      return
+
+    Catalog::updateLayersPerPage = (currentPage, pageSize) ->
+      $rootScope.$broadcast('pageSizeUpdated', pageSize)
       return
 
     Catalog::isOnCart = (id, cart) ->

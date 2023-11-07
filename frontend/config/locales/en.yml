@@ -35,6 +35,7 @@ en:
     previous: Previous
     next: Next
     select_all: "Select all"
+    layer_per_pages: "Number of layers per page"
     header: Layers
     open_catalog: Add layer
     back_to_list: Back to list
