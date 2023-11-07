@@ -34,6 +34,7 @@ en:
   layers:
     previous: Previous
     next: Next
+    select_all: "Select all"
     header: Layers
     open_catalog: Add layer
     back_to_list: Back to list

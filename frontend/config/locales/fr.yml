@@ -34,6 +34,7 @@ fr:
   layers:
     previous: Précédent
     next: Suivant
+    select_all: "Tout sélectionner"
     header: Couches
     open_catalog: Ajouter une couche
     back_to_list: Retour à la liste

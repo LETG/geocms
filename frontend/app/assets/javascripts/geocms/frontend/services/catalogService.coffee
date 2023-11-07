@@ -28,6 +28,16 @@ catalogModule.service "catalogService",
       if @isOnCart(id, cart) then cart.remove(cart.get(id)) else cart.add(id)
       return
 
+    Catalog::selectAllCheckboxes = (cart, layers, currentPage, pageSize) ->
+      startIndex = currentPage * pageSize
+      endIndex = startIndex + pageSize
+      layersToSelect = layers.slice(startIndex, endIndex)
+
+      for layer in layersToSelect
+        if !@isOnCart(layer.layer_id, cart)
+          cart.add(layer.layer_id)
+      return
+
     Catalog::isOnCart = (id, cart) ->
       if _.findWhere(cart.layers, {layer_id: id}) then true else false
 

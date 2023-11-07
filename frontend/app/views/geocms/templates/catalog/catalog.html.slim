@@ -41,6 +41,8 @@
                 | &nbsp;
             button ng-disabled="currentPage >= catalog.layers.length/pageSize - 1" ng-click="currentPage=currentPage+1"
               = t("layers.next")
+            button class="select_all" ng-click="catalog.selectAllCheckboxes(cart, catalog.layers, currentPage, pageSize)"
+              = t("layers.select_all")
           .media ng-repeat="layer in catalog.layers | startFrom:currentPage*pageSize | limitTo:pageSize" ng-class="{added: catalog.isOnCart(layer.layer_id, cart)}" ng-click="catalog.addToCart(layer.layer_id, cart)"
             div ng-include="config.prefix_uri+'/templates/catalog/layer.html'"
 
