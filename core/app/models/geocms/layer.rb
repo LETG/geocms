@@ -27,7 +27,13 @@ module Geocms
     after_commit :get_thumbnail, on: :create
 
     default_scope -> { order(:title) }
-    pg_search_scope :search, against: [:name, :title]
+    pg_search_scope :search, against: [:name, :title], using: {
+      tsearch: {
+        dictionary: "simple",  # Use a simple dictionary that doesn't apply stemming
+        any_word: true,        # Match any word (disables phrase matching)
+        prefix: true,          # Match words with the query as a prefix (enables prefix matching)
+      }
+    }
 
     # Finds the relevant bbox among all the bboxes stored
     # First check if there is a bounding box in EPSG:3857 (leaflet default)
