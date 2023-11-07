@@ -34,6 +34,9 @@ fr:
   layers:
     previous: Précédent
     next: Suivant
+    select_all: "Tout sélectionner"
+    unselect_all: "Tout désélectionner"
+    layer_per_pages: "Nombre de couches par pages"
     header: Couches
     open_catalog: Ajouter une couche
     back_to_list: Retour à la liste

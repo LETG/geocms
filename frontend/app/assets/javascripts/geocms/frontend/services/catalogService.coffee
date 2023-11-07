@@ -15,6 +15,7 @@ catalogModule.service "catalogService",
       @layers = []
       @query = null
       @searchTimeout = null
+      @selectAllButtonText = null
       return
 
     Catalog::getCategory = (category) ->
@@ -29,6 +30,32 @@ catalogModule.service "catalogService",
 
     Catalog::addToCart = (id, cart) ->
       if @isOnCart(id, cart) then cart.remove(cart.get(id)) else cart.add(id)
+      return
+
+    Catalog::selectAllCheckboxes = (cart, layers, currentPage, pageSize) ->
+      startIndex = currentPage * pageSize
+      endIndex = startIndex + pageSize
+      layersToSelect = layers.slice(startIndex, endIndex)
+
+      for layer in layersToSelect
+        if !@isOnCart(layer.layer_id, cart)
+          cart.add(layer.layer_id)
+
+      return
+
+    Catalog::unselectAllCheckboxes = (cart, layers, currentPage, pageSize) ->
+      startIndex = currentPage * pageSize
+      endIndex = startIndex + pageSize
+      layersToSelect = layers.slice(startIndex, endIndex)
+
+      for layer in layersToSelect
+        if @isOnCart(layer.layer_id, cart)
+          cart.remove(cart.get(layer.layer_id)) 
+
+      return
+
+    Catalog::updateLayersPerPage = (currentPage, pageSize) ->
+      $rootScope.$broadcast('pageSizeUpdated', pageSize)
       return
 
     Catalog::isOnCart = (id, cart) ->
