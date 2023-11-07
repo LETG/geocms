@@ -4,7 +4,9 @@ catalogModule.service "catalogService",
 [
   "Restangular",
   "$state",
-  (Restangular, $state) ->
+  "$timeout",
+  '$rootScope',
+  (Restangular, $state, $timeout, $rootScope) ->
     
     Catalog = ->
       @currentCategory = null
@@ -12,6 +14,7 @@ catalogModule.service "catalogService",
       @categories = []
       @layers = []
       @query = null
+      @searchTimeout = null
       return
 
     Catalog::getCategory = (category) ->
@@ -65,6 +68,21 @@ catalogModule.service "catalogService",
           $('.nav-tabs a[href="#layers"]').click();
       setTimeout(open_layers)
       $state.go "^"
+
+    Catalog::handleInputChange = ->
+      that = this
+      if @query.length >= 3
+        # Cancel the previous timeout if it exists
+        if that.searchTimeout
+          $timeout.cancel(that.searchTimeout)
+
+        # Set a new timeout to trigger the search after a delay (e.g., 500ms)
+        that.searchTimeout = $timeout =>
+          Restangular.all("layers").customGET("search", { q: @query }).then (response) ->
+            that.layers = response.layers
+            that.categories = response.categories
+            $rootScope.$broadcast('currentPageUpdated')
+        , 500  # Adjust the delay time as needed
 
     Catalog
 ]
