@@ -184,11 +184,16 @@
   margin-right: 5px;
 }
 
-.navigation_buttons{
-  text-align: right;
+.pagination_container{
+  margin-top: 5px;
+  display: flex;
+  justify-content: space-between;
+}
 
-  .select_all {
-    margin-left: 5px;
-    margin-right: 5px;
-  }
+.navigation_buttons {
+  text-align: right;
+}
+
+.select_all {
+  margin-left: 2px;
 }

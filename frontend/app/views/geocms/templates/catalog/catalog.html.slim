@@ -31,25 +31,27 @@
         .media ng-repeat="category in catalog.categories" ng-include="config.prefix_uri+'/templates/catalog/category.html'")
         .small-space
         .layers-pagination ng-controller="LayersPagination" ng-if="catalog.layers.length"
-          .navigation_buttons
-            = t("layers.layer_per_pages")
-            button id="select_all" class="select_all" ng-click="catalog.updateLayersPerPage(currentPage, 20)"
-              = 20
-            button id="select_all" class="select_all" ng-click="catalog.updateLayersPerPage(currentPage, 50)"
-              = 50
-            button id="select_all" class="select_all" ng-click="catalog.updateLayersPerPage(currentPage, 100)"
-              = 100
-            button id="select_all" class="select_all" ng-click="catalog.selectAllCheckboxes(cart, catalog.layers, currentPage, pageSize)"
-              = t("layers.select_all")
-            button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1"
-              = t("layers.previous")
-            span 
-              b
-                | &nbsp;
-                |{{currentPage+1}}/{{numberOfPages()}}
-                | &nbsp;
-            button ng-disabled="currentPage >= catalog.layers.length/pageSize - 1" ng-click="currentPage=currentPage+1"
-              = t("layers.next")
+          .pagination_container
+            .layers_per_page
+              = t("layers.layer_per_pages")
+              button id="select_all" class="select_all" ng-click="catalog.updateLayersPerPage(currentPage, 20)"
+                = 20
+              button id="select_all" class="select_all" ng-click="catalog.updateLayersPerPage(currentPage, 50)"
+                = 50
+              button id="select_all" class="select_all" ng-click="catalog.updateLayersPerPage(currentPage, 100)"
+                = 100
+            .navigation_buttons 
+              button id="select_all" class="select_all" ng-click="catalog.selectAllCheckboxes(cart, catalog.layers, currentPage, pageSize)"
+                = t("layers.select_all")
+              button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1"
+                = t("layers.previous")
+              span 
+                b
+                  | &nbsp;
+                  |{{currentPage+1}}/{{numberOfPages()}}
+                  | &nbsp;
+              button ng-disabled="currentPage >= catalog.layers.length/pageSize - 1" ng-click="currentPage=currentPage+1"
+                = t("layers.next")
           .media ng-repeat="layer in catalog.layers | startFrom:currentPage*pageSize | limitTo:pageSize" ng-class="{added: catalog.isOnCart(layer.layer_id, cart)}" ng-click="catalog.addToCart(layer.layer_id, cart)"
             div ng-include="config.prefix_uri+'/templates/catalog/layer.html'"
 
