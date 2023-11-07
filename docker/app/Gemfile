@@ -37,7 +37,7 @@ gem 'responders', '~> 3.0'
 gem 'nokogiri'
 gem 'compass-rails'
 gem 'ruby-ogc', :git => 'https://github.com/LETG/ruby-ogc', :branch => "update-curb"
-gem 'geocms', :git => 'https://github.com/LETG/geocms.git', :branch => "docker"
+gem 'geocms', path: '/geocms'
 
 
 # Use Active Storage variant

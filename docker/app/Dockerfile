@@ -67,8 +67,8 @@ ENTRYPOINT ["entrypoint"]
 FROM base as development
 # ==> Install real app
 WORKDIR $RAILS_ROOT
-ENV RAILS_ENV='production'
-ENV RACK_ENV='production'
+ENV RAILS_ENV='development'
+ENV RACK_ENV='development'
 COPY docker/app/Gemfile Gemfile
 COPY docker/app/Gemfile.lock Gemfile.lock
 COPY docker/app/templates $RAILS_ROOT
