@@ -23,8 +23,12 @@ module Geocms
 
         def search
           @layers = Geocms::Layer.joins(:categories).where("geocms_categories.account_id= ?",current_tenant.id).search(params[:q])
+          @categories = Geocms::Category.where("geocms_categories.account_id= ?",current_tenant.id).search(params[:q])
 
-          respond_with @layers.to_a.uniq, each_serializer: Geocms::LayerSerializer
+          layers_data = @layers.to_a.uniq.map { |layer| Geocms::LayerSerializer.new(layer).serializable_hash }
+          categories_data = @categories.to_a.uniq.map { |category| Geocms::CategorySerializer.new(category).serializable_hash }
+          
+          respond_with layers: layers_data, categories: categories_data
         end
 
         def bbox
