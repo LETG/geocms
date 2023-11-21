@@ -13,6 +13,7 @@ catalogModule.service "catalogService",
       @categories = []
       @layers = []
       @query = null
+      @selectAllButtonText = null
       return
 
     Catalog::getCategory = (category) ->
@@ -34,9 +35,20 @@ catalogModule.service "catalogService",
       endIndex = startIndex + pageSize
       layersToSelect = layers.slice(startIndex, endIndex)
 
+      # If first layer is not in card, then we should add all
+      shouldAddAll = !@isOnCart(layers[0].layer_id, cart)
+
+      if shouldAddAll
+        @selectAllButtonText = "select_all"
+      else
+        @selectAllButtonText = "unselect_all"
+
       for layer in layersToSelect
-        if !@isOnCart(layer.layer_id, cart)
+        if shouldAddAll && !@isOnCart(layer.layer_id, cart)
           cart.add(layer.layer_id)
+        else if !shouldAddAll && @isOnCart(layer.layer_id, cart)
+          cart.remove(cart.get(layer.layer_id))
+
       return
 
     Catalog::updateLayersPerPage = (currentPage, pageSize) ->

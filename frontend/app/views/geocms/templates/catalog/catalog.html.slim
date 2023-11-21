@@ -34,15 +34,19 @@
           .pagination_container
             .layers_per_page
               = t("layers.layer_per_pages")
-              button id="select_all" class="select_all" ng-click="catalog.updateLayersPerPage(currentPage, 20)"
+              button class="pagination_buttons" ng-click="catalog.updateLayersPerPage(currentPage, 20)"
                 = 20
-              button id="select_all" class="select_all" ng-click="catalog.updateLayersPerPage(currentPage, 50)"
+              button class="pagination_buttons" ng-click="catalog.updateLayersPerPage(currentPage, 50)"
                 = 50
-              button id="select_all" class="select_all" ng-click="catalog.updateLayersPerPage(currentPage, 100)"
+              button class="pagination_buttons" ng-click="catalog.updateLayersPerPage(currentPage, 100)"
                 = 100
             .navigation_buttons 
-              button id="select_all" class="select_all" ng-click="catalog.selectAllCheckboxes(cart, catalog.layers, currentPage, pageSize)"
-                = t("layers.select_all")
+              button class="pagination_select_button" ng-click="catalog.selectAllCheckboxes(cart, catalog.layers, currentPage, pageSize)"
+                span ng-if="catalog.selectAllButtonText === 'select_all'" 
+                  = t("layers.unselect_all")
+                span ng-if="catalog.selectAllButtonText !== 'select_all'"
+                  = t("layers.select_all")
+
               button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1"
                 = t("layers.previous")
               span 

@@ -190,10 +190,14 @@
   justify-content: space-between;
 }
 
-.navigation_buttons {
-  text-align: right;
+.pagination_buttons {
+  margin-left: 2px;
 }
 
-.select_all {
-  margin-left: 2px;
+.pagination_select_button {
+  margin-right: 2px;
+}
+
+.navigation_buttons {
+  text-align: right;
 }
