@@ -109,7 +109,7 @@ mapModule.service "mapService",
             if scope.filteredLayers.length == 1
               # If only 1 layer is present after filter, we directly show it with preloaded data
               scope.ms.chooseLayerWithData(scope.filteredLayers[0])
-            else
+            else if scope.filteredLayers.length > 1
               # If else, then we show the popup but on click on the layer, data is pre loaded
               L.popup({ className: "query-layer-switcher geocms-popup", autoPanPaddingTopLeft: if $state.is("contexts.show.share") then new L.Point(0,0) else new L.Point(Math.round(container.getSize().x*0.34),200)})
                 .setLatLng(currentPosition)
