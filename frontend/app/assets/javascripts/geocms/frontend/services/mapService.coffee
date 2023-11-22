@@ -156,7 +156,7 @@ mapModule.service "mapService",
       mapService.chooseLayerWithData = (layer) ->
         L.popup({ maxWidth: 820, maxHeight: 620, className: "geocms-popup",autoPanPaddingTopLeft: if $state.is("contexts.show.share") then new L.Point(545,200) else new L.Point(545,200) })
                 .setLatLng(mapService.currentPosition)
-                .setContent(mapService.generateTemplate(layer.data, layer.title))
+                .setContent(mapService.generateTemplate(layer.data, layer))
                 .openOn(mapService.container)
 
       mapService.queryableLayer = ->
@@ -215,19 +215,19 @@ mapModule.service "mapService",
 
         
 
-      mapService.generateTemplate = (data, title=null) ->
-        if title == null
-          title = @currentLayer.title
+      mapService.generateTemplate = (data, layer=null) ->
+        if layer == null
+          layer = @currentLayer
 
         _.templateSettings =
           interpolate: /\{\{(.+?)\}\}/g
-        wrapper = "<div class='geocms-popup-header'><h1>"+title+"</h1></div>"
+        wrapper = "<div class='geocms-popup-header'><h1>"+layer.title+"</h1></div>"
         wrapper += "<div class='geocms-popup-body'>"
         if data == "null" or data.status == "failed"
           body = "<p>"+config.t.map.layer_properties_fetch_error+"</p>"
         else if data.features.length > 0
-          if mapService.currentLayer.template? and mapService.currentLayer.template != ""
-            html = mapService.currentLayer.template
+          if layer.template? and layer.template != ""
+            html = layer.template
           else
             html = "<ul class='list-unstyled'>"
             _.each data.features[0].properties, (val, key) ->
