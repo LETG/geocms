@@ -36,7 +36,7 @@ catalogModule.service "catalogService",
       layersToSelect = layers.slice(startIndex, endIndex)
 
       # If first layer is not in card, then we should add all
-      shouldAddAll = !@isOnCart(layers[0].layer_id, cart)
+      shouldAddAll = !@isOnCart(layersToSelect[0].layer_id, cart)
 
       if shouldAddAll
         @selectAllButtonText = "select_all"
