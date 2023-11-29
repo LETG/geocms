@@ -78,11 +78,7 @@ mapModule.service "mapService",
         scope.filteredLayers = $filter('filter')(scope.filteredLayers, scope.ms.containsPoint())
         scope.filteredLayers = $filter('filter')(scope.filteredLayers, scope.ms.queryableLayer())
 
-        if scope.filteredLayers.length == 1
-          scope.ms.chooseLayer(scope.filteredLayers[0])
-          @container.on('popupclose', (e) -> scope.$destroy())
-          scope.$apply()
-        else if scope.filteredLayers.length <= 10
+        if scope.filteredLayers.length <= 10
           # if there is more than 10 layers
           container = @container
           currentPosition = @currentPosition
