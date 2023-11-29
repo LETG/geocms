@@ -41,11 +41,14 @@
               button class="pagination_buttons" ng-click="catalog.updateLayersPerPage(currentPage, 100)"
                 = 100
             .navigation_buttons 
-              button class="pagination_select_button" ng-click="catalog.selectAllCheckboxes(cart, catalog.layers, currentPage, pageSize)"
-                span ng-if="catalog.selectAllButtonText === 'select_all'" 
-                  = t("layers.unselect_all")
-                span ng-if="catalog.selectAllButtonText !== 'select_all'"
-                  = t("layers.select_all")
+              span.pagination_select_buttons
+                button class="pagination_select_button" ng-click="catalog.selectAllCheckboxes(cart, catalog.layers, currentPage, pageSize)"
+                  span
+                    = t("layers.select_all")
+
+                button class="pagination_select_button" ng-click="catalog.unselectAllCheckboxes(cart, catalog.layers, currentPage, pageSize)"
+                  span
+                    = t("layers.unselect_all")
 
               button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1"
                 = t("layers.previous")
