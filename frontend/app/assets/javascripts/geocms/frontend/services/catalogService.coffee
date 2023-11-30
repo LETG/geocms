@@ -5,7 +5,8 @@ catalogModule.service "catalogService",
   "Restangular",
   "$state",
   "$timeout",
-  (Restangular, $state, $timeout) ->
+  '$rootScope',
+  (Restangular, $state, $timeout, $rootScope) ->
     
     Catalog = ->
       @currentCategory = null
@@ -80,6 +81,7 @@ catalogModule.service "catalogService",
           Restangular.all("layers").customGET("search", { q: @query }).then (response) ->
             that.layers = response.layers
             that.categories = []
+            $rootScope.$broadcast('currentPageUpdated')
         , 500  # Adjust the delay time as needed
 
     Catalog
