@@ -24,7 +24,7 @@ module Geocms
     mount_uploader :thumbnail, Geocms::LayerUploader
     validates_presence_of :data_source_id, :name, :title
 
-    after_commit :get_thumbnail, on: :create
+    after_commit :get_thumbnail, on: [:create, :update]
 
     default_scope -> { order(:title) }
     pg_search_scope :search, against: [:name, :title]
