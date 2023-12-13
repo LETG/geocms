@@ -30,7 +30,7 @@ module Geocms
     pg_search_scope :search, against: [:name, :title], using: {
       tsearch: {
         dictionary: "simple",  # Use a simple dictionary that doesn't apply stemming
-        any_word: true,        # Match any word (disables phrase matching)
+        any_word: false,        # Match any word (disables phrase matching)
         prefix: true,          # Match words with the query as a prefix (enables prefix matching)
       }
     }
