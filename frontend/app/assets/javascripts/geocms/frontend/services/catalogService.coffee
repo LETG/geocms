@@ -80,7 +80,7 @@ catalogModule.service "catalogService",
         that.searchTimeout = $timeout =>
           Restangular.all("layers").customGET("search", { q: @query }).then (response) ->
             that.layers = response.layers
-            that.categories = []
+            that.categories = response.categories
             $rootScope.$broadcast('currentPageUpdated')
         , 500  # Adjust the delay time as needed
 

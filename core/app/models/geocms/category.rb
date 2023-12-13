@@ -1,6 +1,8 @@
 module Geocms
   class Category < ActiveRecord::Base
     extend FriendlyId
+    include ::PgSearch
+    
     friendly_id :name, :use => [:scoped, :finders], :scope => :account
 
     has_many :categorizations
@@ -16,6 +18,14 @@ module Geocms
     scope :ordered, -> {  order(:position) }
 
     before_save :cache_ancestry
+
+    pg_search_scope :search, against: [:name], using: {
+      tsearch: {
+        dictionary: "simple",  # Use a simple dictionary that doesn't apply stemming
+        any_word: false,        # Match any word (disables phrase matching)
+        prefix: true,          # Match words with the query as a prefix (enables prefix matching)
+      }
+    }
 
     class << self
 
