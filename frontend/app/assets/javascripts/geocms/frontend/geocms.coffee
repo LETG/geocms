@@ -101,6 +101,7 @@ geocms.controller 'LayersPagination',
 
   $scope.$on('pageSizeUpdated', (event, pageSize) ->
     $scope.pageSize = pageSize
+    $scope.currentPage = 0
   )
 
 geocms.filter 'startFrom', ->
