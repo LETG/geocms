@@ -34,11 +34,11 @@
           .pagination_container
             .layers_per_page
               = t("layers.layer_per_pages")
-              button class="pagination_buttons" ng-click="catalog.updateLayersPerPage(currentPage, 20)"
+              button class="pagination_buttons" ng-class="{ 'selected_pagination_button': pageSize === 20 }" ng-click="catalog.updateLayersPerPage(currentPage, 20)"
                 = 20
-              button class="pagination_buttons" ng-click="catalog.updateLayersPerPage(currentPage, 50)"
+              button class="pagination_buttons" ng-class="{ 'selected_pagination_button': pageSize === 50 }" ng-click="catalog.updateLayersPerPage(currentPage, 50)"
                 = 50
-              button class="pagination_buttons" ng-click="catalog.updateLayersPerPage(currentPage, 100)"
+              button class="pagination_buttons" ng-class="{ 'selected_pagination_button': pageSize === 100 }" ng-click="catalog.updateLayersPerPage(currentPage, 100)"
                 = 100
             .navigation_buttons 
               span.pagination_select_buttons
