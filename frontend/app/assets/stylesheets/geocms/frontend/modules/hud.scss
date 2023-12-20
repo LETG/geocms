@@ -98,3 +98,15 @@
     font-weight: bold;
   }
 }
+
+.searchButton {
+  min-width: 100%;
+}
+
+.searchicon {
+  position: absolute;
+  right: 10px;
+
+  top: 50%;
+  transform: translateY(-50%);
+}

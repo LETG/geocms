@@ -5,6 +5,12 @@
   div.collapse_container class="collapse in" id="collapseSideBar"
     == render "geocms/templates/sidebar/header"
 
+    div class="input-group-btn" ng-click="openCatalog();"
+      a class="btn btn-primary searchButton" type="button" 
+        = t("actions.default.search_layers")
+        |&nbsp;
+        |&nbsp;
+        span.searchicon.glyphicon.glyphicon-search
     navtabset.nav-filled justified="true" hashAware="true" 
       navtab heading=t("informations.header") uncheckable="" href="'#project'"
         == render "geocms/templates/sidebar/tab_infos"
