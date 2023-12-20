@@ -30,6 +30,9 @@ contexts.config [
           "sidebar@contexts":
             templateUrl: config.prefix_uri+"/templates/contexts/sidebar.html"
             controller: "ContextsController"
+          "searchbar@contexts":
+            templateUrl: config.prefix_uri+"/templates/contexts/searchbar.html"
+            controller: "ContextsController"
           "map@contexts":
             templateUrl: config.prefix_uri+"/templates/contexts/map.html"
             controller: ["context", "$state","Restangular","$rootScope", (context, $state,Restangular,$root) ->

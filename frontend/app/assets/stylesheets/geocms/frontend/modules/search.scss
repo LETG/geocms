@@ -1,0 +1,24 @@
+.searchBar {
+  color: $hud-body-color;
+  z-index: 1000;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  width: $hudsize;
+  height: auto;
+  background: $hud-background-color;
+  .resizeable {
+    max-height: 450px;
+    resize:vertical;
+    overflow:auto; 
+  }
+  .resizeable[style*="height"] {
+    max-height: unset; 
+  } 
+  .nav-filled {
+    position: relative;
+  }
+  .nav.nav-tabs {
+    margin-bottom: 0px;
+  }
+}
