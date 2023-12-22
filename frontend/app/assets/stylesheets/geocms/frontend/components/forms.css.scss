@@ -106,3 +106,25 @@ select.cke_dialog_ui_input_select {
     padding: 10px 14px 10px;
   }
 }
+
+.search-bar {
+  input {
+    padding-left: 40px; 
+    text-align: left;
+  }
+  
+  input::placeholder {
+    text-align: center;
+  }
+
+  .glyphicon {
+    position: absolute;
+    left: 10px;
+    z-index: 999;
+    font-size: 19px;
+    top: 8px;
+    color: #B4B4B4;
+  }
+    
+  width: 100%;
+}

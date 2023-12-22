@@ -4,12 +4,10 @@
       .page-header
         h1 = t "modules.layers.catalog"
       .row
-        .col-md-6
-          .input-group
-            input type="text" class="form-control" placeholder=t("actions.default.search_layers") ng-model="catalog.query" ng-enter="catalog.search()" ng-change="catalog.handleInputChange()"
-            span class="input-group-btn" ng-click="catalog.search()"
-              button class="btn btn-primary" type="button"
-                span.glyphicon.glyphicon-search   
+        .col-md-12
+          .input-group.search-bar
+            span.glyphicon.glyphicon-search 
+            input type="text" id="searchCatalogInput" class="form-control" placeholder=t("actions.default.search_layers") ng-model="catalog.query" ng-enter="catalog.search()" ng-change="catalog.handleInputChange()"
       .small-space
       ul.breadcrumb
         li 
@@ -73,3 +71,5 @@
                 | &nbsp;
             button ng-disabled="currentPage >= catalog.layers.length/pageSize - 1" ng-click="currentPage=currentPage+1"
               = t("layers.next")
+  javascript:
+    document.getElementById('searchCatalogInput').focus();
