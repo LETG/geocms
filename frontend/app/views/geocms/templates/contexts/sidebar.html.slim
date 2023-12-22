@@ -6,9 +6,9 @@
     == render "geocms/templates/sidebar/header"
 
     navtabset.nav-filled justified="true" hashAware="true" 
-      .input-group 
+      .input-group ng-click="openCatalog();"
         input type="text" class="form-control" placeholder=t("actions.default.search_layers") ng-model="cart.search" ng-enter="openCatalog()"
-        span class="input-group-btn" ng-click="openCatalog();"
+        span class="input-group-btn"
           a class="btn btn-primary" type="button" 
             i.carticon-plus.icon-white
             |&nbsp;
