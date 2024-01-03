@@ -5,11 +5,9 @@
         h1 = t "modules.layers.catalog"
       .row
         .col-md-6
-          .input-group
+          .input-group.search-bar
+            span.glyphicon.glyphicon-search 
             input type="text" id="searchCatalogInput" class="form-control" placeholder=t("actions.default.search_layers") ng-model="catalog.query" ng-enter="catalog.search()"
-            span class="input-group-btn" ng-click="catalog.search()"
-              button class="btn btn-primary" type="button"
-                span.glyphicon.glyphicon-search   
       .small-space
       ul.breadcrumb
         li 
