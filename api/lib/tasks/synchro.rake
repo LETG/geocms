@@ -400,9 +400,9 @@ namespace :geocms do
         end
       end
 
-      # send email to admins_data users
+      # send email to admin users
       puts "search admin user : " 
-      Geocms::User.joins(:roles).where(geocms_roles: { name: 'admin_instance' }).all.each do |user|;
+      Geocms::User.joins(:roles).where(geocms_roles: { name: 'admin' }).all.each do |user|;
         puts "Send mail to : #{ user.username } "
         begin
           UserMailer.sendUpdateLog(filename,date_email,user).deliver_now
