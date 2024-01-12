@@ -22,6 +22,7 @@ catalogModule.service "catalogService",
       return if @currentCategory == category
       @currentCategory = category
       @breadcrumb(category)
+      @query = null
       that = this
       Restangular.one("categories", category.id).get().then (category) ->
         that.categories = category.children
@@ -72,7 +73,9 @@ catalogModule.service "catalogService",
       if index > -1
         @categoryTree.splice(index+1, Number.MAX_VALUE)
       else
-        @categoryTree.push category
+        @categoryTree = []
+        for parentCategory in category.parent_categories
+          @categoryTree.push parentCategory  
       return
 
     Catalog::goToRoot = ->
@@ -81,6 +84,12 @@ catalogModule.service "catalogService",
       @layers = []
       @categories = []
       @query = null
+      @roots()
+
+    Catalog::showDefaultCategoriesAndLayers = ->
+      @categoryTree = []
+      @layers = []
+      @categories = []
       @roots()
 
     Catalog::search = ->
@@ -96,16 +105,25 @@ catalogModule.service "catalogService",
       setTimeout(open_layers)
       $state.go "^"
 
+    Catalog::displayParentCategories = (category) ->
+      if @query != null
+        return category.parent_categories.slice(0, -1).map((parentCategory) -> parentCategory.name).join(' / ')
+
     Catalog::handleInputChange = ->
       that = this
-      if @query.length >= 3
-        # Cancel the previous timeout if it exists
-        if that.searchTimeout
+      @categoryTree = []
+      searchInput = @query
+
+      # Cancel the previous timeout if it exists
+      if that.searchTimeout
           $timeout.cancel(that.searchTimeout)
 
+      if searchInput.length == 0
+        this.showDefaultCategoriesAndLayers()
+      else if searchInput.length >= 3
         # Set a new timeout to trigger the search after a delay (e.g., 500ms)
         that.searchTimeout = $timeout =>
-          Restangular.all("layers").customGET("search", { q: @query }).then (response) ->
+          Restangular.all("layers").customGET("search", { q: searchInput }).then (response) ->
             that.layers = response.layers
             that.categories = response.categories
             $rootScope.$broadcast('currentPageUpdated')
