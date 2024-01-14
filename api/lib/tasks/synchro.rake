@@ -165,7 +165,7 @@ def getLayerInfo(node,search,source_id,category_id,source)
               $cpt_update = $cpt_update+1
             end
             
-            img = ROGC::WMSClient.get_map(source.wms, layerFromDb.name,  layerFromDb.boundingbox, 64, 64, layerFromDb.bboxCrs);
+            img = ROGC::WMSClient.get_map(source.wms, layerFromDb.name, layerFromDb.default_style, layerFromDb.boundingbox, 64, 64, layerFromDb.bboxCrs);
          #   puts "--------------------------------------"
          #   puts "#{img}"
             img = img .gsub('styles=&', '');
@@ -203,7 +203,7 @@ def getLayerInfo(node,search,source_id,category_id,source)
               )
               categorization.save!
             end
-            img = ROGC::WMSClient.get_map(source.wms, newLayer.name,  newLayer.boundingbox, 64, 64, crs);
+            img = ROGC::WMSClient.get_map(source.wms, newLayer.name, newLayer.default_style, newLayer.boundingbox, 64, 64, crs);
             #   puts "--------------------------------------"
             #   puts "#{img}"
             img = img .gsub('styles=&', '');
