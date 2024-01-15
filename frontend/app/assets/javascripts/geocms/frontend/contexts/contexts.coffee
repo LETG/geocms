@@ -176,7 +176,8 @@ contexts.config [
         parent: 'contexts.show'
         views:
           "sidebar@contexts":
-            if window.location.search.includes("delay")
+            if window.location.search.indexOf('screenshotMode') != -1
+              # if params screenshotMode is in URL, then apply specific template and set screenshotMode to true
               templateUrl: config.prefix_uri+"/templates/contexts/sidebar_share_mode_delay.html"
               controller: "ContextsController"
             else
@@ -186,6 +187,10 @@ contexts.config [
           "map@contexts":
             templateUrl: config.prefix_uri+"/templates/contexts/map.html"
             controller: ["mapService", "context", "folders", "$rootScope", "$stateParams", "$scope", "$location", "$compile", (mapService, context, folders, $root, $stateParams, $scope, $location) ->
+              if window.location.search.indexOf('screenshotMode') != -1
+                # If we are in screenshot mode, then we clear the plugins entry to remove it from map generation
+                $stateParams["plugins"] = ""
+
               mapService.createMap("map", context.center_lat, context.center_lng, context.zoom, $stateParams["plugins"])
               mapService.addBaseLayer()
               $root.cart.context = context
