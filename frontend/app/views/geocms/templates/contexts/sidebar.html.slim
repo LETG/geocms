@@ -19,7 +19,7 @@
       a#save-button ng-click="cart.state == 'saved' || cart.save()" ng-class="{saved: cart.state == 'saved'}" ng-if="state != 'contexts.show'"
         span.carticon-floppy
         span ng-bind="cart.state == 'saved' ? '#{t("contexts.actions.saved")}' : '#{t("contexts.actions.save")}'"
-      a#save-button ui-sref='contexts.edit({uuid: cart.context.uuid})' ng-if="state == 'contexts.show' && cart.context.editable"
+      a#save-button ui-sref='contexts.edit({uuid: cart.context.uuid, configurationTab: true})' ng-if="state == 'contexts.show' && cart.context.editable"
         span.carticon-pencil
         span= t("contexts.actions.edit")
 

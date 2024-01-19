@@ -69,6 +69,33 @@
   }
 }
 
+.importCenter {
+  height: 34px;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 4px;
+  background: #546e7a;
+  margin-top: 30px;
+  color: white;
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  text-shadow: none;
+  line-height: 34px;
+  margin-bottom: 30px;
+
+  &:active {
+    background-color: #37474f;
+  }
+}
+
+.importCenterIcon {
+  position: absolute;
+  margin-left: -20px;
+  margin-top: 6px;
+  font-size: 17px;
+}
+
 .btn .carticon-menu {
   line-height: 10px;
   font-size: 14px;

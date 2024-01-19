@@ -20,6 +20,7 @@ form.inside-tab-pane role="form"
     .form-group.col-md-2
       label for="context_zoom" =t("contexts.attributes.zoom_level")
       input#context_zoom.form-control name="zoom" type="text" ng-model="cart.context.zoom" ng-readonly="!cart.context.editable"
-    .col-md-2.from-map
-      a href="" ng-click="cart.importCenter()" ng-if="cart.context.editable" tooltip=t("informations.settings.import_position") tooltip-append-to-body="true"
-        i.glyphicon.glyphicon-map-marker
+    .col-md-4.importCenter ng-click="cart.importCenter()"
+      span ng-if="cart.context.editable"
+        .importCenterIcon.glyphicon.glyphicon-map-marker
+        = t("informations.settings.import_position")

@@ -79,6 +79,10 @@ contexts.config [
               $root.cart.context.editable = true
               $root.cart.state = "new"
               $scope.mapService = mapService
+
+              # Go directly to configuration page
+              $location.hash('project') 
+              $root.settingsActive = true
               
               # check if user can create a context
               if $stateParams.editable? && $stateParams.editable != ""
@@ -139,7 +143,7 @@ contexts.config [
           ]
 
       .state 'contexts.edit',
-        url: '/{uuid}/edit'
+        url: '/{uuid}/edit?configurationTab'
         parent: 'contexts.root'
         views:
           "sidebar@contexts":
@@ -147,13 +151,17 @@ contexts.config [
             controller: "ContextsController"
           "map@contexts":
             templateUrl: config.prefix_uri+"/templates/contexts/map.html"
-            controller: ["mapService", "context", "folders", "$rootScope", "$scope", '$location', '$state', (mapService, context, folders, $root, $scope, $location, $state) ->
+            controller: ["mapService", "context", "folders", "$rootScope", "$scope", '$location', '$state', "$stateParams", (mapService, context, folders, $root, $scope, $location, $state, $stateParams) ->
               $state.transitionTo('contexts.show', {uuid: context.uuid}) unless context.editable
               mapService.createMap("map", context.center_lat, context.center_lng, context.zoom)
               mapService.addBaseLayer()
               $root.cart.context = context
               $root.cart.addSeveral()
               $root.cart.context.selected_folder = 0
+
+              if $stateParams["configurationTab"]
+                $location.hash('project') 
+                $root.settingsActive = true
 
               for value, index in folders
                 if value.id == context.folder_id
