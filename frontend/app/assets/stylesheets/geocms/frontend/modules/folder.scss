@@ -18,7 +18,23 @@
     margin-right: 5px;
     vertical-align: middle;
   }
+
+  .carticon-plus {
+    font-size: 22px;
+    margin-right: 5px;
+    vertical-align: middle;
+  }
 }
+
+#contexts-button {
+  top: 60px;
+  width: 140px;
+}
+
+.button-plugins-right--new-context {
+  right: -97px;
+}
+
 .button-plugins-right--language {
   right: -59px;
 }
@@ -44,7 +60,7 @@
 }
 
 #language-button {
-  top: 150px;
+  top: 195px;
 }
 #language-button span {
   display: inline-block;
