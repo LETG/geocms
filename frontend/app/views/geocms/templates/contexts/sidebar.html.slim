@@ -16,11 +16,25 @@
         == render "geocms/templates/sidebar/tab_cart"
       navtab heading=t("legend.header") uncheckable="" href="'#legend'"
         == render "geocms/templates/sidebar/tab_legend"
-      a#save-button ng-click="cart.state == 'saved' || cart.save()" ng-class="{saved: cart.state == 'saved'}" ng-if="state != 'contexts.show'"
-        span.carticon-floppy
-        span ng-bind="cart.state == 'saved' ? '#{t("contexts.actions.saved")}' : '#{t("contexts.actions.save")}'"
-      a#save-button ui-sref='contexts.edit({uuid: cart.context.uuid, configurationTab: true})' ng-if="state == 'contexts.show' && cart.context.editable"
+
+      / Button on show, when cart is editable and nothing has changed
+      a.save-button ui-sref='contexts.edit({uuid: cart.context.uuid})' ng-if="state == 'contexts.show' && cart.context.editable && cart.state == 'saved'"
         span.carticon-pencil
         span= t("contexts.actions.edit")
+
+      / Button on show, when cart is editable and something has changed
+      a.save-button ng-click="cart.state == 'saved' || cart.save()" ng-if="state == 'contexts.show' && cart.context.editable && cart.state == 'unsaved'"
+        span.carticon-floppy
+        span= t("contexts.actions.save")
+
+      / Second button on show, save as new
+      a.save_as_new-button ng-click="cart.state == 'saved' || cart.saveAsNew()" ng-class="{saved: cart.state == 'saved'}" ng-if="state != 'contexts.new' && cart.context.editable && cart.state == 'unsaved'"
+        span.carticon-floppy
+        span ng-bind="cart.state == 'saved' ? '#{t("contexts.actions.saved")}' : '#{t("contexts.actions.duplicate")}'"
+
+      / Button on edit
+      a.save-button ng-click="cart.state == 'saved' || cart.save()" ng-class="{saved: cart.state == 'saved'}" ng-if="state != 'contexts.show'"
+        span.carticon-floppy
+        span ng-bind="cart.state == 'saved' ? '#{t("contexts.actions.saved")}' : '#{t("contexts.actions.save")}'"
 
   == render "geocms/templates/sidebar/footer"

@@ -45,12 +45,36 @@
   }
 }
 
-#save-button {
+.save-button {
   cursor: pointer;
   text-decoration: none;
   width: 130px;
   position: absolute;
   top: 34px;
+  left: 450px;
+  z-index: 300;
+  height: 37px;
+  text-align: center;
+  border-radius: 0 4px 4px 0;
+  padding: 5px;
+  background: rgba($save-button-background-color, 0.8);
+  color: $save-button-color;
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  text-shadow: none;
+  &.saved {
+    background: rgba($save-button-background-color, 0.5);
+    cursor: initial;
+  }
+}
+
+.save_as_new-button {
+  cursor: pointer;
+  text-decoration: none;
+  width: 130px;
+  position: absolute;
+  top: 74px;
   left: 450px;
   z-index: 300;
   height: 37px;

@@ -20,6 +20,7 @@ fr:
       saved: Sauvegardé
       new: Nouvelle carte
       edit: Éditer
+      duplicate: Dupliquer
     attributes:
       name: Nom
       description: Description

@@ -143,7 +143,7 @@ contexts.config [
           ]
 
       .state 'contexts.edit',
-        url: '/{uuid}/edit?configurationTab'
+        url: '/{uuid}/edit?sharingTab'
         parent: 'contexts.root'
         views:
           "sidebar@contexts":
@@ -159,8 +159,15 @@ contexts.config [
               $root.cart.addSeveral()
               $root.cart.context.selected_folder = 0
 
-              if $stateParams["configurationTab"]
+              if $stateParams["sharingTab"]
+                # Go directly to sharing page
                 $location.hash('project') 
+                $root.sharingActive = true
+                $root.settingsActive = false
+              else
+                # Go directly to configuration page
+                $location.hash('project') 
+                $root.sharingActive = false
                 $root.settingsActive = true
 
               for value, index in folders
@@ -228,9 +235,10 @@ contexts.controller "ContextsController", [
 
     watchers = '[cart.context.name, cart.context.description, cart.context.folder_id, cart.context.center_lng, cart.context.center_lat, cart.context.zoom]'
     $root.$watchCollection watchers, (newValues, oldValues) ->
-      $root.cart.state = "unsaved" unless angular.equals(newValues, oldValues)
-
-    
+      if angular.equals(newValues, oldValues)
+        $root.cart.state = "saved"
+      else
+        $root.cart.state = "unsaved"
     , true
 
     $scope.openCatalog = (with_search) ->
