@@ -139,6 +139,9 @@ cartModule.service "cartService",
       delete @context.uuid
       delete @context.contexts_layers # BUG: circular dependency in json
       
+      # Rename the new map to avoid misunderstanding
+      @context.name = @context.name + " - copy"
+      
       that = this
       
       @context.contexts_layers_attributes = _.map(@layers, (cl) ->
