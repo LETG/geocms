@@ -133,6 +133,8 @@ cartModule.service "cartService",
     Cart::saveAsNew = () ->
       if @context.selected_folder?
         @context.folder_id = @context.selected_folder.id
+      else
+        @context.folder_id = null
         
       @context.fromServer = false
       delete @context.id
