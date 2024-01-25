@@ -173,8 +173,11 @@ cartModule.service "cartService",
           toaster.pop('success', config.t.contexts.edit.success, response.data)
           $root.cart.state = "saved"
       ), (response)->
-        $root.settingsActive = true
-        toaster.pop('error', config.t.contexts.edit.failure, response.data.message)
+          toaster.pop('error', config.t.contexts.edit.failure, response.data.message)
+
+      if !@context.name
+        field = document.getElementById('context_name');
+        field.focus()
 
 
     Cart::centerOn = (layer) ->
