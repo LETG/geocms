@@ -25,6 +25,7 @@ module Geocms
     validates_presence_of :data_source_id, :name, :title
 
     after_commit :get_thumbnail, on: [:create, :update]
+    attr_accessor :skip_get_thumbnail
 
     default_scope -> { order(:title) }
     pg_search_scope :search, against: [:name, :title], using: {
@@ -124,6 +125,7 @@ module Geocms
     private
 
     def get_thumbnail 
+      return if skip_get_thumbnail
       box = bounding_boxes.leafletable.first
       LayerThumbnailWorker.perform_async(id, data_source_wms, box.crs, box.to_bbox) unless box.nil?
     end
