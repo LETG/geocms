@@ -77,6 +77,11 @@ contexts.config [
               # default config
               $root.cart.folders = folders
               $root.cart.context.editable = true
+
+              # Find first folder owned by the current user
+              selected_folder = folders.find((object) -> object['personal'] == true)
+              $root.cart.context.selected_folder = selected_folder
+
               $root.cart.state = "new"
               $scope.mapService = mapService
 

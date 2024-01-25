@@ -255,6 +255,8 @@ fr:
           attributes:
             name:
               blank: Le nom doit être rempli.
+            folder:
+              blank: Le dossier doit être sélectionné.
             description:
               blank: La description doit être remplie.
             contexts_layers:
