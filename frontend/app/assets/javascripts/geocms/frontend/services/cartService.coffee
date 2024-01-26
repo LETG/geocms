@@ -8,7 +8,8 @@ cartModule.service "cartService",
   "toaster",
   "$state",
   "$interval",
-  (ms, Restangular, $root, toaster, $state, $interval) ->
+  "$timeout",
+  (ms, Restangular, $root, toaster, $state, $interval, $timeout) ->
 
     Cart = ->
       @layers = []
@@ -176,9 +177,17 @@ cartModule.service "cartService",
           $root.cart.state = "saved"
       ), (response)->
           toaster.pop('error', config.t.contexts.edit.failure, response.data.message)
-
+          # If error, then force show configuration pane
+          $timeout ->
+            projectTab = document.getElementById('project_tab')
+            settingSubtab = document.getElementById('settings_active')
+            if !projectTab.classList.contains('active')
+              projectTab.querySelector('a').click()
+            settingSubtab.querySelector('a').click()
+            field = document.getElementById('context_name')
+      
       if !@context.name
-        field = document.getElementById('context_name');
+        field = document.getElementById('context_name')
         field.focus()
 
 

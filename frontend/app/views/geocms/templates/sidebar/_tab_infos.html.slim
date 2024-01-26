@@ -2,7 +2,7 @@
   tabset.nav-bottom.nav-alternative justified="true" ng-if="state != 'contexts.show'"
     tab heading=t("informations.sharing.header") active="sharingActive"
       == render "geocms/templates/sidebar/tab_infos_sharing"
-    tab heading=t("informations.settings.header") active="settingsActive"
+    tab heading=t("informations.settings.header") active="settingsActive" id="settings_active"
       == render "geocms/templates/sidebar/tab_infos_settings"
   div ng-if="state == 'contexts.show'"
     == render "geocms/templates/sidebar/tab_infos_sharing"
