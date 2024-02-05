@@ -28,7 +28,7 @@
         span= t("contexts.actions.save")
 
       / Second button on show, save as new
-      a.save_as_new-button ng-click="cart.state == 'saved' || cart.saveAsNew()" ng-class="{saved: cart.state == 'saved'}" ng-if="state != 'contexts.new' && cart.state == 'unsaved'"
+      a.save_as_new-button ng-click="cart.state == 'saved' || cart.saveAsNew()" ng-class="{saved: cart.state == 'saved'}" ng-if="state != 'contexts.new' && cart.state == 'unsaved' && cart.context.duplicable"
         span.carticon-floppy
         span ng-bind="cart.state == 'saved' ? '#{t("contexts.actions.saved")}' : '#{t("contexts.actions.duplicate")}'"
 
