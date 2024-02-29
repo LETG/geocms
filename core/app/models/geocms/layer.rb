@@ -27,7 +27,7 @@ module Geocms
     after_commit :get_thumbnail, on: [:create, :update]
 
     default_scope -> { order(:title) }
-    pg_search_scope :search, against: [:name, :title], using: {
+    pg_search_scope :search, against: [:name, :title, :description], using: {
       tsearch: {
         dictionary: "simple",  # Use a simple dictionary that doesn't apply stemming
         any_word: false,        # Match any word (disables phrase matching)
