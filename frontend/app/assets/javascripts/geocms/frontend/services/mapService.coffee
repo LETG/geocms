@@ -20,13 +20,15 @@ mapModule.service "mapService",
       mapService.fullscreen = false
 
       mapService.createMap = (id, lat, lng, zoom, pluginParams) ->
-        urlParams = new URLSearchParams(window.location.search);
-        if urlParams.get('zoom')
-          zoom = urlParams.get('zoom')
-        if urlParams.get('lat')
-          lat = urlParams.get('lat')
-        if urlParams.get('lng')
-          lng = urlParams.get('lng')
+        
+        if typeof URLSearchParams == 'function'
+          urlParams = new URLSearchParams(window.location.search);
+          if urlParams.get('zoom')
+            zoom = urlParams.get('zoom')
+          if urlParams.get('lat')
+            lat = urlParams.get('lat')
+          if urlParams.get('lng')
+            lng = urlParams.get('lng')
 
         options = { zoomControl: false, crs: projections.getCRS(config.crs)}
         @container = new L.Map(id, options).setView([lat, lng], zoom)

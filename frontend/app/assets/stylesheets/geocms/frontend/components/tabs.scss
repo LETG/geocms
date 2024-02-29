@@ -31,8 +31,7 @@
 
 .nav-bottom {
   & > .nav {
-    position: absolute;
-    bottom: 0px;
+    z-index: 10;
   }
 }
 
@@ -52,5 +51,5 @@
 }
 
 .inside-tab-pane {
-  padding: 20px;
+  padding: 0px 20px 0px 20px;
 }

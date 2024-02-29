@@ -77,8 +77,17 @@ contexts.config [
               # default config
               $root.cart.folders = folders
               $root.cart.context.editable = true
+
+              # Find first folder owned by the current user
+              selected_folder = folders.find((object) -> object['personal'] == true)
+              $root.cart.context.selected_folder = selected_folder
+
               $root.cart.state = "new"
               $scope.mapService = mapService
+
+              # Go directly to configuration page
+              $location.hash('project') 
+              $root.settingsActive = true
               
               # check if user can create a context
               if $stateParams.editable? && $stateParams.editable != ""
@@ -139,7 +148,7 @@ contexts.config [
           ]
 
       .state 'contexts.edit',
-        url: '/{uuid}/edit'
+        url: '/{uuid}/edit?sharingTab'
         parent: 'contexts.root'
         views:
           "sidebar@contexts":
@@ -147,13 +156,24 @@ contexts.config [
             controller: "ContextsController"
           "map@contexts":
             templateUrl: config.prefix_uri+"/templates/contexts/map.html"
-            controller: ["mapService", "context", "folders", "$rootScope", "$scope", '$location', '$state', (mapService, context, folders, $root, $scope, $location, $state) ->
+            controller: ["mapService", "context", "folders", "$rootScope", "$scope", '$location', '$state', "$stateParams", (mapService, context, folders, $root, $scope, $location, $state, $stateParams) ->
               $state.transitionTo('contexts.show', {uuid: context.uuid}) unless context.editable
               mapService.createMap("map", context.center_lat, context.center_lng, context.zoom)
               mapService.addBaseLayer()
               $root.cart.context = context
               $root.cart.addSeveral()
               $root.cart.context.selected_folder = 0
+
+              if $stateParams["sharingTab"]
+                # Go directly to sharing page
+                $location.hash('project') 
+                $root.sharingActive = true
+                $root.settingsActive = false
+              else
+                # Go directly to configuration page
+                $location.hash('project') 
+                $root.sharingActive = false
+                $root.settingsActive = true
 
               for value, index in folders
                 if value.id == context.folder_id
@@ -176,7 +196,8 @@ contexts.config [
         parent: 'contexts.show'
         views:
           "sidebar@contexts":
-            if window.location.search.includes("delay")
+            if window.location.search.indexOf('screenshotMode') != -1
+              # if params screenshotMode is in URL, then apply specific template and set screenshotMode to true
               templateUrl: config.prefix_uri+"/templates/contexts/sidebar_share_mode_delay.html"
               controller: "ContextsController"
             else
@@ -186,6 +207,10 @@ contexts.config [
           "map@contexts":
             templateUrl: config.prefix_uri+"/templates/contexts/map.html"
             controller: ["mapService", "context", "folders", "$rootScope", "$stateParams", "$scope", "$location", "$compile", (mapService, context, folders, $root, $stateParams, $scope, $location) ->
+              if window.location.search.indexOf('screenshotMode') != -1
+                # If we are in screenshot mode, then we clear the plugins entry to remove it from map generation
+                $stateParams["plugins"] = ""
+
               mapService.createMap("map", context.center_lat, context.center_lng, context.zoom, $stateParams["plugins"])
               mapService.addBaseLayer()
               $root.cart.context = context
@@ -215,9 +240,10 @@ contexts.controller "ContextsController", [
 
     watchers = '[cart.context.name, cart.context.description, cart.context.folder_id, cart.context.center_lng, cart.context.center_lat, cart.context.zoom]'
     $root.$watchCollection watchers, (newValues, oldValues) ->
-      $root.cart.state = "unsaved" unless angular.equals(newValues, oldValues)
-
-    
+      if angular.equals(newValues, oldValues)
+        $root.cart.state = "saved"
+      else
+        $root.cart.state = "unsaved"
     , true
 
     $scope.openCatalog = (with_search) ->

@@ -255,6 +255,8 @@ en:
           attributes:
             name:
               blank: Name must be present
+            folder:
+              blank: A folder must be selected.
             description:
               blank: Description must be present
             contexts_layers:

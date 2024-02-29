@@ -17,6 +17,7 @@ module Geocms
     after_save :set_default
 
     validates :name, :contexts_layers, presence: true
+    validates :folder, :contexts_layers, presence: true
 
     default_scope -> { order("created_at DESC") }
 

@@ -87,5 +87,19 @@ module Geocms
       ("-" * depth) + name
     end
 
+    def parent_categories
+      breadcrumb_parent_categories = []
+      path.each do |category|
+        breadcrumb_parent_categories.push(
+          {
+            "id": category.id, 
+            "name": category.name
+          }
+        )
+      end
+
+      breadcrumb_parent_categories
+    end
+
   end
 end

@@ -8,7 +8,8 @@ cartModule.service "cartService",
   "toaster",
   "$state",
   "$interval",
-  (ms, Restangular, $root, toaster, $state, $interval) ->
+  "$timeout",
+  (ms, Restangular, $root, toaster, $state, $interval, $timeout) ->
 
     Cart = ->
       @layers = []
@@ -130,6 +131,34 @@ cartModule.service "cartService",
 
         that.layers.push ms.addLayer(cl)
 
+    Cart::saveAsNew = () ->
+      if @context.selected_folder?
+        @context.folder_id = @context.selected_folder.id
+      else
+        @context.folder_id = null
+        
+      @context.fromServer = false
+      delete @context.id
+      delete @context.uuid
+      delete @context.contexts_layers # BUG: circular dependency in json
+      
+      # Rename the new map to avoid misunderstanding
+      @context.name = @context.name + " - copy"
+      
+      that = this
+      
+      @context.contexts_layers_attributes = _.map(@layers, (cl) ->
+        { layer_id: cl.layer_id, opacity: cl.opacity, position: cl.position }
+      )
+      
+      @context.save().then ((response)->
+        $state.transitionTo("contexts.edit", {uuid: response.uuid, sharingTab: true}).then ->
+          toaster.pop('success', config.t.contexts.edit.success, response.data)
+          $root.cart.state = "saved"
+      ), (response)->
+        $root.settingsActive = true
+        toaster.pop('error', config.t.contexts.edit.failure, response.data.message)
+
     Cart::save = () ->
       if @context.selected_folder?
         @context.folder_id = @context.selected_folder.id
@@ -143,12 +172,23 @@ cartModule.service "cartService",
       )
       
       @context.save().then ((response)->
-        $state.transitionTo("contexts.edit", {uuid: response.uuid}).then ->
+        $state.transitionTo("contexts.edit", {uuid: response.uuid, sharingTab: true}).then ->
           toaster.pop('success', config.t.contexts.edit.success, response.data)
           $root.cart.state = "saved"
       ), (response)->
-        $root.settingsActive = true
-        toaster.pop('error', config.t.contexts.edit.failure, response.data.message)
+          toaster.pop('error', config.t.contexts.edit.failure, response.data.message)
+          # If error, then force show configuration pane
+          $timeout ->
+            projectTab = document.getElementById('project_tab')
+            settingSubtab = document.getElementById('settings_active')
+            if !projectTab.classList.contains('active')
+              projectTab.querySelector('a').click()
+            settingSubtab.querySelector('a').click()
+            field = document.getElementById('context_name')
+      
+      if !@context.name
+        field = document.getElementById('context_name')
+        field.focus()
 
 
     Cart::centerOn = (layer) ->

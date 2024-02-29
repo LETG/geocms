@@ -35,6 +35,12 @@ module Geocms
     def create
       if can? :create, Geocms::Context
         @context = Geocms::Context.new(context_params)
+
+        # If folder is not set, we take the first folder of the user
+        if @context.folder.blank?
+          @context.folder = current_user.folders.first
+        end
+
         if @context.save
           Geocms::ContextPreviewWorker.perform_async(@context.id, current_tenant.id)
           render json: @context, serializer: Geocms::ContextSerializer 

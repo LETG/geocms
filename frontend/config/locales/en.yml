@@ -20,6 +20,7 @@ en:
       saved: Saved
       new: New project
       edit: Edit
+      duplicate: Duplicate
     attributes:
       name: Name
       description: Description

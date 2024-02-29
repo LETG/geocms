@@ -10,11 +10,8 @@
       navtab heading=t("legend.header") uncheckable="" href="'#legend'"
         == render "geocms/templates/sidebar/tab_legend"
 javascript:
-  /* If url contain delay, then hide menu */
-  if(!$(location).attr('delay') && location.search.includes("delay")) {
-    var element = document.getElementById("expand_button");
-    element.click();
-  } else if(!$(location).attr('hash')) {
+  /* If url contain delay, then hide menu. Still useful for screenshots. */
+  if (/[?&]screenshotMode=/.test(location.search) || (!$(location).attr('hash'))) {
     var element = document.getElementById("expand_button");
     element.click();
   }
