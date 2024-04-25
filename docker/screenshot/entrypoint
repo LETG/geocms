@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+if test ${SCREENSHOT_DELAY} != 0; then
+  sed -i -e 's/\(request.headers.delay *|| *\)0;/\1'"${SCREENSHOT_DELAY}"'000;/' scripts/rasterizer.js
+  git add scripts/rasterizer.js
+  git commit -m "default delay ${SCREENSHOT_DELAY} s"
+fi
+
+exec "$@"

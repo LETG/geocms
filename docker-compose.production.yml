@@ -1,0 +1,14 @@
+version: '3.9'
+
+services:
+  app:
+    build:
+      target: "production"
+
+  cron:
+    build:
+      target: "production"
+
+  sidekiq:
+    build:
+      target: "production"

@@ -1,0 +1,102 @@
+version: '3.9'
+
+services:
+  app:
+    container_name: geocms_app
+    image: geocms:${GEOCMS_APP_IMAGE_VERSION}
+    build:
+      context: .
+      dockerfile: ./docker/app/Dockerfile
+      args:
+        TARGETARCH: 'amd64'
+        RUBY_VERSION: '2.7.6'
+        RAILS_VERSION: '5.2.4.6'
+        PG_MAJOR: '12'
+        NODE_MAJOR: '16'
+    env_file: .env
+    command: bundle exec rails server --binding=0.0.0.0
+    networks:
+      - geoauth
+    ports:
+      - "${GEOCMS_PORT}:3000"
+    depends_on:
+      - postgres
+      - redis
+    volumes:
+      - uploads:/app/public/uploads
+
+  cron:
+    build:
+      context: .
+      dockerfile: ./docker/cron/Dockerfile
+      args:
+        GEOCMS_APP_IMAGE_VERSION: ${GEOCMS_APP_IMAGE_VERSION}
+    env_file: .env
+    networks:
+      - geoauth
+    depends_on:
+      - app
+
+  sidekiq:
+    build:
+      context: .
+      dockerfile: ./docker/sidekiq/Dockerfile
+      args:
+        GEOCMS_APP_IMAGE_VERSION: ${GEOCMS_APP_IMAGE_VERSION}
+    env_file: .env
+    command: bundle exec sidekiq
+    networks:
+      - geoauth
+    depends_on:
+      - app
+    volumes:
+      - uploads:/app/public/uploads
+
+  screenshot:
+    build:
+      context: .
+      dockerfile: ./docker/screenshot/Dockerfile
+    env_file: .env
+    networks:
+      - geoauth
+    ports:
+      - "${SCREENSHOT_PORT}:3000"
+
+  maildev:
+    image: maildev/maildev
+    networks:
+      - geoauth
+    ports:
+      - "${MAILDEV_WEB_PORT}:1080"
+      - "${MAILDEV_SMTP_PORT}:1025"
+
+  postgres:
+    container_name: geocms-postgres
+    image: postgres:12.4
+    env_file: .env
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+    networks:
+      - geoauth
+    ports:
+      - "${POSTGRES_PORT}:5432"
+
+  redis:
+    image: redis:6-alpine
+    volumes:
+      - redis:/data
+    networks:
+      - geoauth
+    ports:
+      - "${REDIS_PORT}:6379"
+
+volumes:
+  postgres:
+  redis:
+  uploads:
+
+networks:
+  geoauth:
+    name: geoauth
