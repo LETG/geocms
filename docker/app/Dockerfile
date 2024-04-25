@@ -1,7 +1,7 @@
 ARG RUBY_VERSION
 FROM ruby:$RUBY_VERSION-bullseye as base
 
-ARG TARGETARCH
+#ARG TARGETARCH
 
 # ==> System dependencies
 RUN apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get -yq dist-upgrade && \
@@ -34,12 +34,12 @@ RUN apt-get update -qq && \
     "postgresql-client-${PG_MAJOR}"
 
 # ==> Proj4
-RUN \
-  wget "https://launchpad.net/ubuntu/+archive/primary/+files/libproj-dev_4.9.3-2_${TARGETARCH}.deb" && \
-  wget "https://launchpad.net/ubuntu/+archive/primary/+files/proj-bin_4.9.3-2_${TARGETARCH}.deb" && \
-  wget "https://launchpad.net/ubuntu/+archive/primary/+files/libproj12_4.9.3-2_${TARGETARCH}.deb" && \
-  wget https://launchpad.net/ubuntu/+archive/primary/+files/proj-data_4.9.3-2_all.deb && \
-  dpkg -i *.deb
+#RUN \
+#  wget "https://launchpad.net/ubuntu/+archive/primary/+files/libproj-dev_4.9.3-2_${TARGETARCH}.deb" && \
+#  wget "https://launchpad.net/ubuntu/+archive/primary/+files/proj-bin_4.9.3-2_${TARGETARCH}.deb" && \
+#  wget "https://launchpad.net/ubuntu/+archive/primary/+files/libproj12_4.9.3-2_${TARGETARCH}.deb" && \
+#  wget https://launchpad.net/ubuntu/+archive/primary/+files/proj-data_4.9.3-2_all.deb && \
+#  dpkg -i *.deb
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
   libproj-dev proj-bin
