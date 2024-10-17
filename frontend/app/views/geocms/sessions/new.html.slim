@@ -14,5 +14,6 @@
   .form-actions
     .row
       .col-xs-6
+        = link_to "Login with Keycloak", auth_at_provider_path(:provider => :keycloak_openid), class: 'btn btn-primary'
         = submit_tag t('geocms.login.submit'), class: "btn btn-primary btn-submit"
       .col-xs-6

@@ -9,6 +9,8 @@ module Geocms
     has_many :accounts, through: :memberships
     has_many :user_roles
     has_many :folders, class_name: "Geocms::Folder"
+    has_many :authentications, :dependent => :destroy
+    accepts_nested_attributes_for :authentications
 
     #acts_as_tenant(:account)
     #after_create :define_role

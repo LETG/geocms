@@ -1,6 +1,6 @@
 module Geocms
   class ApplicationController < ActionController::Base
-
+    use OmniAuth::Strategies::Developer
     set_current_tenant_by_subdomain(Geocms::Account, :subdomain)
 
     respond_to :html

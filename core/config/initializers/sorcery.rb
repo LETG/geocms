@@ -2,10 +2,20 @@
 # The default is nothing which will include only core features (password encryption, login/logout).
 # Available submodules are: :user_activation, :http_basic_auth, :remember_me,
 # :reset_password, :session_timeout, :brute_force_protection, :activity_logging, :external
-Rails.application.config.sorcery.submodules = []
+
+Rails.application.config.sorcery.submodules = [:external]
 
 # Here you can configure each submodule's features.
 Rails.application.config.sorcery.configure do |config|
+  config.external_providers = [:keycloak_openid]
+
+  config.keycloak_openid.key = ENV['KEYCLOAK_CLIENT_ID']
+  config.keycloak_openid.secret = ENV['KEYCLOAK_CLIENT_SECRET']
+  config.keycloak_openid.callback_url = ENV['KEYCLOAK_REDIRECT_URI']
+  config.keycloak_openid.user_info_path = 'http://keycloak:8080/realms/geocms/protocol/openid-connect/userinfo'
+  config.keycloak_openid.user_info_mapping = {:email => "email", :username => "preferred_username"}
+
+
   # -- core --
   # What controller action to call for non-authenticated users. You can also
   # override the 'not_authenticated' method of course.
@@ -120,6 +130,8 @@ Rails.application.config.sorcery.configure do |config|
     # Default: `[:username]`
     #
     user.username_attribute_names = [:username, :email]
+
+    user.authentications_class = Geocms::Authentication
 
 
     # change *virtual* password attribute, the one which is used until an encrypted one is generated.

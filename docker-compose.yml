@@ -1,4 +1,4 @@
-version: '3.9'
+name: 'geocms'
 
 services:
   app:
@@ -21,8 +21,25 @@ services:
     depends_on:
       - postgres
       - redis
+      - keycloak
     volumes:
       - uploads:/app/public/uploads
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.0.0
+    environment:
+      KC_BOOTSTRAP_ADMIN_PASSWORD: admin
+      KC_BOOTSTRAP_ADMIN_USERNAME: admin
+    command: start-dev
+    ports:
+      - "8080:8080"
+    networks:
+      - geoauth
+    volumes:
+      - keycloak-conf:/opt/keycloak/conf
+      - keycloak-data:/opt/keycloak/data
+    depends_on:
+      - postgres
 
   cron:
     build:
@@ -95,6 +112,8 @@ volumes:
   postgres:
   redis:
   uploads:
+  keycloak-conf:
+  keycloak-data:
 
 networks:
   geoauth:
