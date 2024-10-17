@@ -34,17 +34,16 @@ RUN apt-get update -qq && \
     "postgresql-client-${PG_MAJOR}"
 
 # ==> Proj4
-RUN \
-  wget "https://launchpad.net/ubuntu/+archive/primary/+files/libproj-dev_4.9.3-2_${TARGETARCH}.deb" && \
-  wget "https://launchpad.net/ubuntu/+archive/primary/+files/proj-bin_4.9.3-2_${TARGETARCH}.deb" && \
-  wget "https://launchpad.net/ubuntu/+archive/primary/+files/libproj12_4.9.3-2_${TARGETARCH}.deb" && \
-  wget https://launchpad.net/ubuntu/+archive/primary/+files/proj-data_4.9.3-2_all.deb && \
-  dpkg -i *.deb
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
+	libproj-dev \
+    proj-bin
 
 # ==> Generate empty Rails app
 ARG RAILS_VERSION
 ENV RAILS_ROOT /app
 WORKDIR /tmp
+RUN gem install nokogiri -v 1.15.6
+RUN gem install net-imap -v 0.4.17
 RUN gem install rails --version=$RAILS_VERSION
 RUN rails new $RAILS_ROOT --database=postgresql
 
