@@ -9,14 +9,6 @@ module Geocms
     end
 
     def create
-      user = User.from_omniauth(request.env['omniauth.auth'])
-      if user
-        session[:user_id] = user.id
-        redirect_to root_url, success: t("session.logged_in")
-      else
-        redirect_to root_url, alert: t("session.invalid_credentials")
-      end
-=begin
       user = login(params[:username], params[:password], params[:remember_me])
 
       if user
@@ -29,7 +21,6 @@ module Geocms
       else
         redirect_to login_path, :flash => { :error => t("session.invalid_credentials") }
       end
-=end
     end
 
     def destroy
