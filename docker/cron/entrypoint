@@ -1,0 +1,8 @@
+#!/bin/sh
+set -e
+
+# Wait for app to be up
+wait-for-it "geocms_app:3000" --timeout=0
+
+# Run command specified in docker-compose or Dockerfile
+exec "$@"
