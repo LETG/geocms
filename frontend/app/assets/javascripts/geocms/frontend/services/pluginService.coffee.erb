@@ -52,7 +52,8 @@ pluginModule.service "pluginService",
           #Geosearch
             L.Icon.Default.imagePath = "<%= asset_path('/assets/leaflet/images') %>" 
           new L.Control.GeoSearch({
-              provider: new L.GeoSearch.Provider.Google(),
+              #provider: new L.GeoSearch.Provider.Google(),
+              provider: new L.GeoSearch.Provider.OpenStreetMap(),
               position: 'topright',
               searchLabel: config.t.leaflet.control.geo_search.search_label,
               notFoundMessage: config.t.leaflet.control.geo_search.not_found_message
